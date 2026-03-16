@@ -22,14 +22,7 @@ npm run serve
 
 ## Deployment
 
-Deployment is handled automatically via GitHub Actions — every push to `main` builds the site and deploys to Cloudflare Workers using Wrangler. Pull requests get a build check to catch errors before merging.
-
-### Required Secrets (GitHub Actions)
-
-| Secret | Description |
-|--------|-------------|
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with Workers deployment permissions |
-| `CLOUDFLARE_ACCOUNT_ID` | Your Cloudflare account ID |
+Deployment is handled automatically by Cloudflare Workers — the project is connected via the Cloudflare dashboard and deploys on every push to `main`. GitHub Actions runs a build check on all pushes and PRs to catch errors early.
 
 To deploy manually from a local machine:
 
