@@ -65,11 +65,25 @@ const config: Config = {
 					position: 'left',
 					label: 'Documentation'
 				},
-				{
-					href: 'https://github.com/MoldyTaint/Cinephage',
-					label: 'GitHub',
-					position: 'right'
-				}
+			{
+				type: 'dropdown',
+				label: 'Source Code',
+				position: 'right',
+				items: [
+					{
+						href: 'https://github.com/MoldyTaint/Cinephage',
+						label: 'Cinephage (main)'
+					},
+					{
+						href: 'https://github.com/MoldyTaint/Cinephage/tree/dev',
+						label: 'Cinephage (dev)'
+					},
+					{
+						href: 'https://github.com/MoldyTaint/Cinephage-Docs',
+						label: 'Documentation Repo'
+					}
+				]
+			}
 			]
 		},
 		footer: {
