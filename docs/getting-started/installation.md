@@ -61,7 +61,7 @@ Replace the placeholder values in the environment section:
 | `ORIGIN`          | `http://localhost:3000` | The URL you will access Cinephage from    |
 | `BETTER_AUTH_URL` | `http://localhost:3000` | Same as ORIGIN, used for authentication   |
 
-**Important:** If you will access Cinephage through a reverse proxy or domain name, update `ORIGIN` and `BETTER_AUTH_URL` to match your public URL (e.g., `https://cinephage.yourdomain.com`).
+**Important:** Set `ORIGIN` and `BETTER_AUTH_URL` to match the URL you will use to access Cinephage (e.g., `http://your-server-ip:3000`).
 
 ## Step 3: Configure Volume Mounts
 

@@ -32,7 +32,7 @@ Root folders are the foundation of your library organization. When you add media
 - Can be on local disk, NAS, or cloud mount
 - Multiple root folders allowed
 
-**See:** [Configure Download Clients](../guides/configure/download-clients#path-mapping)
+**See:** [Configure Download Clients](../guides/configure/download-clients#part-3-path-mapping-important-for-docker)
 
 ### Monitoring
 

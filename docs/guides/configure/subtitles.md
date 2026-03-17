@@ -20,10 +20,6 @@ Enable automatic subtitle downloads for your media library in multiple languages
 - Media files in your library
 - (Optional) Accounts with subtitle providers
 
-## Time Estimate
-
-10-15 minutes
-
 ## Understanding Subtitle Management
 
 Cinephage provides comprehensive subtitle support:

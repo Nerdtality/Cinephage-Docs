@@ -178,12 +178,12 @@ environment:
 
 ### Proxy Settings
 
-| Variable                 | Default    | Description                                         |
-| ------------------------ | ---------- | --------------------------------------------------- |
-| `PROXY_FETCH_TIMEOUT_MS` | `30000`    | Timeout for fetching stream segments (milliseconds) |
-| `PROXY_SEGMENT_MAX_SIZE` | `52428800` | Maximum segment size in bytes (50MB default)        |
-| `PROXY_MAX_RETRIES`      | `2`        | Maximum retry attempts for failed segments          |
-| `DEFAULT_PROXY_REFERER`  | -          | Default referer header for stream requests          |
+| Variable                 | Default              | Description                                         |
+| ------------------------ | -------------------- | --------------------------------------------------- |
+| `PROXY_FETCH_TIMEOUT_MS` | `30000`              | Timeout for fetching stream segments (milliseconds) |
+| `PROXY_SEGMENT_MAX_SIZE` | `52428800`           | Maximum segment size in bytes (50MB default)        |
+| `PROXY_MAX_RETRIES`      | `2`                  | Maximum retry attempts for failed segments          |
+| `DEFAULT_PROXY_REFERER`  | `https://videasy.net`| Default referer header for stream requests          |
 
 ### Provider Circuit Breaker
 

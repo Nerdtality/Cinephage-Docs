@@ -20,19 +20,15 @@ Create regular backups of your Cinephage configuration and database to prevent d
 - Access to the config directory
 - Backup storage location
 
-## Time Estimate
-
-5 minutes to create backup, 10 minutes to restore
-
 ## What to Backup
 
 Cinephage stores data in several locations:
 
 ### Essential Data (Must Backup)
 
-| Location               | Contents                                 | Size     |
-| ---------------------- | ---------------------------------------- | -------- |
-| `/config/cinephage.db` | Main database (movies, series, settings) | 10-100MB |
+| Location                    | Contents                                 | Size     |
+| --------------------------- | ---------------------------------------- | -------- |
+| `/config/data/cinephage.db` | Main database (movies, series, settings) | 10-100MB |
 | `/config/settings/`    | Application settings                     | 1-5MB    |
 
 ### Important Data (Should Backup)
@@ -79,7 +75,7 @@ BACKUP_DIR=/path/to/backups/cinephage-$(date +%Y%m%d)
 CONFIG_DIR=/path/to/your/cinephage/config
 
 # Copy database
-cp "$CONFIG_DIR/cinephage.db" "$BACKUP_DIR/"
+cp "$CONFIG_DIR/data/cinephage.db" "$BACKUP_DIR/"
 
 # Copy settings
 cp -r "$CONFIG_DIR/settings" "$BACKUP_DIR/"
@@ -169,7 +165,7 @@ cd /opt/cinephage && docker compose down
 
 # Create backup
 tar -czf "$BACKUP_DIR/cinephage-$DATE.tar.gz" -C "$CONFIG_DIR" \
-    cinephage.db settings indexers 2>/dev/null
+    data settings indexers 2>/dev/null
 
 # Start Cinephage
 cd /opt/cinephage && docker compose up -d
@@ -270,7 +266,8 @@ mv "$CONFIG_DIR" "$CONFIG_DIR.backup.$(date +%Y%m%d)"
 mkdir -p "$CONFIG_DIR"
 
 # Restore database
-cp "$RESTORE_DIR/cinephage.db" "$CONFIG_DIR/"
+mkdir -p "$CONFIG_DIR/data"
+cp "$RESTORE_DIR/data/cinephage.db" "$CONFIG_DIR/data/"
 
 # Restore settings
 cp -r "$RESTORE_DIR/settings" "$CONFIG_DIR/"
@@ -361,13 +358,13 @@ For quick database backups without stopping:
 
 ```bash
 # While Cinephage is running
-docker exec cinephage sqlite3 /config/cinephage.db ".backup /config/cinephage-backup.db"
+docker exec cinephage sqlite3 /config/data/cinephage.db ".backup /config/data/cinephage-backup.db"
 
 # Copy backup
-cp /path/to/cinephage/config/cinephage-backup.db /path/to/backups/
+cp /path/to/cinephage/config/data/cinephage-backup.db /path/to/backups/
 
 # Remove temp backup
-docker exec cinephage rm /config/cinephage-backup.db
+docker exec cinephage rm /config/data/cinephage-backup.db
 ```
 
 This creates a consistent backup without stopping the application.
@@ -409,7 +406,7 @@ Test restore process periodically:
 
 ```bash
 # Use SQLite backup command
-docker exec cinephage sqlite3 /config/cinephage.db ".backup /tmp/backup.db"
+docker exec cinephage sqlite3 /config/data/cinephage.db ".backup /tmp/backup.db"
 docker cp cinephage:/tmp/backup.db /path/to/backups/
 ```
 
@@ -432,7 +429,7 @@ docker cp cinephage:/tmp/backup.db /path/to/backups/
 
 - Check backup file is not corrupt: `tar -tzf backup.tar.gz`
 - Verify file permissions after restore
-- Check database integrity: `sqlite3 cinephage.db "PRAGMA integrity_check;"`
+- Check database integrity: `sqlite3 data/cinephage.db "PRAGMA integrity_check;"`
 - Restore to fresh config directory
 
 ### Version Compatibility
@@ -451,7 +448,6 @@ docker cp cinephage:/tmp/backup.db /path/to/backups/
 Now that backups are configured:
 
 - [Performance Tuning](performance-tuning) for optimization
-- [Configure Reverse Proxy](reverse-proxy) for production deployment
 - [Troubleshooting](troubleshooting) for common issues
 
 ## See Also

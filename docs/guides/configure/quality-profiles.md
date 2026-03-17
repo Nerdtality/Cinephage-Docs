@@ -19,10 +19,6 @@ Configure how Cinephage scores and selects releases, including upgrade behavior 
 - Cinephage installed and running
 - Basic understanding of video formats (resolution, codecs, sources)
 
-## Time Estimate
-
-15-20 minutes for basic setup, 30+ minutes for custom formats
-
 ## Understanding Quality in Cinephage
 
 Cinephage uses a **scoring-based** quality system rather than simple quality levels. Each release is scored based on multiple factors:
@@ -220,7 +216,7 @@ Boost trusted release groups:
    - **Name**: `Trusted Groups`
    - **Score**: `+15`
    - **Conditions**:
-     - Contains: `-SPARKS` OR `-DON` OR `-EVO`
+      - Contains: `-SPARKS` OR `-DON` OR `-NTb`
 3. Click **Save**
 
 ### Example 4: Require HDR

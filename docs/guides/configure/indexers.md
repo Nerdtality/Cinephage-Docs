@@ -20,13 +20,9 @@ Add content sources (indexers) so Cinephage can search for and find media releas
 - Accounts with indexers you want to use (if required)
 - API keys or credentials for private indexers
 
-## Time Estimate
-
-5-10 minutes per indexer
-
 ## Understanding Indexers
 
-Cinephage uses a YAML-based indexer system. Unlike traditional \*arr applications with built-in indexer definitions, Cinephage loads all indexer configurations from YAML files. This provides flexibility and makes it easy to add custom indexers.
+Cinephage uses a YAML-based indexer system. All indexer configurations are loaded from YAML files, providing flexibility and making it easy to add custom indexers.
 
 ### Supported Protocols
 

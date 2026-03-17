@@ -21,10 +21,6 @@ Find and download movies and TV shows from your configured indexers.
 - Quality profile set
 - Media added to library with monitoring enabled
 
-## Time Estimate
-
-5-10 minutes per search
-
 ## Understanding the Search Process
 
 Cinephage searches follow this workflow:

@@ -19,18 +19,18 @@ Instead of running multiple separate services that do not talk to each other, Ci
 - **One configuration** - Set up indexers, download clients, and preferences once
 - **One container** - Deploy with Docker and start managing immediately
 
-## What It Replaces
+## Core Capabilities
 
-Cinephage brings together functionality from multiple applications:
+Cinephage brings together comprehensive media management functionality:
 
-| Application  | Purpose              | Cinephage Equivalent                   |
-| ------------ | -------------------- | -------------------------------------- |
-| Radarr       | Movie management     | Built-in library with TMDB integration |
-| Sonarr       | TV series management | Episode tracking and monitoring        |
-| Prowlarr     | Indexer management   | YAML-based indexer definitions         |
-| Bazarr       | Subtitle management  | 14 subtitle providers with auto-sync   |
-| Overseerr    | Content discovery    | Smart lists and TMDB discovery         |
-| FlareSolverr | Cloudflare bypass    | Built-in Camoufox solver               |
+| Feature          | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| Movies           | Built-in library with TMDB integration         |
+| TV Series        | Episode tracking and monitoring                |
+| Indexers         | YAML-based indexer definitions                 |
+| Subtitles        | 14 subtitle providers with auto-sync           |
+| Content Discovery| Smart lists and TMDB discovery                 |
+| Cloudflare Bypass| Built-in Camoufox solver                       |
 
 ## Key Features
 
@@ -110,12 +110,12 @@ Background, concepts, and architecture decisions.
 ## Getting Help
 
 - **Discord** - [Join our community](https://discord.gg/scGCBTSWEt) for chat support
-- **GitHub Issues** - [Report bugs](https://github.com/MoldyTaint/cinephage/issues) or request features
+- **GitHub Issues** - [Report bugs](https://github.com/MoldyTaint/Cinephage/issues) or request features
 - **Troubleshooting** - See our [troubleshooting guide](guides/deploy/troubleshooting) for common issues
 
 ## Contributing
 
-Cinephage is open source under the GPL-3.0 license. See our [GitHub repository](https://github.com/MoldyTaint/cinephage) to contribute code, report issues, or suggest improvements.
+Cinephage is open source under the GPL-3.0 license. See our [GitHub repository](https://github.com/MoldyTaint/Cinephage) to contribute code, report issues, or suggest improvements.
 
 ---
 

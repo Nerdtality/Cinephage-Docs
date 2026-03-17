@@ -21,10 +21,6 @@ Connect Cinephage to your download client so it can send releases for downloadin
 - Cinephage installed and running
 - Network connectivity between Cinephage and the download client
 
-## Time Estimate
-
-10-15 minutes per download client
-
 ## Supported Download Clients
 
 Cinephage supports the following clients:

@@ -76,15 +76,6 @@ Navigate the Cinephage UI:
 
 [Explore the Interface →](understanding-interface)
 
-## Time Estimate
-
-Complete all tutorials: **30-45 minutes**
-
-- Installation: 10 minutes
-- Initial Setup: 15 minutes
-- Adding Media: 10 minutes
-- Interface Tour: 5 minutes
-
 ## Next Steps
 
-After completing the tutorials, explore the [How-To Guides](../guides/) for specific tasks like configuring quality profiles, setting up subtitles, or deploying with a reverse proxy.
+After completing the tutorials, explore the [How-To Guides](../guides/) for specific tasks like configuring quality profiles, setting up subtitles, and managing your library.

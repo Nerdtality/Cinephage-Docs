@@ -21,7 +21,7 @@ Join our community on Discord for real-time chat support:
 ### GitHub
 
 - **Issues** - Report bugs and request features
-  [GitHub Issues](https://github.com/MoldyTaint/cinephage/issues)
+  [GitHub Issues](https://github.com/MoldyTaint/Cinephage/issues)
 
 - **Discussions** - Ask questions and share ideas
   [GitHub Discussions](https://github.com/MoldyTaint/Cinephage/discussions)
@@ -33,5 +33,4 @@ Join our community on Discord for real-time chat support:
 
 ## See Also
 
-- [Troubleshooting](../guides/deploy/troubleshooting)
 - [Installation](./installation)

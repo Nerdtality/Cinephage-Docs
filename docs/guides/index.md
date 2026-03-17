@@ -26,7 +26,6 @@ Configure Cinephage components:
 - [Set Up Live TV](configure/live-tv) - Configure IPTV and streaming sources
 - [Configure NZB Streaming](configure/nzb-streaming) - Enable direct usenet streaming
 - [Set Up Smart Lists](configure/smart-lists) - Create dynamic content lists
-- [Configure Reverse Proxy](configure/reverse-proxy) - Deploy with Nginx, Traefik, or Caddy
 
 ## Usage Guides
 
@@ -46,7 +45,6 @@ Production deployment:
 
 ### Infrastructure
 
-- [Set Up Reverse Proxy](deploy/reverse-proxy) - Secure external access
 - [Backup and Restore](deploy/backup-restore) - Protect your data
 - [Performance Tuning](deploy/performance-tuning) - Optimize for your hardware
 - [Troubleshooting](deploy/troubleshooting) - Solve common issues
@@ -77,8 +75,7 @@ Each guide includes:
 
 ### Going to Production
 
-1. [Configure Reverse Proxy](deploy/reverse-proxy)
-2. [Backup and Restore](deploy/backup-restore)
+1. [Backup and Restore](deploy/backup-restore)
 
 ### Advanced Features
 

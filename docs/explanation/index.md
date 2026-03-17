@@ -31,7 +31,7 @@ These documents explain the "why" behind Cinephage's design choices:
 
 ### Why a Single Application?
 
-Unlike traditional \*arr applications that run as separate services, Cinephage unifies everything into one application. Learn about the benefits of this approach and how it simplifies your media workflow.
+Cinephage unifies all media management into one cohesive application. Learn about the benefits of this approach and how it simplifies your media workflow.
 
 ### Quality vs. Quantity
 

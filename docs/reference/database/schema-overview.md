@@ -13,7 +13,7 @@ This reference provides an overview of Cinephage's database structure, including
 ## Database Information
 
 - **Engine:** SQLite 3
-- **Location:** `/config/cinephage.db`
+- **Location:** `/config/data/cinephage.db` (Docker) or `data/cinephage.db` (local)
 - **Format:** Single-file database
 - **Backup:** Simple file copy when Cinephage is stopped
 
@@ -31,141 +31,141 @@ Cinephage uses schema versioning for migrations:
 
 User authentication and session management:
 
-| Table            | Purpose                        |
-| ---------------- | ------------------------------ |
-| `user`           | User accounts and profile data |
-| `session`        | Active authentication sessions |
-| `account`        | OAuth/SSO account links        |
-| `verification`   | Email verification tokens      |
-| `authApiKeys`    | API key storage                |
-| `authRateLimits` | Rate limiting data             |
+| Table             | Purpose                        |
+| ----------------- | ------------------------------ |
+| `user`            | User accounts and profile data |
+| `session`         | Active authentication sessions |
+| `account`         | OAuth/SSO account links        |
+| `verification`    | Email verification tokens      |
+| `apikey`          | API key storage                |
+| `rateLimit`       | Rate limiting data             |
 
 ### Library
 
 Core media library data:
 
-| Table                | Purpose                              |
-| -------------------- | ------------------------------------ |
-| `movies`             | Movie metadata and monitoring status |
-| `movieFiles`         | Physical movie files                 |
-| `series`             | TV series metadata                   |
-| `seasons`            | Season information                   |
-| `episodes`           | Episode metadata                     |
-| `episodeFiles`       | Physical episode files               |
-| `rootFolders`        | Configured root folders              |
-| `unmatchedFiles`     | Files awaiting manual matching       |
-| `libraryScanHistory` | Scan operation history               |
+| Table                  | Purpose                              |
+| ---------------------- | ------------------------------------ |
+| `movies`               | Movie metadata and monitoring status |
+| `movie_files`          | Physical movie files                 |
+| `series`               | TV series metadata                   |
+| `seasons`              | Season information                   |
+| `episodes`             | Episode metadata                     |
+| `episode_files`        | Physical episode files               |
+| `root_folders`         | Configured root folders              |
+| `unmatched_files`      | Files awaiting manual matching       |
+| `library_scan_history` | Scan operation history               |
 
 ### Downloads
 
 Download client integration:
 
-| Table             | Purpose                        |
-| ----------------- | ------------------------------ |
-| `downloadQueue`   | Active downloads               |
-| `downloadHistory` | Completed downloads            |
-| `downloadClients` | Download client configurations |
-| `blocklist`       | Failed/problematic releases    |
-| `pendingReleases` | Releases awaiting download     |
+| Table               | Purpose                        |
+| ------------------- | ------------------------------ |
+| `download_queue`    | Active downloads               |
+| `download_history`  | Completed downloads            |
+| `download_clients`  | Download client configurations |
+| `blocklist`         | Failed/problematic releases    |
+| `pending_releases`  | Releases awaiting download     |
 
 ### Indexers
 
 Content source management:
 
-| Table                | Purpose                        |
-| -------------------- | ------------------------------ |
-| `indexerDefinitions` | YAML indexer definitions cache |
-| `indexers`           | Configured indexer instances   |
-| `indexerStatus`      | Health status tracking         |
+| Table                 | Purpose                        |
+| --------------------- | ------------------------------ |
+| `indexer_definitions` | YAML indexer definitions cache |
+| `indexers`            | Configured indexer instances   |
+| `indexer_status`      | Health status tracking         |
 
 ### Quality
 
 Scoring and quality management:
 
-| Table               | Purpose                      |
-| ------------------- | ---------------------------- |
-| `scoringProfiles`   | Quality profile definitions  |
-| `profileSizeLimits` | Size constraints per profile |
-| `customFormats`     | Custom format rules          |
-| `delayProfiles`     | Download delay settings      |
+| Table                | Purpose                      |
+| -------------------- | ---------------------------- |
+| `scoring_profiles`   | Quality profile definitions  |
+| `profile_size_limits`| Size constraints per profile |
+| `custom_formats`     | Custom format rules          |
+| `delay_profiles`     | Download delay settings      |
 
 ### Monitoring
 
 Automated task management:
 
-| Table                | Purpose                  |
-| -------------------- | ------------------------ |
-| `monitoringSettings` | Task configuration       |
-| `monitoringHistory`  | Task execution history   |
-| `taskSettings`       | Background task settings |
-| `taskHistory`        | Task run history         |
+| Table                 | Purpose                  |
+| --------------------- | ------------------------ |
+| `monitoring_settings` | Task configuration       |
+| `monitoring_history`  | Task execution history   |
+| `task_settings`       | Background task settings |
+| `task_history`        | Task run history         |
 
 ### Subtitles
 
 Subtitle management:
 
-| Table               | Purpose                      |
-| ------------------- | ---------------------------- |
-| `languageProfiles`  | Language preference profiles |
-| `subtitleProviders` | Provider configurations      |
-| `subtitles`         | Downloaded subtitle records  |
-| `subtitleHistory`   | Download history             |
-| `subtitleBlacklist` | Rejected subtitle entries    |
-| `subtitleSettings`  | Global subtitle settings     |
+| Table                | Purpose                      |
+| -------------------- | ---------------------------- |
+| `language_profiles`  | Language preference profiles |
+| `subtitle_providers` | Provider configurations      |
+| `subtitles`          | Downloaded subtitle records  |
+| `subtitle_history`   | Download history             |
+| `subtitle_blacklist` | Rejected subtitle entries    |
+| `subtitle_settings`  | Global subtitle settings     |
 
 ### Smart Lists
 
 Dynamic content lists:
 
-| Table                     | Purpose             |
-| ------------------------- | ------------------- |
-| `smartLists`              | List definitions    |
-| `smartListItems`          | Items in each list  |
-| `smartListRefreshHistory` | List update history |
+| Table                      | Purpose             |
+| -------------------------- | ------------------- |
+| `smart_lists`              | List definitions    |
+| `smart_list_items`         | Items in each list  |
+| `smart_list_refresh_history`| List update history |
 
 ### Streaming
 
 Streaming and NZB streaming:
 
-| Table                   | Purpose                       |
-| ----------------------- | ----------------------------- |
-| `streamExtractionCache` | Stream processing cache       |
-| `nntpServers`           | Usenet server configurations  |
-| `nzbStreamMounts`       | NZB streaming mounts          |
-| `nzbSegmentCache`       | Segment caching for streaming |
+| Table                    | Purpose                       |
+| ------------------------ | ----------------------------- |
+| `stream_extraction_cache`| Stream processing cache       |
+| `nntp_servers`           | Usenet server configurations  |
+| `nzb_stream_mounts`      | NZB streaming mounts          |
+| `nzb_segment_cache`      | Segment caching for streaming |
 
 ### Live TV
 
 IPTV and live television:
 
-| Table                  | Purpose                           |
-| ---------------------- | --------------------------------- |
-| `stalkerPortals`       | Stalker portal configurations     |
-| `portalScanResults`    | MAC address scan results          |
-| `portalScanHistory`    | Scan operation history            |
-| `livetvAccounts`       | Live TV account configs (unified) |
-| `livetvChannels`       | Channel information               |
-| `livetvCategories`     | Channel categories                |
-| `channelCategories`    | User category assignments         |
-| `channelLineupItems`   | User channel lineups              |
-| `channelLineupBackups` | Backup source configurations      |
-| `epgPrograms`          | Electronic program guide data     |
+| Table                    | Purpose                           |
+| ------------------------ | --------------------------------- |
+| `stalker_portals`        | Stalker portal configurations     |
+| `portal_scan_results`    | MAC address scan results          |
+| `portal_scan_history`    | Scan operation history            |
+| `livetv_accounts`        | Live TV account configs (unified) |
+| `livetv_channels`        | Channel information               |
+| `livetv_categories`      | Channel categories                |
+| `channel_categories`     | User category assignments         |
+| `channel_lineup_items`   | User channel lineups              |
+| `channel_lineup_backups` | Backup source configurations      |
+| `epg_programs`           | Electronic program guide data     |
 
 ### System
 
 Application settings and metadata:
 
-| Table                   | Purpose                   |
-| ----------------------- | ------------------------- |
-| `settings`              | Application settings      |
-| `librarySettings`       | Library-specific settings |
-| `namingSettings`        | File naming configuration |
-| `namingPresets`         | Built-in naming presets   |
-| `captchaSolverSettings` | Captcha solver config     |
-| `mediaBrowserServers`   | Jellyfin/Emby connections |
-| `externalIdCache`       | TMDB external ID cache    |
-| `alternateTitles`       | Title aliases             |
-| `userApiKeySecrets`     | API key secrets           |
+| Table                    | Purpose                   |
+| ------------------------ | ------------------------- |
+| `settings`               | Application settings      |
+| `library_settings`       | Library-specific settings |
+| `naming_settings`        | File naming configuration |
+| `naming_presets`         | Built-in naming presets   |
+| `captcha_solver_settings`| Captcha solver config     |
+| `media_browser_servers`  | Jellyfin/Emby connections |
+| `external_id_cache`      | TMDB external ID cache    |
+| `alternate_titles`       | Title aliases             |
+| `userApiKeySecrets`      | API key secrets           |
 
 ## Key Relationships
 
@@ -173,9 +173,9 @@ Application settings and metadata:
 
 ```
 movies
-├── movieFiles (one-to-many)
+├── movie_files (one-to-many)
 ├── subtitles (many-to-many)
-└── rootFolders (many-to-one)
+└── root_folders (many-to-one)
 ```
 
 ### TV Series Relationships
@@ -184,18 +184,18 @@ movies
 series
 ├── seasons (one-to-many)
 │   └── episodes (one-to-many)
-│       ├── episodeFiles (one-to-many)
+│       ├── episode_files (one-to-many)
 │       └── subtitles (many-to-many)
-└── rootFolders (many-to-one)
+└── root_folders (many-to-one)
 ```
 
 ### Download Flow
 
 ```
 movies/episodes
-└── downloadQueue (one-to-one while downloading)
-    ├── downloadClients (many-to-one)
-    └── downloadHistory (becomes history entry)
+└── download_queue (one-to-one while downloading)
+    ├── download_clients (many-to-one)
+    └── download_history (becomes history entry)
 ```
 
 ## Common Queries
@@ -224,7 +224,7 @@ SELECT
   dh.title,
   dh.quality,
   dh.date
-FROM downloadHistory dh
+FROM download_history dh
 ORDER BY dh.date DESC
 LIMIT 10;
 ```
@@ -236,7 +236,7 @@ SELECT
   m.title,
   m.year
 FROM movies m
-LEFT JOIN movieFiles mf ON m.id = mf.movieId
+LEFT JOIN movie_files mf ON m.id = mf.movieId
 WHERE m.monitored = 1
   AND (mf.id IS NULL OR mf.quality IS NULL);
 ```
@@ -265,20 +265,20 @@ Size factors:
 
 ```bash
 # While Cinephage is stopped
-cp /path/to/config/cinephage.db /path/to/backups/cinephage-$(date +%Y%m%d).db
+cp /path/to/config/data/cinephage.db /path/to/backups/cinephage-$(date +%Y%m%d).db
 
 # Or use SQLite online backup (while running)
-sqlite3 /path/to/config/cinephage.db ".backup /path/to/backups/cinephage-$(date +%Y%m%d).db"
+sqlite3 /path/to/config/data/cinephage.db ".backup /path/to/backups/cinephage-$(date +%Y%m%d).db"
 ```
 
 ### Database Optimization
 
 ```bash
 # Vacuum (reclaim space, optimize)
-sqlite3 /path/to/config/cinephage.db "VACUUM;"
+sqlite3 /path/to/config/data/cinephage.db "VACUUM;"
 
 # Analyze (update statistics)
-sqlite3 /path/to/config/cinephage.db "ANALYZE;"
+sqlite3 /path/to/config/data/cinephage.db "ANALYZE;"
 ```
 
 Run optimization monthly or after large imports.
@@ -287,7 +287,7 @@ Run optimization monthly or after large imports.
 
 ```bash
 # Check for corruption
-sqlite3 /path/to/config/cinephage.db "PRAGMA integrity_check;"
+sqlite3 /path/to/config/data/cinephage.db "PRAGMA integrity_check;"
 
 # Should return "ok"
 ```
@@ -301,17 +301,17 @@ sqlite3 /path/to/config/cinephage.db "PRAGMA integrity_check;"
 docker exec -it cinephage sh
 
 # Access database
-sqlite3 /config/cinephage.db
+sqlite3 /config/data/cinephage.db
 
 # Or run query directly
-docker exec cinephage sqlite3 /config/cinephage.db "SELECT COUNT(*) FROM movies;"
+docker exec cinephage sqlite3 /config/data/cinephage.db "SELECT COUNT(*) FROM movies;"
 ```
 
 ### Local Access (if not using Docker)
 
 ```bash
 # Direct access
-sqlite3 /path/to/config/cinephage.db
+sqlite3 /path/to/config/data/cinephage.db
 ```
 
 ## Schema Migrations

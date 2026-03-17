@@ -3,7 +3,7 @@
 
   # Cinephage Docs
 
-  **One app to replace them all — self-hosted media management**
+  **Unified self-hosted media management**
 
   [![Build](https://github.com/MoldyTaint/Cinephage-Docs/actions/workflows/build.yml/badge.svg)](https://github.com/MoldyTaint/Cinephage-Docs/actions/workflows/build.yml)
   [![Docusaurus 3](https://img.shields.io/badge/Docusaurus-3-blue?logo=docusaurus)](https://docusaurus.io/)
@@ -19,7 +19,7 @@
 
 ## About
 
-This is the documentation site for [Cinephage](https://github.com/MoldyTaint/Cinephage) — a unified, self-hosted media management platform that replaces the traditional *arr stack (Radarr, Sonarr, Prowlarr, Bazarr, Overseerr, and FlareSolverr) with a single Docker container and a single database.
+This is the documentation site for [Cinephage](https://github.com/MoldyTaint/Cinephage) — a unified, self-hosted media management platform combining movies, TV shows, live TV, and streaming into a single Docker container with a single database.
 
 The site is built with [Docusaurus 3](https://docusaurus.io/) and deployed automatically to [Cloudflare Workers](https://workers.cloudflare.com/).
 

@@ -95,8 +95,7 @@ Before diving into specific issues, perform these checks:
 
 2. **Check BETTER_AUTH_URL:**
    - Must match your access URL exactly
-   - If using reverse proxy, set to public URL
-   - Example: `BETTER_AUTH_URL=https://cinephage.yourdomain.com`
+   - Example: `BETTER_AUTH_URL=http://your-server-ip:3000`
 
 3. **Clear browser cookies:**
    - Try incognito/private window
@@ -219,7 +218,7 @@ Before diving into specific issues, perform these checks:
 2. **Check database permissions:**
 
    ```bash
-   ls -la /path/to/config/*.db
+   ls -la /path/to/config/data/*.db
    ```
 
    Should be owned by PUID/PGID
@@ -228,7 +227,7 @@ Before diving into specific issues, perform these checks:
 
    ```bash
    docker exec -it cinephage sh
-   sqlite3 /config/cinephage.db "PRAGMA integrity_check;"
+   sqlite3 /config/data/cinephage.db "PRAGMA integrity_check;"
    ```
 
 4. **Restore from backup:**
@@ -258,7 +257,7 @@ Before diving into specific issues, perform these checks:
 
    ```bash
    docker exec -it cinephage sh
-   sqlite3 /config/cinephage.db "VACUUM;"
+   sqlite3 /config/data/cinephage.db "VACUUM;"
    ```
 
 3. **Reduce indexer count:**
@@ -334,7 +333,7 @@ Investigate database issues:
 
 ```bash
 # Access database
-docker exec -it cinephage sqlite3 /config/cinephage.db
+docker exec -it cinephage sqlite3 /config/data/cinephage.db
 
 # List tables
 .tables
@@ -410,7 +409,7 @@ Before asking for help, collect:
    - Real-time chat support
    - Searchable history
 
-2. **GitHub Issues** - [Report bugs](https://github.com/MoldyTaint/cinephage/issues)
+2. **GitHub Issues** - [Report bugs](https://github.com/MoldyTaint/Cinephage/issues)
    - Bug reports
    - Feature requests
    - Include logs and reproduction steps
