@@ -164,6 +164,7 @@ Cinephage integrates with numerous external services:
 
 - Jellyfin notifications
 - Emby notifications
+- Plex notifications
 
 ### 6. Background Services
 
@@ -186,8 +187,10 @@ Long-running background processes:
 | `MonitoringScheduler` | Automated searches          | Configurable |
 | `ExternalIdService`   | TMDB ID caching             | Periodic     |
 | `SubtitleScheduler`   | Subtitle searching          | Configurable |
+| `SubtitleSyncService` | Native subtitle sync engine | On-demand    |
 | `EpgScheduler`        | EPG data updates            | Configurable |
 | `CaptchaSolver`       | Cloudflare bypass           | On-demand    |
+| `MediaBrowserNotifier`| Jellyfin/Emby/Plex updates  | Event-driven |
 
 ### 7. Worker System
 
@@ -430,8 +433,8 @@ Structured logging throughout:
 
 Endpoints for monitoring:
 
-- `/api/health` - Basic health
-- `/api/ready` - Ready for traffic
+- `/api/health` - Basic health (DB connectivity, services)
+- `/api/ready` - Ready for traffic (services started)
 - Service status reporting
 
 ### Metrics

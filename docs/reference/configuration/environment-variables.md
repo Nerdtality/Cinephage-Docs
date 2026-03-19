@@ -14,10 +14,32 @@ This reference documents all environment variables available for configuring Cin
 
 These variables must be set for Cinephage to function correctly:
 
-| Variable          | Description                            | Example                 |
-| ----------------- | -------------------------------------- | ----------------------- |
-| `ORIGIN`          | Trusted origin URL for CSRF protection | `http://localhost:3000` |
-| `BETTER_AUTH_URL` | Base URL for authentication callbacks  | `http://localhost:3000` |
+| Variable             | Description                                          | Example                        |
+| -------------------- | ---------------------------------------------------- | ------------------------------ |
+| `BETTER_AUTH_SECRET` | Secret key for session signing and API key encryption | _generate unique value_        |
+| `ORIGIN`             | Trusted origin URL for CSRF protection               | `http://localhost:3000`        |
+| `BETTER_AUTH_URL`    | Base URL for authentication callbacks                | `http://localhost:3000`        |
+
+### Generating BETTER_AUTH_SECRET
+
+Generate a secure secret using one of these methods:
+
+```bash
+# Using openssl
+openssl rand -base64 32
+
+# Using Node.js
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
+:::warning Important Security Notes
+- **Keep this secret secure** — Store it safely like a password
+- **Back it up** — You'll need the same value if you restore from backup
+- **Changing it has consequences:**
+  - All active user sessions are invalidated (users must log in again)
+  - Existing API keys become unreadable and must be regenerated
+  - API keys encrypted with the old secret cannot be recovered
+:::
 
 ## Server Configuration
 
@@ -236,11 +258,12 @@ services:
     ports:
       - '3000:3000'
     environment:
-      # Server
+      # Server (REQUIRED)
       - HOST=0.0.0.0
       - PORT=3000
       - ORIGIN=https://cinephage.yourdomain.com
       - BETTER_AUTH_URL=https://cinephage.yourdomain.com
+      - BETTER_AUTH_SECRET=your-generated-secret-here
 
       # System
       - PUID=1000
@@ -271,23 +294,23 @@ services:
 
 ### Quick Reference
 
-| Category            | Variables                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------ |
-| **Server**          | `HOST`, `PORT`, `ORIGIN`, `BETTER_AUTH_URL`, `BETTER_AUTH_TRUSTED_ORIGINS`, `PUBLIC_BASE_URL`    |
-| **System**          | `PUID`, `PGID`, `TZ`, `CINEPHAGE_FORCE_RECURSIVE_CHOWN`                                          |
-| **Logging**         | `LOG_LEVEL`, `LOG_INCLUDE_STACK`, `LOG_SENSITIVE`                                                |
-| **Workers**         | `WORKER_MAX_*` (8 variables)                                                                     |
-| **Streaming**       | `PROXY_FETCH_TIMEOUT_MS`, `PROXY_SEGMENT_MAX_SIZE`, `PROXY_MAX_RETRIES`, `DEFAULT_PROXY_REFERER` |
-| **Circuit Breaker** | `PROVIDER_MAX_FAILURES`, `PROVIDER_CIRCUIT_HALF_OPEN_MS`, `PROVIDER_CIRCUIT_RESET_MS`            |
-| **Live TV**         | `EPG_STARTUP_GRACE_MS`, `STREAMING_API_KEY_RATE_LIMIT_*`                                         |
-| **Tools**           | `FFPROBE_PATH`                                                                                   |
+| Category            | Variables                                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Server**          | `BETTER_AUTH_SECRET`, `ORIGIN`, `BETTER_AUTH_URL`, `HOST`, `PORT`, `BETTER_AUTH_TRUSTED_ORIGINS`, `PUBLIC_BASE_URL` |
+| **System**          | `PUID`, `PGID`, `TZ`, `CINEPHAGE_FORCE_RECURSIVE_CHOWN`                                                    |
+| **Logging**         | `LOG_LEVEL`, `LOG_INCLUDE_STACK`, `LOG_SENSITIVE`                                                          |
+| **Workers**         | `WORKER_MAX_*` (8 variables)                                                                               |
+| **Streaming**       | `PROXY_FETCH_TIMEOUT_MS`, `PROXY_SEGMENT_MAX_SIZE`, `PROXY_MAX_RETRIES`, `DEFAULT_PROXY_REFERER`           |
+| **Circuit Breaker** | `PROVIDER_MAX_FAILURES`, `PROVIDER_CIRCUIT_HALF_OPEN_MS`, `PROVIDER_CIRCUIT_RESET_MS`                      |
+| **Live TV**         | `EPG_STARTUP_GRACE_MS`, `STREAMING_API_KEY_RATE_LIMIT_*`                                                   |
+| **Tools**           | `FFPROBE_PATH`                                                                                             |
 
 ### Total Variables
 
-- **Required:** 2
+- **Required:** 3 (`BETTER_AUTH_SECRET`, `ORIGIN`, `BETTER_AUTH_URL`)
 - **Recommended:** 4 (PUID, PGID, TZ, LOG_LEVEL)
 - **Optional:** 20+
-- **Total:** 26+ environment variables
+- **Total:** 27+ environment variables
 
 ## Troubleshooting
 

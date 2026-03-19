@@ -32,21 +32,21 @@ Cinephage provides comprehensive subtitle support:
 
 ### Supported Subtitle Providers
 
-| Provider          | Type         | Notes                       |
-| ----------------- | ------------ | --------------------------- |
-| OpenSubtitles.com | Free/Premium | Largest database            |
-| OpenSubtitles.org | Free         | Legacy API                  |
-| Podnapisi         | Free         | Good for European languages |
-| Subscene          | Free         | Wide language support       |
-| Addic7ed          | Free         | TV-focused                  |
-| SubDL             | Free         | Fast API                    |
-| YIFYSubtitles     | Free         | Movie-focused               |
-| Gestdown          | Free         | TV subtitles                |
-| Subf2m            | Free         | Multi-language              |
-| NapiProjekt       | Free         | Polish-focused              |
-| LegendasDivx      | Free         | Portuguese-focused          |
-| BetaSeries        | Free         | TV series                   |
-| Assrt             | Free         | Asian languages             |
+| Provider          | Type         | Access Type   | Notes                       |
+| ----------------- | ------------ | ------------- | --------------------------- |
+| OpenSubtitles.com | Free/Premium | API Key       | Largest database, hash matching |
+| OpenSubtitles.org | Free         | API Key       | Legacy API                  |
+| Podnapisi         | Free         | Free Account  | Good for European languages |
+| Subscene          | Free         | Free          | Wide language support       |
+| Addic7ed          | Free         | Free Account  | TV-focused                  |
+| SubDL             | Free         | Free          | Fast API, daily quota       |
+| YIFYSubtitles     | Free         | Free          | Movie-focused               |
+| Gestdown          | Free         | Free          | TV subtitles                |
+| Subf2m            | Free         | Free          | Multi-language              |
+| NapiProjekt       | Free         | Free          | Polish-focused              |
+| LegendasDivx      | Free         | Free Account  | Portuguese-focused          |
+| BetaSeries        | Free         | API Key       | French TV series            |
+| Assrt             | Free         | API Key       | Chinese, Asian languages    |
 
 ## Part 1: Enable Subtitle Providers
 
@@ -274,8 +274,136 @@ If subtitles are out of sync:
 2. Click **Subtitles** tab
 3. Find the subtitle file
 4. Click **Sync**
-5. Cinephage uses alass algorithm to synchronize
+5. Cinephage uses native sync engine to synchronize
 6. Review and confirm the sync
+
+## Part 7: Subtitle Sync Engine
+
+Cinephage includes a **native subtitle synchronization engine** inspired by the alass (Automatic Language-Agnostic Subtitle Synchronization) algorithm. This replaces external binary dependencies with a fully integrated TypeScript solution.
+
+### How It Works
+
+The sync engine uses Voice Activity Detection (VAD) to align subtitles:
+
+1. **Audio Extraction** — Extracts audio from the video file using ffmpeg
+2. **Speech Detection** — Identifies speech segments via energy-based VAD
+3. **Alignment** — Matches subtitle timing to speech segments
+4. **Correction** — Applies timing adjustments to subtitle file
+
+### Sync Options
+
+| Option          | Description                                           | Default |
+| --------------- | ----------------------------------------------------- | ------- |
+| **Split Penalty** | Higher values = fewer timing splits (0-30)          | 7       |
+| **Offset Only**  | Use constant offset mode (faster, less precise)     | No      |
+
+**Split Penalty Guide:**
+- **Low (1-5)**: More aggressive timing corrections, may over-correct
+- **Medium (7)**: Balanced approach, recommended for most content
+- **High (15-30)**: Conservative corrections, fewer timing changes
+
+### Bulk Sync
+
+For TV series with multiple episodes:
+
+1. Go to series detail page
+2. Click **Subtitles** tab
+3. Click **Sync All** or **Sync Unsynced**
+4. Select sync options
+5. Monitor progress in real-time
+6. Review results per episode
+
+### Supported Formats
+
+- **Input**: SRT, ASS, VTT, SSA
+- **Output**: Same as input format
+
+### Memory Optimization
+
+The sync engine streams audio data instead of loading entire files:
+- Peak memory: ~5MB (vs ~500MB for a 2-hour movie)
+- Safe for low-memory systems
+
+## Part 8: Adaptive Subtitle Search
+
+Adaptive searching reduces API quota waste by scaling back search frequency for media that consistently has no subtitle results.
+
+### How It Works
+
+The system tracks failed subtitle searches:
+
+1. **First Search**: Always performed, timestamp recorded
+2. **Failed Search**: Counter incremented
+3. **Within 21 Days**: Always search (aggressive period)
+4. **After 21 Days**: Only search if 7+ days since last attempt (extended period)
+5. **Success**: All counters reset
+
+### Timeline
+
+```
+Day 0:  First search → No results → Counter = 1
+Day 1:  Search → No results → Counter = 2
+Day 7:  Search → No results → Counter = 3
+Day 14: Search → No results → Counter = 4
+Day 21: Search → No results → Counter = 5 (window ends)
+Day 28: Search skipped (only 7 days since Day 21)
+Day 35: Search → No results → Counter = 6
+Day 42: Search skipped
+...
+```
+
+### Resetting Counters
+
+When a subtitle is found:
+- `failedSubtitleAttempts` → 0
+- `firstSubtitleSearchAt` → null
+- `lastSearchTime` → current time
+
+The media returns to aggressive searching immediately.
+
+## Part 9: Provider Throttling
+
+The throttling system prevents excessive API calls when providers return errors.
+
+### Error Types and Durations
+
+| Error Type            | Throttle Duration | Description                          |
+| --------------------- | ----------------- | ------------------------------------ |
+| TooManyRequests       | 1 hour            | HTTP 429 rate limiting               |
+| DownloadLimitExceeded | 3 hours           | Daily/hourly quota exhausted         |
+| ServiceUnavailable    | 20 minutes        | HTTP 503 server error                |
+| APIThrottled          | 10 minutes        | Provider-specific throttling         |
+| ParseResponseError    | 6 hours           | Malformed API response               |
+| IPAddressBlocked      | 24 hours          | IP address blacklisted               |
+| AuthenticationError   | 12 hours          | Invalid credentials                  |
+| ConfigurationError    | 12 hours          | Missing API key or settings          |
+| SearchLimitReached    | 3 hours           | Search quota exhausted               |
+| TimeoutError          | 1 hour            | Request timeout                      |
+| ConnectionError       | 1 hour            | Network connectivity issues          |
+
+### Sliding Window for Transient Errors
+
+For temporary issues (rate limits, timeouts, server errors):
+- Provider is only throttled after **5 errors within 2 minutes**
+- This prevents throttling from occasional one-off failures
+
+### Provider-Specific Overrides
+
+Some providers have custom throttle durations:
+
+| Provider        | Error                 | Custom Duration |
+| --------------- | --------------------- | --------------- |
+| OpenSubtitles   | TooManyRequests       | 1 minute        |
+| OpenSubtitles   | APIThrottled          | 15 seconds      |
+| Addic7ed        | IPAddressBlocked      | 1 hour          |
+| SubDL           | DownloadLimitExceeded | Until midnight UTC |
+
+### Viewing Throttle Status
+
+1. Go to **Settings > Integrations > Subtitle Providers**
+2. Check the **Status** column
+3. Throttled providers show remaining time
+4. Healthy providers show green status
 
 ## Part 6: Understanding Subtitle Scoring
 

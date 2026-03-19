@@ -17,6 +17,7 @@ Before you begin, ensure you have:
 - **Docker** installed (version 20.10 or later)
 - **Docker Compose** installed (version 2.0 or later)
 - **A TMDB API key** (you will get this during setup)
+- **An auth secret** (generate one with: `openssl rand -base64 32`)
 
 ## Step 1: Create the Docker Compose File
 
@@ -43,6 +44,7 @@ services:
       - TZ=UTC
       - ORIGIN=http://localhost:3000
       - BETTER_AUTH_URL=http://localhost:3000
+      - BETTER_AUTH_SECRET=your-secret-key-here
     volumes:
       - ./config:/config
       - /path/to/media:/media
@@ -53,15 +55,19 @@ services:
 
 Replace the placeholder values in the environment section:
 
-| Variable          | Value                   | Description                               |
-| ----------------- | ----------------------- | ----------------------------------------- |
-| `PUID`            | `1000`                  | Your user ID (run `id -u` to find yours)  |
-| `PGID`            | `1000`                  | Your group ID (run `id -g` to find yours) |
-| `TZ`              | `UTC`                   | Your timezone (e.g., `America/New_York`)  |
-| `ORIGIN`          | `http://localhost:3000` | The URL you will access Cinephage from    |
-| `BETTER_AUTH_URL` | `http://localhost:3000` | Same as ORIGIN, used for authentication   |
+| Variable             | Value                   | Description                                          |
+| -------------------- | ----------------------- | ---------------------------------------------------- |
+| `PUID`               | `1000`                  | Your user ID (run `id -u` to find yours)             |
+| `PGID`               | `1000`                  | Your group ID (run `id -g` to find yours)            |
+| `TZ`                 | `UTC`                   | Your timezone (e.g., `America/New_York`)             |
+| `ORIGIN`             | `http://localhost:3000` | The URL you will access Cinephage from               |
+| `BETTER_AUTH_URL`    | `http://localhost:3000` | Same as ORIGIN, used for authentication              |
+| `BETTER_AUTH_SECRET` | _generated_             | Secret key for session encryption (generate new one) |
 
-**Important:** Set `ORIGIN` and `BETTER_AUTH_URL` to match the URL you will use to access Cinephage (e.g., `http://your-server-ip:3000`).
+**Important:** 
+
+- Set `ORIGIN` and `BETTER_AUTH_URL` to match the URL you will use to access Cinephage (e.g., `http://your-server-ip:3000`).
+- Generate a unique `BETTER_AUTH_SECRET` using: `openssl rand -base64 32` or `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"`
 
 ## Step 3: Configure Volume Mounts
 
@@ -187,6 +193,24 @@ Common issues include:
 - Incorrect volume mount paths
 - Missing required environment variables
 - Port conflicts
+
+### Missing BETTER_AUTH_SECRET
+
+If you see an error about `BETTER_AUTH_SECRET`:
+
+1. Generate a secret: `openssl rand -base64 32`
+2. Add it to your `docker-compose.yaml`:
+   ```yaml
+   environment:
+     - BETTER_AUTH_SECRET=your-generated-secret-here
+   ```
+3. Restart: `docker compose up -d`
+
+:::warning Secret Security
+Keep your `BETTER_AUTH_SECRET` secure and backed up. Changing this secret will:
+- Invalidate all active user sessions (users must log in again)
+- Make existing API keys unreadable (regenerate them in Settings > System)
+:::
 
 ## Updating Cinephage
 

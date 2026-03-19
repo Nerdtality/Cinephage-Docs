@@ -26,13 +26,17 @@ If you see a login screen instead of the wizard, initial setup has already been 
 
 The first step is creating your administrator account:
 
-1. Enter your **name**
-2. Enter your **email address**
+1. Enter your **username** (3-32 characters, alphanumeric and underscores only)
+2. Enter your **email address** (optional, for display purposes only)
 3. Create a **password** (minimum 8 characters)
 4. Confirm your password
 5. Click **Create Account**
 
 This account has full administrative access to configure and manage Cinephage.
+
+:::note Single Admin Architecture
+Cinephage uses a single-administrator model. After the first account is created, additional registrations are disabled. This account is the only user that can access Cinephage.
+:::
 
 ## Step 3: Get Your TMDB API Key
 
@@ -121,7 +125,7 @@ Click **Complete Setup** to finish.
 
 You will be redirected to the login screen:
 
-1. Enter your email and password
+1. Enter your username and password
 2. Click **Sign In**
 
 You are now on the Cinephage dashboard.
@@ -166,6 +170,44 @@ Navigate to **Settings > Tasks**:
 3. Set appropriate intervals
 4. Click **Save**
 
+### 4. API Keys (Optional)
+
+Navigate to **Settings > System** to manage API keys for external access:
+
+**Main API Key:**
+- Provides full access to all Cinephage API endpoints
+- Use for automation scripts, external tools, or integrations
+- Can be regenerated if compromised
+
+**Streaming API Key:**
+- Limited access for media servers (Jellyfin, Plex, Emby)
+- Only permits: Live TV playlists, EPG data, streaming content
+- Use when connecting media servers to Cinephage's Live TV features
+
+:::tip API Key Security
+- Treat API keys like passwords
+- Regenerate keys if you suspect they've been compromised
+- Use the Streaming API Key (not Main) for media server connections
+:::
+
+### 5. Media Server Notifications (Optional)
+
+Navigate to **Settings > Integrations > Media Servers** to connect your media servers:
+
+1. Click **Add Server**
+2. Select server type (Jellyfin, Emby, or Plex)
+3. Enter server URL and API key
+4. Configure path mappings if running in Docker
+5. Select notification triggers:
+   - **On Import** — Notify when new media is added
+   - **On Upgrade** — Notify when media quality is upgraded
+   - **On Rename** — Notify when files are renamed
+   - **On Delete** — Notify when media is removed
+6. Click **Test** to verify connection
+7. Click **Save**
+
+This allows Cinephage to automatically refresh your media server's library when changes occur.
+
 ## What You Have Accomplished
 
 You have successfully:
@@ -177,6 +219,8 @@ You have successfully:
 - Configured quality profiles
 - Added indexers for content discovery
 - Set up automatic monitoring
+- Configured API keys for external access (optional)
+- Connected media servers for library updates (optional)
 
 ## Verify Everything Works
 
