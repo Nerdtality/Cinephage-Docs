@@ -86,6 +86,7 @@ You should see the qBittorrent web interface. Log in with the credentials you se
 - **Username**: Your qBittorrent username
 - **Password**: Your qBittorrent password
 - **Use SSL**: Unchecked (unless you configured HTTPS)
+- **URL Base**: (optional) For reverse proxy setups (e.g., `/qbittorrent`)
 
 **Options:**
 
@@ -225,6 +226,48 @@ Path mapping:
    - Host: Deluge IP
    - Port: `8112` (default)
    - Password: Web UI password
+
+### SABnzbd Mount Mode
+
+SABnzbd can be configured in **Mount Mode** for direct NZB streaming:
+
+**What is Mount Mode?**
+
+- SABnzbd downloads are accessed via WebDAV mount
+- Files stream directly without full download
+- Supports STRM and Symlink import methods
+- Reduces storage requirements
+
+**Configuration:**
+
+1. Enable WebDAV in SABnzbd:
+   - Go to **Config > Switches**
+   - Enable **WebDAV** option
+   - Set username/password
+
+2. In Cinephage download client settings:
+   - Check **Use Mount Mode**
+   - Enter WebDAV credentials
+   - Configure mount path mappings
+
+## Part 5: Managing Downloads
+
+### Clear Failed Downloads
+
+When downloads fail repeatedly, you can bulk-remove them from the queue:
+
+1. Go to **Activity > Queue**
+2. Click **Clear Failed** button
+3. Confirm the action in the modal
+4. Failed items are removed from the download queue
+
+**What gets cleared:**
+
+- Items marked as failed by the download client
+- Items with repeated errors
+- Stalled downloads
+
+**Note:** This only removes items from the download queue. The releases remain in your blocklist if they were marked as failed.
 
 ## Verification
 

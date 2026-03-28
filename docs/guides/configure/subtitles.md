@@ -24,11 +24,13 @@ Enable automatic subtitle downloads for your media library in multiple languages
 
 Cinephage provides comprehensive subtitle support:
 
-- **14 subtitle providers** - Multiple sources for best coverage
-- **Language profiles** - Multi-language preferences
+- **12 subtitle providers** - Multiple sources for best coverage
+- **Language profiles** - Multi-language preferences with embedded subtitle support
 - **Auto-download** - Automatic search on import
+- **Monitoring tasks** - Automatic searches for missing subtitles and upgrades
 - **Subtitle sync** - Built-in synchronization
 - **Score-based selection** - Best match by hash and filename
+- **Embedded subtitle recognition** - Counts embedded subtitles as satisfying language requirements
 
 ### Supported Subtitle Providers
 
@@ -36,8 +38,6 @@ Cinephage provides comprehensive subtitle support:
 | ----------------- | ------------ | ------------- | --------------------------- |
 | OpenSubtitles.com | Free/Premium | API Key       | Largest database, hash matching |
 | OpenSubtitles.org | Free         | API Key       | Legacy API                  |
-| Podnapisi         | Free         | Free Account  | Good for European languages |
-| Subscene          | Free         | Free          | Wide language support       |
 | Addic7ed          | Free         | Free Account  | TV-focused                  |
 | SubDL             | Free         | Free          | Fast API, daily quota       |
 | YIFYSubtitles     | Free         | Free          | Movie-focused               |
@@ -79,13 +79,13 @@ Enable providers based on your language needs:
 **For English:**
 
 - OpenSubtitles.com
-- Subscene
 - SubDL
+- YIFYSubtitles
 
 **For European Languages:**
 
-- Podnapisi (Slavic languages)
 - Addic7ed (TV shows)
+- NapiProjekt (Polish)
 
 **For Asian Languages:**
 
@@ -100,7 +100,7 @@ Enable providers based on your language needs:
 **For Movies:**
 
 - YIFYSubtitles
-- Subscene
+- OpenSubtitles.com
 
 Enable at least 3-5 providers for good coverage.
 
@@ -115,10 +115,11 @@ Providers are searched in priority order (1 = highest):
 **Recommended Priority Order:**
 
 1. OpenSubtitles.com (Priority 1)
-2. Subscene (Priority 2)
-3. Addic7ed (Priority 3)
-4. SubDL (Priority 4)
-5. Others (Priority 5-10)
+2. Addic7ed (Priority 2)
+3. SubDL (Priority 3)
+4. Subf2m (Priority 4)
+5. Gestdown (Priority 5)
+6. Others (Priority 6-10)
 
 ## Part 2: Create Language Profiles
 
@@ -186,6 +187,36 @@ For multiple required languages:
 3. Select **Default Language Profile**
 4. Click **Save**
 
+## Part 2.5: Embedded Subtitle Recognition
+
+Cinephage recognizes embedded subtitles within video containers (MKV, MP4, etc.) and counts them as satisfying your language profile requirements. This prevents unnecessary downloads of external subtitle files when your media already has the needed languages.
+
+### How It Works
+
+When media is imported:
+
+1. **Scan Video Container** — Checks for subtitle tracks in MKV, MP4, and other containers
+2. **Language Detection** — Identifies language codes of embedded tracks
+3. **Profile Matching** — Compares against your language profile requirements
+4. **Requirement Satisfaction** — Marks languages as "present" if embedded subtitle found
+
+### Benefits
+
+- **Reduces Downloads** — No external subtitles needed for content with embedded tracks
+- **Faster Import** — Skips unnecessary subtitle searches
+- **Saves Bandwidth** — Less API calls to subtitle providers
+- **Cleaner Library** — Fewer external files to manage
+
+### Supported Containers
+
+- **MKV** (Matroska) — Full support for all subtitle tracks
+- **MP4** — Supports mov_text and other embedded formats
+- **AVI** — Limited support via IDX/SUB
+
+### Configuration
+
+Embedded subtitle recognition is automatic and requires no configuration. It works alongside your existing language profiles — embedded subtitles count as satisfying "Required" languages, just like downloaded external subtitles.
+
 ## Part 3: Configure Download Behavior
 
 ### Automatic Download on Import
@@ -198,25 +229,45 @@ Enable subtitles to download automatically when media is imported:
 4. Set interval (default: immediate)
 5. Click **Save**
 
-### Scheduled Subtitle Search
+This triggers automatic subtitle search when movies/episodes are imported to your library.
 
-Search for missing subtitles periodically:
+### Missing Subtitles Monitoring
+
+The **Missing Subtitles** task automatically searches for subtitles on media missing required languages:
 
 1. In **Settings > Tasks**
-2. Find **Missing Subtitle Search** task
+2. Find **Missing Subtitles** task
 3. Enable it
-4. Set interval (recommended: daily or weekly)
+4. Set interval (default: every 6 hours)
 5. Click **Save**
+
+This task respects your language profiles and only searches for missing required languages.
 
 ### Subtitle Upgrades
 
-Enable upgrading to better subtitle matches:
+The **Subtitle Upgrade** task searches for better-scoring subtitles when your profile allows upgrades:
 
 1. In **Settings > Tasks**
-2. Find **Subtitle Upgrade Search** task
+2. Find **Subtitle Upgrade** task
 3. Enable it
-4. Set interval (recommended: weekly)
+4. Set interval (default: daily)
 5. Click **Save**
+
+This task only runs when your language profile has **Upgrade** enabled for at least one language.
+
+### Task Activity History
+
+All subtitle tasks record detailed activity history:
+
+1. Go to **Settings > Tasks**
+2. Click **View History** on any subtitle task
+3. See per-item activity including:
+   - Items searched
+   - Subtitles found and downloaded
+   - Skipped items (already have subtitles)
+   - Failed searches
+
+History is automatically cleaned up after 30 days.
 
 ## Part 4: Apply Language Profile to Media
 

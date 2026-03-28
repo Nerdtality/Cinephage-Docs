@@ -12,7 +12,45 @@ This reference documents the YAML format for defining custom indexers in Cinepha
 
 ## Overview
 
-Cinephage uses YAML files to define all indexer configurations. This provides flexibility and makes it easy to add custom indexers without code changes.
+Cinephage uses a **unified YAML-only indexer architecture**. All indexers are defined entirely through YAML files — no code changes needed to add new indexers.
+
+### Architecture Features
+
+- **YAML-only definitions** — All indexer logic in declarative YAML files
+- **Protocol handlers** — Separate handlers for torrent, usenet, and streaming protocols
+- **Dynamic capability discovery** — Automatically fetches `/api?t=caps` to determine supported search parameters
+- **Enhanced health tracking** — Tracks consecutive failures with exponential backoff
+- **Protocol-specific settings** — Custom columns for torrent, usenet, and streaming configurations
+
+### Protocol Support
+
+| Protocol | Handler | Features |
+|----------|---------|----------|
+| **Torrent** | `torrent` | Magnet links, .torrent files, CSS selectors |
+| **Usenet** | `usenet` | Newznab API, NZB downloads |
+| **Streaming** | `streaming` | HLS streams, CORS proxy integration |
+
+### Dynamic Capability Discovery
+
+Newznab-compatible indexers (including UNIT3D trackers) automatically discover capabilities:
+
+```yaml
+id: my-unit3d-tracker
+name: My UNIT3D Tracker
+protocol: usenet
+categories:
+  - movies
+  - tv
+settings:
+  apiUrl: https://tracker.example.com/api
+  apiKey: your-api-key
+  # Capabilities fetched from /api?t=caps automatically
+```
+
+This allows the indexer to:
+- Know which search parameters are supported
+- Optimize search requests
+- Handle different Newznab implementations
 
 ## YAML Structure
 
@@ -388,6 +426,34 @@ settings:
     search: /v1/search
     resolve: /v1/resolve
 ```
+
+### Example 5: UNIT3D Private Tracker (OldToons.World)
+
+```yaml
+id: oldtoons
+name: OldToons.World
+protocol: usenet
+categories:
+  - tv
+enabled: true
+priority: 15
+description: Private UNIT3D tracker for classic animated content
+settings:
+  apiUrl: https://oldtoons.world/api
+  apiKey: YOUR_API_KEY_HERE
+  categories:
+    tv: 5000
+  timeout: 30
+  retries: 3
+  rateLimit: 60
+```
+
+**UNIT3D Tracker Notes:**
+
+- Uses Newznab-compatible API
+- Requires API key authentication
+- Supports `name` and `search` query parameters
+- Dynamic capability discovery from `/api?t=caps`
 
 ## Testing Indexers
 

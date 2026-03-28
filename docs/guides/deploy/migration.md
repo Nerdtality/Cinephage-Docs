@@ -334,6 +334,53 @@ docker compose up -d
 
 ---
 
+## Task System Migration (Monitoring → Tasks)
+
+**Applies to:** Users upgrading from versions with separate Monitoring page
+
+### What Changed
+
+- **Monitoring settings page removed** — All monitoring configuration consolidated into Settings > Tasks
+- **Unified task registry** — Centralized task definitions with consistent configuration
+- **Task execution history** — All tasks now record detailed per-item activity
+- **Automatic history cleanup** — Old history entries automatically removed after 30 days
+
+### Task Frequency Changes
+
+| Task | Old Location | Old Frequency | New Frequency |
+|------|--------------|---------------|---------------|
+| CutoffUnmet | Monitoring | As configured | Daily |
+| Upgrade | Monitoring | As configured | Weekly |
+| MissingSubtitles | — | — | Every 6 hours (new) |
+| SubtitleUpgrade | — | — | Daily (new) |
+
+### Migration Steps
+
+**Step 1:** Review your task settings:
+
+1. Go to **Settings > Tasks**
+2. Check all enabled tasks and their intervals
+3. Adjust frequencies as needed for your use case
+
+**Step 2:** Enable new subtitle tasks (if using subtitles):
+
+- **Missing Subtitles** — Automatically finds missing subtitle languages
+- **Subtitle Upgrade** — Searches for better subtitle matches when allowed
+
+**Step 3:** Monitor task history:
+
+1. Go to **Settings > Tasks**
+2. Click **View History** on any task
+3. See detailed per-item execution records
+
+### Removed Features
+
+- Individual monitoring task pages
+- BROWSER_SOLVER_* environment variables
+- Old monitoring configuration storage
+
+---
+
 ## Alpine to Debian Image Migration
 
 **Applies to:** All users upgrading to Camoufox-based Captcha Solver

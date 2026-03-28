@@ -102,6 +102,10 @@ This will:
 2. Create the container
 3. Start the application
 
+:::info First Startup Note
+On first startup, Cinephage will download the Camoufox browser (~80MB) for Captcha Solver functionality. This is a one-time download stored in your `/config` volume.
+:::
+
 ## Step 5: Verify Installation
 
 Check that Cinephage is running:
@@ -212,6 +216,35 @@ Keep your `BETTER_AUTH_SECRET` secure and backed up. Changing this secret will:
 - Make existing API keys unreadable (regenerate them in Settings > System)
 :::
 
+### Migrating from Old Volume Mounts
+
+If you previously used `/app/data` volume mounts, Cinephage will automatically migrate your data to the new `/config` mount on startup:
+
+1. **Update your `docker-compose.yaml`** to add the `/config` mount alongside existing mounts:
+   ```yaml
+   volumes:
+     - ./config:/config      # NEW: Add this
+     - ./data:/app/data      # Keep temporarily
+     - /path/to/media:/media
+     - /path/to/downloads:/downloads
+   ```
+
+2. **Start the container** - migration happens automatically:
+   ```bash
+   docker compose up -d
+   docker compose logs cinephage | grep -i migrat
+   ```
+
+3. **After successful migration**, remove the old mount:
+   ```yaml
+   volumes:
+     - ./config:/config      # Keep only this
+     - /path/to/media:/media
+     - /path/to/downloads:/downloads
+   ```
+
+**Your data is safe** — the migration copies (not moves) your data. Original files remain untouched until you remove the old mounts.
+
 ## Updating Cinephage
 
 To update to the latest version:
@@ -222,6 +255,14 @@ docker compose up -d
 ```
 
 Your data and configuration will persist in the `./config` volume.
+
+:::info Docker Image Change
+Recent versions use `node:22-slim` (Debian) instead of `node:22-alpine`. The image size increased by ~40MB (180MB → 220MB) to support the new Captcha Solver. If updating from an older version, you may need to recreate the container:
+
+```bash
+docker compose up -d --force-recreate
+```
+:::
 
 ## Docker Tags
 
