@@ -1,12 +1,13 @@
 ---
-title: Import Existing Files
+id: import-existing-files
+title: Import existing files
 description: Import your existing media library into Cinephage from disk or other media managers
 sidebar_position: 4
-date: 2025-03-16
 tags: [import, library, migration, guide, existing, files]
+keywords: [import, library, existing files, migration]
 ---
 
-# Import Existing Files
+# Import existing files
 
 This guide explains how to import your existing media library into Cinephage. Whether you're migrating from another media manager or adding existing files, this process ensures your library is properly organized and tracked.
 

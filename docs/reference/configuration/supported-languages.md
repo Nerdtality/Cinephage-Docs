@@ -1,12 +1,13 @@
 ---
-title: Supported Languages
+id: supported-languages
+title: Supported languages
 description: Language codes and subtitle language support
 sidebar_position: 3
-date: 2025-03-16
 tags: [languages, subtitles, reference]
+keywords: [languages, subtitles, iso codes, i18n]
 ---
 
-# Supported Languages
+# Supported languages
 
 This reference lists all languages supported by Cinephage for subtitles and metadata.
 

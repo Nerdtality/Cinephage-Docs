@@ -1,12 +1,13 @@
 ---
-title: Migration Guide
+id: migration
+title: Migration guide
 description: Upgrade from older Cinephage versions with breaking changes and volume mount updates
 sidebar_position: 4
-date: 2025-03-16
 tags: [migration, upgrade, deployment, guide]
+keywords: [migration, upgrade, volume mounts, breaking changes]
 ---
 
-# Migration Guide
+# Migration guide
 
 This guide covers upgrading from older Cinephage versions with breaking changes.
 

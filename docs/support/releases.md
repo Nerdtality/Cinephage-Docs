@@ -1,7 +1,10 @@
 ---
+id: releases
 title: Releases
 description: Cinephage release channels and version information
 sidebar_position: 2
+tags: [releases, versions, changelog]
+keywords: [releases, versions, stable, dev]
 ---
 
 # Releases

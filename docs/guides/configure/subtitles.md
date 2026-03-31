@@ -1,12 +1,13 @@
 ---
-title: Configure Subtitles
+id: configure-subtitles
+title: Configure subtitles
 description: Set up subtitle providers, language profiles, and automatic downloads
 sidebar_position: 4
-date: 2025-03-16
 tags: [subtitles, languages, providers, configuration, guide]
+keywords: [subtitles, languages, providers, sync, configuration]
 ---
 
-# Configure Subtitles
+# Configure subtitles
 
 This guide walks you through configuring Cinephage's subtitle management system with 14 supported providers and automatic downloading.
 

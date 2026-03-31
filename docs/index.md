@@ -1,9 +1,10 @@
 ---
-slug: /
-title: Cinephage Documentation
+id: index
+title: Cinephage documentation
 description: Complete documentation for Cinephage, the unified self-hosted media management platform
-date: 2025-03-16
+slug: /
 tags: [overview, getting-started]
+keywords: [cinephage, documentation, media management, self-hosted]
 ---
 
 # Cinephage Documentation

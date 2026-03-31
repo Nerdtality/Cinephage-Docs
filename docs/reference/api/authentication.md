@@ -1,12 +1,13 @@
 ---
-title: Authentication
+id: api-authentication
+title: API authentication
 description: API authentication methods, API keys, and security
 sidebar_position: 2
-date: 2025-03-19
 tags: [api, authentication, security, api-keys, reference]
+keywords: [api, authentication, security, api keys]
 ---
 
-# API Authentication
+# API authentication
 
 Cinephage uses **Better Auth** for authentication with session-based login and API key support.
 

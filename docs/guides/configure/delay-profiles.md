@@ -1,12 +1,13 @@
 ---
-title: Delay Profiles
+id: configure-delay-profiles
+title: Delay profiles
 description: Configure download delays to prefer higher quality releases over time
 sidebar_position: 7
-date: 2025-03-16
 tags: [delay, profiles, configuration, guide, quality]
+keywords: [delay profiles, quality, usenet, torrent]
 ---
 
-# Delay Profiles
+# Delay profiles
 
 Delay Profiles prevent Cinephage from grabbing low-quality releases immediately after they appear. Instead, releases wait in a queue and are only grabbed if nothing better appears within the delay period.
 

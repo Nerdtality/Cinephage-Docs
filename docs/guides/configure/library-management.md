@@ -1,12 +1,13 @@
 ---
-title: Library Management
+id: configure-library-management
+title: Library management
 description: Configure root folders, organize content, and manage your media library effectively
 sidebar_position: 4
-date: 2025-03-16
 tags: [library, management, configuration, guide, root-folders, organization]
+keywords: [library, root folders, organization, media management]
 ---
 
-# Library Management
+# Library management
 
 This guide covers library management features in Cinephage, including root folders, media organization, and library maintenance.
 

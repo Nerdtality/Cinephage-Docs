@@ -1,12 +1,13 @@
 ---
-title: Search and Download
+id: search-and-download
+title: Search and download
 description: Find and acquire media using Cinephage's search and download system
 sidebar_position: 1
-date: 2025-03-16
 tags: [search, download, media, workflow, guide]
+keywords: [search, download, media, workflow]
 ---
 
-# Search and Download
+# Search and download
 
 This guide explains how to search for media and download it using Cinephage's integrated search system.
 
@@ -20,30 +21,6 @@ Find and download movies and TV shows from your configured indexers.
 - Download client connected
 - Quality profile set
 - Media added to library with monitoring enabled
-
-## Understanding the Search Process
-
-Cinephage searches follow this workflow:
-
-```
-User Initiates Search → Query Indexers → Score Releases → Select Best → Send to Download Client → Monitor Progress → Import File
-```
-
-### Automatic vs Manual Search
-
-**Automatic Search:**
-
-- Triggered by monitoring tasks
-- Runs on schedule (hourly by default)
-- Finds best release automatically
-- No user intervention needed
-
-**Manual Search:**
-
-- User initiates on specific item
-- See all available releases
-- Choose specific release
-- Immediate action
 
 ## Part 1: Automatic Search
 
@@ -100,22 +77,15 @@ Results appear with columns:
 
 ### Understanding Scores
 
-The **Score** column shows:
+The **Score** column shows how well a release matches your quality profile:
 
 - **Green** (100+): Excellent quality match
 - **Yellow** (50-99): Good quality
 - **Red** (`<50`): Lower quality
 
-Hover over score to see breakdown:
+Hover over any score to see the detailed breakdown.
 
-```
-Base: 80 (1080p)
-Source: +30 (WEB-DL)
-Codec: +20 (x265)
-Audio: +5 (AAC)
-Custom: +10 (Preferred group)
-Total: 145
-```
+**Learn more:** See [Search System](/docs/explanation/search-system) for a complete explanation of how scoring works.
 
 ### Grab a Release
 
@@ -311,35 +281,15 @@ If download fails:
 
 ## Part 8: Search Best Practices
 
-### Quality over Speed
+For the best search results:
 
-- Do not grab first available
-- Wait for quality releases
-- Use cutoff to prevent endless upgrading
+- **Quality over Speed** - Wait for quality releases rather than grabbing first available; use cutoff settings to prevent endless upgrading
+- **Diversify Indexers** - Use multiple indexers for better content coverage and redundancy
+- **Monitor, Don't Just Search** - Enable monitoring on items and let automatic search work in the background
+- **Respect Rate Limits** - Indexers have API limits; use reasonable monitoring intervals (default: hourly)
+- **Review Before Grabbing** - Check release names, file sizes, and release groups when selecting manually
 
-### Diversify Indexers
-
-- Use multiple indexers for coverage
-- Different indexers have different content
-- Some specialize in specific types
-
-### Monitor, Do Not Just Search
-
-- Add items with monitoring enabled
-- Let automatic search work
-- Manual search for immediate needs only
-
-### Respect Rate Limits
-
-- Do not search too frequently
-- Indexers have API limits
-- Use reasonable monitoring intervals
-
-### Review Before Grabbing
-
-- Check release names for quality indicators
-- Verify file sizes are reasonable
-- Look at release groups (if you have preferences)
+**Learn more:** See [Search System](/docs/explanation/search-system) for detailed conceptual guidance on search best practices.
 
 ## Troubleshooting
 
@@ -397,6 +347,8 @@ After searching and downloading:
 
 ## See Also
 
+- [Search System](../../explanation/search-system) - How the search system works
+- [Quality Scoring](../../explanation/quality-scoring) - Detailed scoring algorithm
 - [Configure Indexers](../configure/indexers)
 - [Quality Profiles](../configure/quality-profiles)
 - [Troubleshooting](../deploy/troubleshooting)

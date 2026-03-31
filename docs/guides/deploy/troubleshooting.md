@@ -1,9 +1,10 @@
 ---
+id: troubleshooting
 title: Troubleshooting
 description: Solutions for common Cinephage issues and problems
 sidebar_position: 1
-date: 2025-03-16
 tags: [troubleshooting, errors, problems, support, guide]
+keywords: [troubleshooting, errors, support, debugging]
 ---
 
 # Troubleshooting
@@ -302,6 +303,56 @@ Before diving into specific issues, perform these checks:
    - If auto-sync fails, try manual sync
    - Go to media detail > Subtitles
    - Click **Sync** on subtitle file
+
+### Environment Variable Issues
+
+**Symptoms:** Configuration changes don't apply, settings don't work as expected
+
+**Changes Not Taking Effect:**
+
+1. **Check syntax** (no spaces around `=`):
+
+   ```yaml
+   # Wrong
+   environment:
+     - ORIGIN = http://localhost:3000  # Spaces around =
+   
+   # Correct
+   environment:
+     - ORIGIN=http://localhost:3000
+   ```
+
+2. **Restart the container:**
+
+   ```bash
+   docker compose restart
+   ```
+
+3. **Verify variables are set:**
+
+   ```bash
+   docker exec cinephage env | grep VARIABLE
+   ```
+
+**Common Mistakes:**
+
+- Using lowercase variable names (`origin` instead of `ORIGIN`)
+- Adding spaces around the `=` sign
+- Forgetting to restart the container after changes
+
+**Debug Configuration:**
+
+View all environment variables:
+
+```bash
+docker exec cinephage env | sort
+```
+
+Check specific variable:
+
+```bash
+docker exec cinephage env | grep LOG_LEVEL
+```
 
 ## Advanced Troubleshooting
 

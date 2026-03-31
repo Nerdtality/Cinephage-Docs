@@ -1,12 +1,13 @@
 ---
-title: Configure Indexers
+id: configure-indexers
+title: Configure indexers
 description: Add content sources using YAML-based indexer definitions
 sidebar_position: 2
-date: 2025-03-16
 tags: [indexers, torrent, usenet, streaming, yaml, configuration, guide]
+keywords: [indexers, yaml, torrent, usenet, configuration]
 ---
 
-# Configure Indexers
+# Configure indexers
 
 This guide explains how to add and configure indexers in Cinephage. Indexers are sources that provide information about available media releases.
 

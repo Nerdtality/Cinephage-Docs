@@ -1,9 +1,10 @@
 ---
+id: settings-system
 title: Settings - System
 description: Configure API keys and external URL for Cinephage
 sidebar_position: 21
-date: 2025-03-19
 tags: [settings, api-keys, external-url, configuration, guide]
+keywords: [settings, api keys, external url, system]
 ---
 
 # Settings - System

@@ -1,12 +1,13 @@
 ---
-title: Key Concepts
+id: concepts
+title: Key concepts
 description: Fundamental concepts and terminology used throughout Cinephage
 sidebar_position: 2
-date: 2025-03-16
 tags: [concepts, terminology, glossary, explanation]
+keywords: [concepts, terminology, root folders, monitoring]
 ---
 
-# Key Concepts
+# Key concepts
 
 This document explains fundamental concepts and terminology used throughout Cinephage.
 

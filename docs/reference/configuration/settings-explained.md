@@ -1,10 +1,13 @@
 ---
-title: Settings Explained
+id: settings-explained
+title: Settings explained
 sidebar_position: 2
 description: Comprehensive reference for all Cinephage settings configured through the web interface
+tags: [settings, configuration, reference]
+keywords: [settings, configuration, ui, web interface]
 ---
 
-# Settings Explained
+# Settings explained
 
 This reference provides detailed explanations of all settings available in Cinephage's web interface. For environment variables (Docker/command-line configuration), see [Environment Variables](./environment-variables).
 
@@ -37,13 +40,8 @@ Your API key from [The Movie Database](https://www.themoviedb.org/). Required fo
 - **Required:** Yes
 - **Default:** None
 
-:::tip Getting an API Key
-1. Create a free account at themoviedb.org
-2. Go to Settings > API
-3. Click "Request an API Key"
-4. Select "Developer"
-5. Fill in the application details
-6. Copy the "API Key" (not the Read Access Token)
+:::info API Key Location
+The API key is a 32-character string found in your TMDB account Settings > API section. The "Read Access Token" is not used for this setting.
 :::
 
 #### External URL
@@ -97,18 +95,18 @@ When using Docker, use the **container path**, not the host path:
 - ❌ Incorrect: `/mnt/media/movies` (host path)
 :::
 
-#### Adding Root Folders
+#### Root Folder Properties
 
-1. Click **Add Root Folder**
-2. Enter a descriptive name
-3. Enter the container path
-4. Select the media type (Movies or TV)
-5. Choose default quality profile
-6. Click **Save**
+| Property | Description | Requirement |
+|----------|-------------|-------------|
+| **Name** | Display name for the folder | Required, unique identifier |
+| **Path** | Absolute path inside container | Required, must exist |
+| **Media Type** | Movies or TV Shows | Required, determines content type |
+| **Quality Profile** | Default quality profile for imports | Optional, defaults to system default |
 
-:::caution Important
-- Ensure Cinephage has read/write permissions
-- Do not nest root folders (don't put TV inside Movies)
+:::caution Path Requirements
+- Cinephage requires read/write permissions to the path
+- Root folders must not be nested within each other
 - Each root folder should be on a separate mount point
 :::
 
@@ -153,11 +151,8 @@ Template used for renaming media files:
 | `{Codec}` | Video codec | "x264" |
 | `{Audio}` | Audio codec | "DTS" |
 
-:::tip Custom Naming
-You can combine tokens to create complex naming schemes:
-```
-{Movie Title} ({Release Year}) [{Quality}][{Codec}]-{Group}
-```
+:::info Custom Naming Patterns
+Custom naming patterns combine multiple tokens to create specific folder and file naming schemes. Example: `{Movie Title} ({Release Year}) [{Quality}][{Codec}]-{Group}`
 :::
 
 ### Import Behavior
@@ -181,8 +176,8 @@ Configure how Cinephage handles file imports:
 | **Hardlink** | Creates second reference to same data | Efficient, no duplication |
 | **Symlink** | Creates pointer to original file | Links to download folder |
 
-:::tip Recommendation
-Use **Hardlink** when download and library are on the same filesystem. It saves space while allowing seeding to continue.
+:::info Hardlink Efficiency
+Hardlinks are most efficient when the download folder and library are on the same filesystem, as they reference the same underlying data without duplication while allowing seeding to continue.
 :::
 
 ---
@@ -226,14 +221,15 @@ Cinephage includes four default profiles:
 - For NZB streaming
 - Best for: Streaming without downloading
 
-#### Creating Custom Profiles
+#### Custom Profile Properties
 
-1. Click **Add Quality Profile**
-2. Name the profile
-3. Select allowed qualities (drag to reorder priority)
-4. Set upgrade cutoff
-5. Configure custom format scores
-6. Click **Save**
+| Property | Description | Required |
+|----------|-------------|----------|
+| **Name** | Unique profile identifier | Yes |
+| **Allowed Qualities** | Resolutions and sources permitted | Yes, ordered by priority |
+| **Upgrade Cutoff** | Quality level at which upgrades stop | Yes |
+| **Custom Format Scores** | Bonus/malus scoring rules | Optional |
+| **Upgrades Enabled** | Whether to search for better versions | Yes, default: Enabled |
 
 ### Language Profiles
 
@@ -287,8 +283,8 @@ Assign positive or negative scores:
 | **-10** | Slight avoidance |
 | **-100** | Reject |
 
-:::tip Example: Prefer HEVC
-Create a custom format that adds +50 points to any release containing "HEVC" or "H.265" to prefer more efficient codecs.
+:::info Example: HEVC Preference
+A custom format matching releases containing "HEVC" or "H.265" with a +50 score prefers more efficient codecs without rejecting other options.
 :::
 
 ---
@@ -358,17 +354,20 @@ Configure connections to download clients for automated downloading.
 
 Configure search sources for finding releases.
 
-#### Adding Indexers
+#### Indexer Configuration Fields
 
-1. Click **Add Indexer**
-2. Select from built-in list or add custom YAML
-3. Configure settings:
-   - API key (if required)
-   - Categories
-   - Priority (lower = higher priority)
-   - Enable/Disable
-4. Click **Test** to verify
-5. Click **Save**
+| Field | Description | Required |
+|-------|-------------|----------|
+| **Name** | Display name for the indexer | Yes |
+| **Type** | Built-in indexer or Custom YAML | Yes |
+| **API Key** | Authentication key for the indexer | Varies by indexer |
+| **Categories** | Content categories to search | Optional |
+| **Priority** | Search priority (lower = higher priority) | Optional, default: 25 |
+| **Enabled** | Whether the indexer is active | Yes, default: Enabled |
+
+:::info Indexer Priority
+Lower priority values indicate higher search priority. Indexers with priority 1 are searched first, while those with 50+ are searched later. Set higher values for slower indexers or those with rate limits.
+:::
 
 #### Indexer Priority
 
@@ -380,19 +379,18 @@ Priority determines search order:
 | **25** | Default priority |
 | **50+** | Lower priority, searched later |
 
-:::tip
-Set lower priority for indexers that are slower or have rate limits.
-:::
-
 #### Custom YAML Indexers
 
-For trackers not in the built-in list:
+Trackers not in the built-in list require a custom YAML definition containing:
 
-1. Click **Add Indexer**
-2. Select **Custom YAML**
-3. Paste YAML definition
-4. Configure credentials
-5. Test and save
+| Component | Description |
+|-----------|-------------|
+| **YAML Definition** | Indexer configuration in YAML format |
+| **Credentials** | API key, username, or other authentication |
+
+:::info YAML Format
+Custom YAML indexers must follow the Prowlarr/Jackett indexer definition format. The YAML is validated before saving.
+:::
 
 ### Subtitle Providers
 
@@ -471,15 +469,8 @@ Each task has:
 | **Next Run** | When task will execute next |
 | **Status** | Current state (idle/running) |
 
-#### Modifying Task Intervals
-
-1. Click on a task
-2. Adjust the interval slider or enter value
-3. Choose unit (minutes, hours, days)
-4. Click **Save**
-
-:::caution
-Very short intervals may cause rate limiting from indexers or TMDB.
+:::caution Rate Limiting
+Very short task intervals may trigger rate limiting from indexers or TMDB. The minimum recommended interval depends on the number of configured indexers and API usage.
 :::
 
 ### Task History
@@ -556,16 +547,19 @@ Configure Electronic Program Guide behavior:
 
 ### Portal Scanner
 
-Scan Stalker portals for working MAC addresses:
+The portal scanner tests Stalker portals for working MAC addresses.
 
-1. Go to **Live TV > Accounts**
-2. Click **Scan for Accounts**
-3. Select scan type:
-   - **Random:** Generate random MACs
-   - **Sequential:** Test a range
-   - **Import:** Test your list
-4. Configure options
-5. Start scan
+| Scan Type | Description | Use Case |
+|-----------|-------------|----------|
+| **Random** | Generate random MAC addresses | Broad search for working accounts |
+| **Sequential** | Test a range of MAC addresses | Testing specific address ranges |
+| **Import** | Test a user-provided list | Validating known addresses |
+
+| Configuration | Description |
+|---------------|-------------|
+| **Portal URL** | Target Stalker portal to scan |
+| **MAC Range** | Range or list of MACs to test |
+| **Timeout** | Seconds to wait for portal response |
 
 ---
 
@@ -635,37 +629,27 @@ Configure usenet provider connections for NZB streaming.
 
 ---
 
-## Troubleshooting Settings
-
-### Common Issues
-
-**Settings Not Saving**
-- Check browser console for errors
-- Verify you have admin permissions
-- Ensure database is writable
-
-**TMDB Key Invalid**
-- Verify you copied the API Key (not Read Access Token)
-- Check for extra spaces
-- Ensure TMDB account is verified
-
-**Download Client Won't Connect**
-- Verify host is accessible from Cinephage
-- Check firewall rules
-- Ensure web UI is enabled in client
-- Try using IP address instead of hostname
-
-**Indexer Test Fails**
-- Verify API key is correct
-- Check indexer is online
-- Review rate limits
-- Check Cinephage logs for details
-
----
-
 ## See Also
 
+### Configuration Guides
+- [Configure Download Clients](../../guides/configure/download-clients) - Download client setup and connection
+- [Set Up Indexers](../../guides/configure/indexers) - Indexer configuration and testing
+- [Quality Profiles](../../guides/configure/quality-profiles) - Creating and customizing quality profiles
+- [Custom Formats](../../guides/configure/custom-formats) - Building custom scoring rules
+- [Delay Profiles](../../guides/configure/delay-profiles) - Configuring download delay behavior
+- [Blocklist Management](../../guides/configure/blocklist) - Managing blocked releases and indexers
+
+### Media and Integration Guides
+- [Library Management](../../guides/configure/library-management) - Root folders, naming, and organization
+- [Media Servers](../../guides/configure/media-servers) - Jellyfin, Emby, and Plex integration
+- [Live TV Setup](../../guides/configure/live-tv) - IPTV provider configuration
+- [Subtitles Configuration](../../guides/configure/subtitles) - Automatic subtitle downloads
+- [NNTP Servers](../../guides/configure/nntp-servers) - Usenet provider setup
+- [NZB Streaming](../../guides/configure/nzb-streaming) - Streaming without downloading
+- [Captcha Solver](../../guides/configure/captcha-solver) - Cloudflare challenge solving
+
+### System and Maintenance
 - [Environment Variables](./environment-variables) - Docker and command-line configuration
-- [Configure Download Clients](../../guides/configure/download-clients) - Step-by-step setup guide
-- [Quality Profiles](../../guides/configure/quality-profiles) - Detailed quality configuration
-- [Set Up Indexers](../../guides/configure/indexers) - Indexer configuration guide
+- [Smart Lists](../../guides/configure/smart-lists) - Dynamic content lists from TMDB
+- [Settings and Logs](../../guides/configure/settings-logs) - System configuration and troubleshooting
+- [Backup and Restore](../../guides/deploy/backup-restore) - Data protection procedures

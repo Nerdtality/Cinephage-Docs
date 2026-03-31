@@ -1,12 +1,13 @@
 ---
-title: Workers and Tasks
+id: workers-and-tasks
+title: Workers and tasks
 description: Understanding Cinephage's background worker system and task processing
 sidebar_position: 4
-date: 2025-03-16
 tags: [workers, tasks, background, explanation, architecture, concurrency]
+keywords: [workers, tasks, background, concurrency, processing]
 ---
 
-# Workers and Tasks
+# Workers and tasks
 
 This document explains Cinephage's worker-based architecture for background processing, task scheduling, and concurrent operations.
 

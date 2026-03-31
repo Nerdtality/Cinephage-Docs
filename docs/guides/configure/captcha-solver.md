@@ -1,12 +1,13 @@
 ---
-title: Captcha Solver
+id: configure-captcha-solver
+title: Captcha solver
 description: Configure built-in Cloudflare challenge bypass using Camoufox
 sidebar_position: 10
-date: 2025-03-16
 tags: [captcha, cloudflare, camoufox, configuration, guide]
+keywords: [captcha, cloudflare, camoufox, browser]
 ---
 
-# Captcha Solver
+# Captcha solver
 
 Cinephage includes a built-in **Captcha Solver** that automatically handles Cloudflare challenges and other anti-bot protections. No external services like FlareSolverr required.
 

@@ -1,12 +1,13 @@
 ---
-title: Rate Limiting
+id: api-rate-limiting
+title: Rate limiting
 description: API rate limits and usage guidelines
 sidebar_position: 3
-date: 2025-03-16
 tags: [api, rate-limiting, reference]
+keywords: [api, rate limiting, limits, guidelines]
 ---
 
-# Rate Limiting
+# Rate limiting
 
 This reference covers API rate limiting in Cinephage.
 

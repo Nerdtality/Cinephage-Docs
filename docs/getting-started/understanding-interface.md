@@ -1,12 +1,13 @@
 ---
-title: Understanding the Interface
+id: understanding-interface
+title: Understanding the interface
 description: Navigate the Cinephage web interface and understand its organization
 sidebar_position: 5
-date: 2025-03-16
 tags: [interface, ui, navigation, tutorial]
+keywords: [ui, dashboard, navigation, layout]
 ---
 
-# Understanding the Interface
+# Understanding the interface
 
 This tutorial provides a tour of the Cinephage web interface. You will learn the layout, navigation, and where to find key features.
 
@@ -429,6 +430,27 @@ You have completed the Getting Started tutorials. You are ready to:
 - Explore [How-To Guides](../guides/) for specific tasks
 - Read [Reference](../reference/) documentation for detailed information
 - Learn about [Architecture](../explanation/architecture) for technical understanding
+
+## See Also
+
+### Essential Configuration
+- [Configure Download Clients](../guides/configure/download-clients) — Set up qBittorrent, SABnzbd, and others
+- [Configure Indexers](../guides/configure/indexers) — Add content sources
+- [Set Up Quality Profiles](../guides/configure/quality-profiles) — Configure quality scoring
+
+### Daily Operations
+- [Search and Download](../guides/use/search-and-download) — Find and acquire content
+- [Monitor and Upgrade](../guides/use/monitor-and-upgrade) — Automatic quality improvements
+- [Import Existing Files](../guides/use/import-existing-files) — Add your current media library
+
+### Technical Understanding
+- [Architecture Overview](../explanation/architecture) — System architecture and components
+- [Workers and Tasks](../explanation/workers-and-tasks) — Background processing system
+- [Key Concepts](../explanation/concepts) — Root folders, monitoring, and terminology
+
+### Support
+- [Getting Help](./getting-help) — Community support resources
+- [Troubleshooting Guide](../guides/deploy/troubleshooting) — Common issues and solutions
 
 ## Tips for Efficient Use
 

@@ -1,12 +1,13 @@
 ---
-title: Configure NZB Streaming
+id: configure-nzb-streaming
+title: Configure NZB streaming
 description: Stream content directly from usenet without downloading first using NZB streaming
 sidebar_position: 6
-date: 2025-03-16
 tags: [nzb, streaming, usenet, configuration, guide, nzbmount, strm]
+keywords: [nzb, streaming, usenet, mount, direct play]
 ---
 
-# Configure NZB Streaming
+# Configure NZB streaming
 
 NZB Streaming allows you to watch content directly from usenet without downloading the entire file first. This guide covers setting up and using this powerful feature.
 

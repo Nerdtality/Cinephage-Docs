@@ -1,12 +1,13 @@
 ---
-title: Organize Files
+id: organize-files
+title: Organize files
 description: Use custom naming patterns and folder structures to organize your media library
 sidebar_position: 5
-date: 2025-03-16
 tags: [naming, organization, files, guide, patterns, tokens]
+keywords: [naming, organization, files, patterns, tokens]
 ---
 
-# Organize Files
+# Organize files
 
 This guide explains how to use custom naming patterns to organize your media library exactly how you want it.
 

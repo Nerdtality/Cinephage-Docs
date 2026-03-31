@@ -1,12 +1,13 @@
 ---
-title: Set Up Smart Lists
+id: configure-smart-lists
+title: Set up smart lists
 description: Create dynamic TMDB-powered lists that automatically discover and add content to your library
 sidebar_position: 9
-date: 2025-03-16
 tags: [smart-lists, automation, configuration, guide, tmdb]
+keywords: [smart lists, automation, tmdb, discovery]
 ---
 
-# Set Up Smart Lists
+# Set up smart lists
 
 Smart Lists are dynamic, TMDB-powered lists that automatically discover content based on your criteria and optionally add it to your library.
 

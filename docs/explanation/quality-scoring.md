@@ -1,12 +1,13 @@
 ---
-title: Quality Scoring
+id: quality-scoring
+title: Quality scoring
 description: How Cinephage calculates quality scores for release selection
 sidebar_position: 3
-date: 2025-03-16
 tags: [quality, scoring, algorithms, explanation]
+keywords: [quality, scoring, algorithms, release selection]
 ---
 
-# Quality Scoring
+# Quality scoring
 
 This document explains how Cinephage calculates quality scores to select the best releases for your library.
 
@@ -184,7 +185,9 @@ Some release groups are known for quality:
 - Reliable sources
 - No fake or mislabeled releases
 
-**Note:** Group scoring is subjective and configurable via custom formats.
+:::note
+Group scoring is subjective and configurable via custom formats.
+:::
 
 ## Custom Format Scoring
 

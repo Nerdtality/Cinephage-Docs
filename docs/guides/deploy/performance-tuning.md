@@ -1,12 +1,13 @@
 ---
-title: Performance Tuning
+id: performance-tuning
+title: Performance tuning
 description: Optimize Cinephage for your hardware, usage patterns, and deployment scenario
 sidebar_position: 3
-date: 2025-03-16
 tags: [performance, tuning, optimization, guide, scaling, workers]
+keywords: [performance, tuning, optimization, scaling]
 ---
 
-# Performance Tuning
+# Performance tuning
 
 This guide covers optimizing Cinephage performance for your specific hardware, usage patterns, and deployment scenario.
 

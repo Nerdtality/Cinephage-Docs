@@ -1,9 +1,10 @@
 ---
+id: settings-logs
 title: Settings - Logs
 description: Live log streaming and debugging in Cinephage
 sidebar_position: 20
-date: 2025-03-19
 tags: [settings, logs, debugging, troubleshooting, guide]
+keywords: [logs, debugging, settings, monitoring]
 ---
 
 # Settings - Logs

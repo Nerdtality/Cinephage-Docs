@@ -1,12 +1,13 @@
 ---
-title: Configure Media Servers
+id: configure-media-servers
+title: Configure media servers
 description: Connect Jellyfin, Emby, or Plex for automatic library updates
 sidebar_position: 11
-date: 2025-03-19
 tags: [media-servers, jellyfin, emby, plex, notifications, configuration, guide]
+keywords: [media servers, jellyfin, emby, plex, notifications]
 ---
 
-# Configure Media Servers
+# Configure media servers
 
 Connect your media servers to Cinephage for automatic library refresh notifications. When Cinephage imports, upgrades, renames, or deletes media files, your media server will automatically update its library.
 

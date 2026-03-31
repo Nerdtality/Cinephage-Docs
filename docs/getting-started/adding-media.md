@@ -1,12 +1,13 @@
 ---
-title: Adding Media
+id: adding-media
+title: Adding media
 description: Learn how to add movies and TV shows to your Cinephage library
 sidebar_position: 4
-date: 2025-03-16
 tags: [media, library, tutorial, movies, tv]
+keywords: [movies, tv shows, library, discover, add media]
 ---
 
-# Adding Media
+# Adding media
 
 This tutorial teaches you how to add movies and TV series to your Cinephage library. You will learn to search for content, configure monitoring, and initiate downloads.
 
@@ -242,6 +243,21 @@ Now that you can add media, continue to [Understanding the Interface](understand
 - Enable upgrade monitoring to get better quality over time
 - Set cutoff qualities in profiles to prevent endless upgrades
 - Review blocklist if releases keep failing
+
+## See Also
+
+### Next Steps
+- [Understanding the Interface](./understanding-interface) — Navigate the Cinephage UI and discover advanced features
+- [Search and Download](../guides/use/search-and-download) — Detailed guide to finding and acquiring content
+
+### Related Guides
+- [Import Existing Files](../guides/use/import-existing-files) — Add your current media library to Cinephage
+- [Configure Quality Profiles](../guides/configure/quality-profiles) — Understand and customize quality settings
+- [Monitor and Upgrade](../guides/use/monitor-and-upgrade) — Set up automatic quality improvements
+
+### Concepts
+- [Quality Scoring](../explanation/quality-scoring) — How Cinephage calculates release quality
+- [Key Concepts](../explanation/concepts) — Understanding monitoring, root folders, and more
 
 ---
 

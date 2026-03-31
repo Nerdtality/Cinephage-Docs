@@ -1,12 +1,13 @@
 ---
-title: Custom Formats
+id: configure-custom-formats
+title: Custom formats
 description: Create personalized scoring rules that go beyond built-in quality profiles
 sidebar_position: 7
-date: 2025-03-16
 tags: [custom-formats, scoring, configuration, guide]
+keywords: [custom formats, scoring, conditions, rules]
 ---
 
-# Custom Formats
+# Custom formats
 
 Custom Formats allow you to create personalized scoring rules that go beyond the built-in quality profiles. Define exactly what you want in a release and Cinephage will prioritize it.
 

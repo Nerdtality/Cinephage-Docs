@@ -1,12 +1,13 @@
 ---
-title: Design Decisions
+id: design-decisions
+title: Design decisions
 description: Understanding the key architectural and design choices behind Cinephage
 sidebar_position: 5
-date: 2025-03-16
 tags: [design, decisions, explanation, architecture, philosophy]
+keywords: [design, decisions, architecture, philosophy]
 ---
 
-# Design Decisions
+# Design decisions
 
 This document explains the key design decisions behind Cinephage - why it was built the way it is, and the trade-offs made along the way.
 

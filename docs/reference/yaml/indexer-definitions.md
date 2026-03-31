@@ -1,12 +1,13 @@
 ---
-title: Indexer Definitions
+id: yaml-indexer-definitions
+title: Indexer definitions
 description: YAML format reference for defining custom indexers in Cinephage
 sidebar_position: 1
-date: 2025-03-16
 tags: [yaml, indexers, torrent, usenet, streaming, reference]
+keywords: [yaml, indexers, torrent, usenet, streaming]
 ---
 
-# YAML Indexer Definitions
+# YAML indexer definitions
 
 This reference documents the YAML format for defining custom indexers in Cinephage.
 
@@ -333,6 +334,494 @@ settings:
     tv: 5000
 ```
 
+## Practical Examples
+
+This section provides complete, working indexer definitions demonstrating common patterns and configurations.
+
+### Example 1: Basic Public Tracker
+
+Public tracker with simple search form and no authentication.
+
+**When to use this pattern:**
+- Open torrent sites accessible without login
+- Sites using standard HTML table layouts
+- Public domain or open trackers
+
+```yaml
+# Basic public torrent tracker
+# 1337x.to - Simple search with table results
+id: 1337x
+name: 1337x
+protocol: torrent
+categories:
+  - movies
+  - tv
+priority: 25
+settings:
+  baseUrl: https://1337x.to
+  search:
+    # {{query}} is URL-encoded automatically
+    path: /search/{{query}}/1/
+    method: GET
+  selectors:
+    # Each row in the results table
+    rows: table.table-list tbody tr
+    # Second link in the name column (first is category)
+    title: td.name a:nth-child(2)
+    # Direct magnet link
+    magnet: td.coll-1 a[href^="magnet:"]
+    # Size column text
+    size: td.size
+    # Seeders count
+    seeders: td.seeds
+    # Leechers count
+    leechers: td.leeches
+    # Upload date
+    date: td.date
+```
+
+### Example 2: Private Tracker with Authentication
+
+Private tracker requiring cookie-based authentication.
+
+**When to use this pattern:**
+- Private trackers requiring login
+- Sites with cookie/session-based auth
+- When API keys are not available
+
+```yaml
+# Private tracker with cookie authentication
+# Requires session cookies from browser
+id: private-tracker
+name: Private Tracker
+protocol: torrent
+categories:
+  - movies
+  - tv
+priority: 10
+settings:
+  baseUrl: https://tracker.example.com
+  auth:
+    type: cookie
+    cookies:
+      # Get these from browser dev tools after logging in
+      uid: 12345
+      pass: abcdef1234567890
+      session: xyz789
+  search:
+    path: /torrents.php?search={{query}}&category={{category}}
+    headers:
+      # Some sites check User-Agent
+      User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+  selectors:
+    rows: table.torrents tr.torrent
+    title: td.name a
+    # Direct .torrent download link
+    torrent: td.download a
+    size: td.size
+    seeders: td.seeders
+    leechers: td.leechers
+    date: td.date
+```
+
+### Example 3: Usenet Indexer (Newznab API)
+
+Standard Newznab-compatible usenet indexer.
+
+**When to use this pattern:**
+- Newznab-compatible sites (NZBGeek, DrunkenSlug, etc.)
+- UNIT3D-based private trackers with API
+- Any site supporting Newznab standard
+
+```yaml
+# Usenet indexer using Newznab API
+# NZBGeek - Newznab-compatible
+id: nzbgeek
+name: NZBGeek
+protocol: usenet
+categories:
+  - movies
+  - tv
+priority: 5
+settings:
+  # API endpoint (trailing slash required for some)
+  apiUrl: https://api.nzbgeek.info/
+  # Your personal API key from account settings
+  apiKey: YOUR_API_KEY_HERE
+  # Category mapping to Newznab IDs
+  categories:
+    movies: 2000
+    tv: 5000
+  # Connection settings
+  timeout: 30
+  retries: 3
+  rateLimit: 60  # Max requests per minute
+```
+
+### Example 4: Torznab via Jackett
+
+Torrent indexer accessed through Jackett's Torznab API.
+
+**When to use this pattern:**
+- Accessing trackers through Jackett/Prowlarr
+- Unified API for multiple torrent sources
+- When direct access is not possible
+
+```yaml
+# Torznab indexer via Jackett
+# Accesses torrent sites through Jackett's API
+id: jackett-1337x
+name: 1337x via Jackett
+protocol: torrent
+categories:
+  - movies
+  - tv
+priority: 15
+settings:
+  # Jackett torznab endpoint for specific indexer
+  apiUrl: http://jackett:9117/api/v2.0/indexers/1337x/results/torznab/
+  # Jackett API key from Jackett UI
+  apiKey: your-jackett-api-key
+  categories:
+    movies: 2000
+    tv: 5000
+  timeout: 30
+```
+
+### Example 5: Advanced Multi-Page Search
+
+Indexer with pagination support and complex selectors.
+
+**When to use this pattern:**
+- Sites with paginated results
+- Complex HTML structures
+- When extracting additional metadata
+
+```yaml
+# Advanced tracker with pagination and complex selectors
+id: advanced-tracker
+name: Advanced Tracker
+protocol: torrent
+categories:
+  - movies
+  - tv
+settings:
+  baseUrl: https://tracker.example.com
+  search:
+    # Page variable for pagination
+    path: /search?q={{query}}&p={{page}}&cat={{category}}
+    method: GET
+  selectors:
+    rows: div.torrent-row
+    # Extract title from data attribute
+    title:
+      selector: a.torrent-title
+      attribute: data-title
+    # Extract magnet from href
+    magnet:
+      selector: a[href^="magnet:"]
+      attribute: href
+    # Extract size with regex
+    size:
+      selector: span.size
+      regex: '([\d.]+\s*[GMTK]B)'
+    # Extract seeders, remove non-numeric
+    seeders:
+      selector: span.seeders
+      regex: '(\d+)'
+    # Category extraction
+    category:
+      selector: span.category
+      attribute: data-category
+```
+
+### Example 6: Special Date Parsing
+
+Indexer with custom date format parsing.
+
+**When to use this pattern:**
+- Non-standard date formats
+- Relative dates ("2 hours ago")
+- Multiple date formats on same site
+
+```yaml
+# Tracker with custom date parsing
+id: date-tracker
+name: Date Format Tracker
+protocol: torrent
+categories:
+  - movies
+  - tv
+settings:
+  baseUrl: https://tracker.example.com
+  search:
+    path: /search?q={{query}}
+  selectors:
+    rows: tr.result
+    title: td.title a
+    magnet: td.magnet a
+    size: td.size
+    seeders: td.seeders
+    # Date with multiple format support
+    date:
+      selector: td.date
+      # Supports common formats automatically
+      # ISO 8601: 2024-01-15
+      # US: 01/15/2024
+      # European: 15/01/2024
+      # Unix timestamp
+      # Relative: "2 hours ago", "Yesterday"
+```
+
+### Example 7: UNIT3D Private Tracker
+
+UNIT3D-based private tracker with full API support.
+
+**When to use this pattern:**
+- Modern private trackers using UNIT3D
+- API-based authentication
+- Dynamic capability discovery
+
+```yaml
+# UNIT3D private tracker with Newznab API
+# OldToons.World - Classic animation tracker
+id: oldtoons
+name: OldToons.World
+protocol: usenet
+categories:
+  - tv
+enabled: true
+priority: 15
+description: Private UNIT3D tracker for classic animated content
+settings:
+  apiUrl: https://oldtoons.world/api
+  apiKey: YOUR_API_KEY_HERE
+  categories:
+    tv: 5000
+  timeout: 30
+  retries: 3
+  rateLimit: 60
+```
+
+### Example 8: Streaming Provider
+
+Basic streaming service indexer.
+
+**When to use this pattern:**
+- HLS/DASH streaming services
+- API-based content providers
+- Sites requiring stream resolution
+
+```yaml
+# Streaming provider with API
+id: streaming-provider
+name: Streaming Provider
+protocol: streaming
+categories:
+  - movies
+  - tv
+priority: 5
+settings:
+  baseUrl: https://api.streaming.example.com
+  apiKey: YOUR_API_KEY
+  timeout: 30
+  endpoints:
+    # Search for content
+    search: /v1/search
+    # Resolve stream URLs
+    resolve: /v1/resolve
+```
+
+## Common Patterns
+
+This section describes recurring patterns across indexer definitions.
+
+### Authentication Methods
+
+#### Cookie Authentication
+
+For sites requiring session cookies.
+
+```yaml
+auth:
+  type: cookie
+  cookies:
+    uid: "your-user-id"
+    pass: "your-pass-key"
+    session: "session-token"
+```
+
+#### Form Login
+
+For sites with traditional login forms.
+
+```yaml
+auth:
+  type: form
+  loginUrl: /login
+  usernameField: username
+  passwordField: password
+  submitButton: input[type="submit"]
+  successCheck: .user-profile
+```
+
+#### API Key Authentication
+
+For API-based access.
+
+```yaml
+# In search headers
+search:
+  headers:
+    Authorization: Bearer YOUR_API_KEY
+    X-API-Key: YOUR_KEY
+
+# Or in settings
+settings:
+  apiKey: YOUR_API_KEY
+```
+
+### Search Field Mapping
+
+Map Cinephage search parameters to indexer fields.
+
+| Cinephage Field | Variable | Example Value |
+|----------------|----------|---------------|
+| Search query | `{{query}}` | "Inception 2010" |
+| Page number | `{{page}}` | 1, 2, 3 |
+| Category | `{{category}}` | 2000, 5000 |
+| Year | `{{year}}` | 2010 |
+
+**URL construction:**
+
+```yaml
+search:
+  # Basic keyword search
+  path: /search?q={{query}}
+  
+  # With pagination
+  path: /search?q={{query}}&p={{page}}
+  
+  # With category filtering
+  path: /search?q={{query}}&cat={{category}}&page={{page}}
+  
+  # Complex with all parameters
+  path: /browse?search={{query}}&category={{category}}&page={{page}}&year={{year}}
+```
+
+### Result Extraction
+
+Standard fields to extract from search results.
+
+```yaml
+selectors:
+  # Required fields
+  rows: string           # Container for each result
+  title: string          # Release name/title
+  
+  # At least one download method required
+  magnet: string         # Magnet link
+  torrent: string        # Direct .torrent link
+  
+  # Optional metadata
+  size: string           # File size (e.g., "1.5 GB")
+  seeders: string        # Number of seeders
+  leechers: string       # Number of leechers
+  date: string           # Upload date
+  category: string       # Content category
+```
+
+**Download link priority:**
+1. `magnet` - Preferred for torrents
+2. `torrent` - Direct .torrent file
+3. `download` - Generic download link
+
+### Date Parsing Formats
+
+Cinephage automatically parses common date formats.
+
+| Format | Example | Notes |
+|--------|---------|-------|
+| ISO 8601 | `2024-01-15T10:30:00Z` | Full timestamp |
+| Date only | `2024-01-15` | YYYY-MM-DD |
+| US format | `01/15/2024` | MM/DD/YYYY |
+| European | `15/01/2024` | DD/MM/YYYY |
+| Unix timestamp | `1705315800` | Seconds since epoch |
+| Relative | `2 hours ago` | Automatically converted |
+
+### Category Mapping
+
+Map content types to indexer category IDs.
+
+```yaml
+# For Newznab/Torznab
+settings:
+  categories:
+    movies: 2000
+    tv: 5000
+
+# For torrent sites
+settings:
+  search:
+    path: /browse?cat={{category}}
+  categories:
+    movies: "movies"      # String categories
+    tv: "tv-shows"
+```
+
+**Common category IDs:**
+
+| Type | Newznab ID | Description |
+|------|------------|-------------|
+| Movies | 2000 | All movies |
+| Movies/HD | 2040 | HD movies |
+| Movies/BluRay | 2050 | BluRay releases |
+| TV | 5000 | All TV |
+| TV/HD | 5040 | HD TV episodes |
+| TV/Documentary | 5080 | Documentaries |
+
+### Handling Pagination
+
+Configure multi-page search results.
+
+```yaml
+search:
+  # Page variable in URL
+  path: /search?q={{query}}&p={{page}}
+  
+  # Or offset-based
+  path: /search?q={{query}}&offset={{page}}0  # page * 10
+  
+  # Or page size parameter
+  path: /search?q={{query}}&page={{page}}&limit=50
+```
+
+**Page variable behavior:**
+- Starts at 1 for most sites
+- Incremented automatically for additional results
+- Used only when more results are needed
+
+### Error Handling
+
+Cinephage handles common error scenarios automatically.
+
+| Error | Behavior | Configurable |
+|-------|----------|--------------|
+| HTTP 4xx/5xx | Automatic retry with backoff | Yes (retries) |
+| Timeout | Retry with exponential backoff | Yes (timeout) |
+| Parse error | Log and skip result | No |
+| Empty results | Continue to next indexer | No |
+| Auth failure | Mark indexer unhealthy | No |
+
+**Configuration:**
+
+```yaml
+settings:
+  timeout: 30      # Seconds before timeout
+  retries: 3       # Number of retry attempts
+  rateLimit: 60    # Max requests per minute
+```
+
 ## Complete Examples
 
 ### Example 1: Public Torrent Tracker
@@ -570,7 +1059,8 @@ Only enable categories the indexer supports:
 
 ## See Also
 
-- [Configure Indexers](../../guides/configure/indexers)
-- [Search and Download](../../guides/use/search-and-download)
-- [YAML Specification](https://yaml.org/spec/)
-- [CSS Selector Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
+- [How to Configure Indexers](../../guides/configure/indexers) - Step-by-step guide for adding and configuring indexers
+- [Naming Tokens Reference](naming-tokens) - Token reference for file naming patterns
+- [Search and Download](../../guides/use/search-and-download) - Guide to using indexers for searches
+- [YAML Specification](https://yaml.org/spec/) - Official YAML specification
+- [CSS Selector Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) - MDN CSS selector documentation

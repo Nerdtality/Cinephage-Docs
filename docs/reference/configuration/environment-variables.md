@@ -1,12 +1,13 @@
 ---
-title: Environment Variables
+id: environment-variables
+title: Environment variables
 description: Complete reference for all Cinephage environment variables
 sidebar_position: 1
-date: 2025-03-16
 tags: [environment-variables, configuration, reference]
+keywords: [environment variables, configuration, docker, settings]
 ---
 
-# Environment Variables
+# Environment variables
 
 This reference documents all environment variables available for configuring Cinephage.
 
@@ -157,7 +158,9 @@ environment:
   - LOG_INCLUDE_STACK=true
 ```
 
-**Warning:** Never enable `LOG_SENSITIVE` in production as it logs passwords, API keys, and other sensitive data.
+:::danger
+Never enable `LOG_SENSITIVE` in production as it logs passwords, API keys, and other sensitive data.
+:::
 
 ## Worker Configuration
 
@@ -312,46 +315,7 @@ services:
 - **Optional:** 20+
 - **Total:** 27+ environment variables
 
-## Troubleshooting
-
-### Changes Not Taking Effect
-
-If environment variable changes do not work:
-
-1. Check syntax (no spaces around `=`)
-2. Restart the container: `docker compose restart`
-3. Verify variables are set: `docker exec cinephage env | grep VARIABLE`
-
-### Common Mistakes
-
-**Wrong:**
-
-```yaml
-environment:
-  - ORIGIN = http://localhost:3000 # Spaces around =
-  - origin=http://localhost:3000 # lowercase
-```
-
-**Correct:**
-
-```yaml
-environment:
-  - ORIGIN=http://localhost:3000
-```
-
-### Debug Configuration
-
-View current environment:
-
-```bash
-docker exec cinephage env | sort
-```
-
-Check specific variable:
-
-```bash
-docker exec cinephage env | grep LOG_LEVEL
-```
+For troubleshooting environment variable issues, see [Troubleshooting guide](../guides/deploy/troubleshooting).
 
 ## See Also
 

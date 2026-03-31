@@ -1,12 +1,13 @@
 ---
-title: Handle Failed Downloads
+id: handle-failed-downloads
+title: Handle failed downloads
 description: Deal with failed downloads, use the blocklist, and retry strategies
 sidebar_position: 3
-date: 2025-03-16
 tags: [downloads, failures, troubleshooting, guide, blocklist, retry]
+keywords: [failed downloads, blocklist, retry, troubleshooting]
 ---
 
-# Handle Failed Downloads
+# Handle failed downloads
 
 This guide explains how to handle failed downloads and use the blocklist effectively to prevent repeated issues.
 

@@ -1,12 +1,13 @@
 ---
-title: Architecture Overview
+id: architecture-overview
+title: Architecture overview
 description: High-level overview of Cinephage's system architecture and components
 sidebar_position: 1
-date: 2025-03-16
 tags: [architecture, system, components, explanation]
+keywords: [architecture, system, components, svelte]
 ---
 
-# Architecture Overview
+# Architecture overview
 
 This document provides a high-level overview of Cinephage's architecture, explaining how the major components work together.
 

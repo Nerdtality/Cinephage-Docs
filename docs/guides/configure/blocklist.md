@@ -1,9 +1,10 @@
 ---
+id: configure-blocklist
 title: Blocklist
 description: Manage failed and rejected releases to prevent re-downloading problematic content
 sidebar_position: 11
-date: 2025-03-16
 tags: [blocklist, failed-downloads, configuration, guide]
+keywords: [blocklist, failed downloads, rejected releases]
 ---
 
 # Blocklist

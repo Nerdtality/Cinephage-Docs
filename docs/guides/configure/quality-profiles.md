@@ -1,12 +1,13 @@
 ---
-title: Set Up Quality Profiles
+id: configure-quality-profiles
+title: Set up quality profiles
 description: Configure quality scoring, custom formats, and upgrade behavior
 sidebar_position: 3
-date: 2025-03-16
 tags: [quality-profiles, custom-formats, scoring, configuration, guide]
+keywords: [quality profiles, scoring, custom formats, upgrades]
 ---
 
-# Set Up Quality Profiles
+# Set up quality profiles
 
 This guide explains Cinephage's quality system and how to configure quality profiles and custom formats for intelligent release selection.
 

@@ -1,12 +1,13 @@
 ---
+id: reference
 title: Reference
 description: Technical reference documentation for Cinephage
 sidebar_position: 3
-date: 2025-03-16
 tags: [reference, api, configuration, database]
+keywords: [reference, api, configuration, database]
 ---
 
-# Reference Documentation
+# Reference documentation
 
 This section contains comprehensive technical reference information for Cinephage.
 
@@ -86,3 +87,30 @@ Integration endpoints:
 ---
 
 Use the navigation to explore detailed reference documentation for each topic.
+
+## See Also
+
+### Getting Started
+- [Installation](../getting-started/installation) — Install Cinephage using Docker
+- [Initial Setup](../getting-started/initial-setup) — Complete the setup wizard
+- [Adding Media](../getting-started/adding-media) — Add your first content
+
+### How-To Guides
+- [Configure Download Clients](../guides/configure/download-clients) — Set up download clients
+- [Configure Indexers](../guides/configure/indexers) — Add content sources
+- [Set Up Quality Profiles](../guides/configure/quality-profiles) — Configure quality scoring
+
+### Configuration Reference
+- [Environment Variables](./configuration/environment-variables) — All environment variables
+- [Settings Explained](./configuration/settings-explained) — Detailed UI settings reference
+- [Indexer Definitions](./yaml/indexer-definitions) — YAML format for custom indexers
+- [Naming Tokens](./yaml/naming-tokens) — Available tokens for file naming
+
+### Technical Understanding
+- [Architecture Overview](../explanation/architecture) — System architecture
+- [Workers and Tasks](../explanation/workers-and-tasks) — Background processing
+- [Quality Scoring](../explanation/quality-scoring) — How quality is calculated
+
+### Database
+- [Schema Overview](./database/schema-overview) — Database tables and relationships
+- [Table Reference](./database/table-reference) — Detailed table schemas

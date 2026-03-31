@@ -1,12 +1,13 @@
 ---
-title: How-To Guides
+id: guides
+title: How-to guides
 description: Task-oriented guides for configuring and using Cinephage
 sidebar_position: 2
-date: 2025-03-16
 tags: [guides, how-to, tasks]
+keywords: [guides, configuration, setup, tasks]
 ---
 
-# How-To Guides
+# How-to guides
 
 These guides provide step-by-step instructions for specific tasks. Each guide focuses on solving a particular problem or configuring a specific feature.
 
@@ -38,6 +39,10 @@ Day-to-day operations:
 - [Monitor and Upgrade](use/monitor-and-upgrade) - Manage quality improvements
 - [Handle Failed Downloads](use/handle-failed-downloads) - Use blocklist and retry logic
 - [Organize Files](use/organize-files) - Use custom naming patterns
+
+### Maintenance
+
+- [Update Cinephage](use/update-cinephage) - Keep software up to date
 
 ## Deployment Guides
 
@@ -86,3 +91,31 @@ Each guide includes:
 ---
 
 Start with the [Download Clients guide](configure/download-clients) if you are setting up Cinephage for the first time.
+
+## See Also
+
+### Getting Started
+- [Installation](../getting-started/installation) — Install Cinephage using Docker
+- [Initial Setup](../getting-started/initial-setup) — Complete the setup wizard
+- [Understanding the Interface](../getting-started/understanding-interface) — Navigate the UI
+
+### Essential Configuration
+- [Configure Download Clients](configure/download-clients) — Set up qBittorrent, SABnzbd, etc.
+- [Configure Indexers](configure/indexers) — Add content sources
+- [Set Up Quality Profiles](configure/quality-profiles) — Configure quality scoring
+- [Configure Subtitles](configure/subtitles) — Enable subtitle providers
+
+### Usage Guides
+- [Search and Download](use/search-and-download) — Find and acquire content
+- [Monitor and Upgrade](use/monitor-and-upgrade) — Automatic quality improvements
+- [Import Existing Files](use/import-existing-files) — Add your current library
+- [Handle Failed Downloads](use/handle-failed-downloads) — Use blocklist and retry logic
+
+### Technical Understanding
+- [Architecture Overview](../explanation/architecture) — System architecture
+- [Workers and Tasks](../explanation/workers-and-tasks) — Background processing
+- [Quality Scoring](../explanation/quality-scoring) — How quality is calculated
+
+### Reference
+- [Environment Variables](../reference/configuration/environment-variables) — Configuration options
+- [Settings Explained](../reference/configuration/settings-explained) — UI settings reference

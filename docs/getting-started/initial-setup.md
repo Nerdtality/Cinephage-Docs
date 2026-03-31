@@ -1,12 +1,13 @@
 ---
-title: Initial Setup
+id: initial-setup
+title: Initial setup
 description: Complete the initial configuration of Cinephage after installation
 sidebar_position: 3
-date: 2025-03-16
 tags: [setup, configuration, tutorial]
+keywords: [configuration, setup, first run, tmdb]
 ---
 
-# Initial Setup
+# Initial setup
 
 After installing Cinephage, you need to complete the initial setup to configure essential settings. This tutorial walks you through the setup wizard and initial configuration.
 
@@ -156,7 +157,9 @@ Navigate to **Settings > Integrations > Indexers**:
 4. Click **Test** to verify
 5. Click **Save**
 
-**Tip:** Start with one or two indexers. You can add more later.
+:::tip
+Start with one or two indexers. You can add more later.
+:::
 
 ### 3. Monitoring Settings
 
@@ -259,6 +262,21 @@ Now that Cinephage is fully configured, continue to [Adding Media](adding-media)
 - If running in Docker, use the host IP instead of `localhost`
 - Verify the download client web UI is enabled
 - Check firewall rules
+
+## See Also
+
+### Next Steps
+- [Adding Media](./adding-media) — Learn the complete workflow for adding and downloading content
+- [Understanding the Interface](./understanding-interface) — Navigate the Cinephage web interface
+
+### Configuration Guides
+- [Configure Download Clients](../guides/configure/download-clients) — Set up qBittorrent, SABnzbd, and others
+- [Configure Indexers](../guides/configure/indexers) — Add content sources using YAML definitions
+- [Set Up Quality Profiles](../guides/configure/quality-profiles) — Configure quality scoring and upgrade behavior
+
+### Help & Support
+- [Getting Help](./getting-help) — Community support and troubleshooting resources
+- [Troubleshooting Guide](../guides/deploy/troubleshooting) — Solutions for common setup issues
 
 ---
 

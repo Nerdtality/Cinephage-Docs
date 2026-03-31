@@ -1,12 +1,13 @@
 ---
-title: Configure NNTP Servers
+id: configure-nntp-servers
+title: Configure NNTP servers
 description: Set up Usenet NNTP servers for streaming and article checking
 sidebar_position: 12
-date: 2025-03-19
 tags: [nntp, usenet, streaming, configuration, guide]
+keywords: [nntp, usenet, servers, streaming]
 ---
 
-# Configure NNTP Servers
+# Configure NNTP servers
 
 Configure NNTP (Usenet) servers for streaming content directly from Usenet without downloading the entire NZB first.
 

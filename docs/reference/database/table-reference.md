@@ -1,12 +1,13 @@
 ---
-title: Table Reference
+id: table-reference
+title: Table reference
 description: Detailed schema for all database tables
 sidebar_position: 2
-date: 2025-03-16
 tags: [database, tables, schema, reference]
+keywords: [database, tables, schema, reference]
 ---
 
-# Table Reference
+# Table reference
 
 This reference provides detailed schemas for all database tables in Cinephage.
 

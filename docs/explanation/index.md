@@ -1,9 +1,10 @@
 ---
+id: explanation
 title: Explanation
 description: Understanding-oriented documentation about Cinephage architecture and concepts
 sidebar_position: 4
-date: 2025-03-16
 tags: [explanation, architecture, concepts, design]
+keywords: [explanation, architecture, concepts, design]
 ---
 
 # Explanation
@@ -17,6 +18,7 @@ Understanding Cinephage's system design:
 - [Architecture Overview](architecture) - System components and data flow
 - [Workers and Tasks](workers-and-tasks) - Background processing system
 - [Quality Scoring](quality-scoring) - How release quality is determined
+- [Search System](search-system) - How the search system works
 
 ## Concepts
 
@@ -44,3 +46,25 @@ All indexers are defined via YAML rather than hardcoded. Learn why this design c
 ---
 
 Dive into the articles to deepen your understanding of Cinephage's design and operation.
+
+## See Also
+
+### Getting Started
+- [Installation](../getting-started/installation) — Install Cinephage using Docker
+- [Initial Setup](../getting-started/initial-setup) — First-time configuration
+- [Adding Media](../getting-started/adding-media) — Add your first content
+
+### How-To Guides
+- [Configure Download Clients](../guides/configure/download-clients) — Set up download clients
+- [Set Up Quality Profiles](../guides/configure/quality-profiles) — Configure quality scoring
+- [Search and Download](../guides/use/search-and-download) — Find and acquire content
+
+### Technical Reference
+- [Architecture Overview](./architecture) — System components and data flow
+- [Workers and Tasks](./workers-and-tasks) — Background processing system
+- [Quality Scoring](./quality-scoring) — How release quality is determined
+- [Search System](./search-system) — How the search system works
+
+### Concepts
+- [Key Concepts](./concepts) — Root folders, monitoring, and terminology
+- [Design Decisions](./design-decisions) — Why Cinephage works the way it does

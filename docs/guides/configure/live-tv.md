@@ -1,12 +1,13 @@
 ---
-title: Set Up Live TV
+id: configure-live-tv
+title: Set up live TV
 description: Configure IPTV providers, manage channels, and stream live television
 sidebar_position: 5
-date: 2025-03-16
 tags: [live-tv, iptv, streaming, configuration, guide, stalker, xstream, m3u]
+keywords: [live tv, iptv, stalker, xstream, channels]
 ---
 
-# Set Up Live TV
+# Set up live TV
 
 Cinephage includes comprehensive IPTV support with multi-provider integration, supporting Stalker Portals, XStream Codes, and M3U playlists. This guide covers setting up and managing live TV.
 

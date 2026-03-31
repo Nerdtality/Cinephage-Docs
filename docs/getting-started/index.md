@@ -1,12 +1,13 @@
 ---
-title: Getting Started
+id: getting-started
+title: Getting started
 description: Learn the basics of Cinephage with step-by-step tutorials
 sidebar_position: 1
-date: 2025-03-16
 tags: [getting-started, tutorials]
+keywords: [tutorials, setup, beginner, quickstart]
 ---
 
-# Getting Started
+# Getting started
 
 Welcome to Cinephage. This section contains tutorials to help you get up and running.
 
@@ -79,3 +80,16 @@ Navigate the Cinephage UI:
 ## Next Steps
 
 After completing the tutorials, explore the [How-To Guides](../guides/) for specific tasks like configuring quality profiles, setting up subtitles, and managing your library.
+
+## See Also
+
+### Continue Learning
+- [Installation](./installation) — Install Cinephage using Docker Compose
+- [Initial Setup](./initial-setup) — Configure essential settings after installation
+- [Adding Media](./adding-media) — Learn to add movies and TV shows to your library
+- [Understanding the Interface](./understanding-interface) — Navigate the Cinephage UI efficiently
+
+### Get Help
+- [Getting Help](./getting-help) — Community support and resources
+- [Troubleshooting Guide](../guides/deploy/troubleshooting) — Solutions for common issues
+- [FAQ](../support/faq) — Frequently asked questions

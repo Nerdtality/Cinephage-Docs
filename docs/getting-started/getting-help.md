@@ -1,12 +1,13 @@
 ---
-title: Getting Help
+id: getting-help
+title: Getting help
 description: Where to find help and support for Cinephage
 sidebar_position: 6
-date: 2025-03-16
 tags: [support, help, community]
+keywords: [support, discord, github, troubleshooting]
 ---
 
-# Getting Help
+# Getting help
 
 This page provides information on where to get help with Cinephage.
 
@@ -33,4 +34,21 @@ Join our community on Discord for real-time chat support:
 
 ## See Also
 
-- [Installation](./installation)
+### Getting Started
+- [Installation](./installation) — Step-by-step installation guide
+- [Initial Setup](./initial-setup) — First-time configuration
+- [Adding Media](./adding-media) — Add your first movie or TV show
+
+### Common Issues
+- [Troubleshooting Guide](../guides/deploy/troubleshooting) — Solutions for common problems
+- [FAQ](../support/faq) — Frequently asked questions
+- [Performance Tuning](../guides/deploy/performance-tuning) — Optimize Cinephage performance
+
+### Configuration Help
+- [Configure Download Clients](../guides/configure/download-clients) — Set up download clients
+- [Set Up Quality Profiles](../guides/configure/quality-profiles) — Configure quality scoring
+- [Configure Indexers](../guides/configure/indexers) — Add content sources
+
+### Community
+- [GitHub Discussions](https://github.com/MoldyTaint/Cinephage/discussions) — Ask questions and share ideas
+- [Discord](https://discord.gg/scGCBTSWEt) — Real-time chat support

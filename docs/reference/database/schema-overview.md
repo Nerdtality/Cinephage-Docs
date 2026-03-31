@@ -1,12 +1,13 @@
 ---
-title: Database Schema Overview
+id: schema-overview
+title: Database schema overview
 description: Overview of Cinephage's SQLite database structure and tables
 sidebar_position: 1
-date: 2025-03-16
 tags: [database, schema, sqlite, reference]
+keywords: [database, schema, sqlite, tables]
 ---
 
-# Database Schema Overview
+# Database schema overview
 
 This reference provides an overview of Cinephage's database structure, including major tables and their relationships.
 
@@ -323,11 +324,11 @@ Cinephage handles schema migrations automatically:
 3. Apply pending migrations in order
 4. Update version number
 
-**Important:**
-
+:::warning
 - Back up before major version upgrades
 - Do not manually modify schema
 - Report migration errors as bugs
+:::
 
 ## See Also
 

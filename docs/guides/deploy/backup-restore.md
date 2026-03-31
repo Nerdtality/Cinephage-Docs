@@ -1,12 +1,13 @@
 ---
-title: Backup and Restore
+id: backup-restore
+title: Backup and restore
 description: Protect your Cinephage data with regular backups and restore procedures
 sidebar_position: 2
-date: 2025-03-16
 tags: [backup, restore, data-protection, maintenance, guide]
+keywords: [backup, restore, data protection, maintenance]
 ---
 
-# Backup and Restore
+# Backup and restore
 
 This guide explains how to backup your Cinephage data and restore it when needed.
 

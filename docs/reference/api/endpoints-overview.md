@@ -1,12 +1,13 @@
 ---
-title: API Endpoints
+id: api-endpoints
+title: API endpoints
 description: Complete reference for all Cinephage API endpoints
 sidebar_position: 1
-date: 2025-03-19
 tags: [api, endpoints, reference, rest]
+keywords: [api, endpoints, rest, reference]
 ---
 
-# API Endpoints
+# API endpoints
 
 This reference documents all available Cinephage API endpoints organized by category.
 
@@ -422,6 +423,18 @@ See [Authentication](authentication) for auth requirements and API key usage.
 | Usenet          | 7         |
 | Workers         | 5         |
 | **Total**       | **200+**  |
+
+## Detailed Endpoint Documentation
+
+For comprehensive documentation of specific endpoint categories:
+
+| Category | Documentation |
+|----------|---------------|
+| Movies | [Movies](endpoints/movies) — Complete movie library API |
+| TV Series | [TV](endpoints/tv) — Series, season, and episode endpoints |
+| Search | [Search](endpoints/search) — Release search and grabbing |
+| Downloads | [Download](endpoints/download) — Queue management |
+| Settings | [Settings](endpoints/settings) — System configuration |
 
 ## See Also
 
