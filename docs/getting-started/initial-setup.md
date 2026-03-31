@@ -1,5 +1,4 @@
 ---
-id: initial-setup
 title: Initial setup
 description: Complete the initial configuration of Cinephage after installation
 sidebar_position: 3

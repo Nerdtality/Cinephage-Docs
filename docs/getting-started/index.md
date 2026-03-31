@@ -1,5 +1,4 @@
 ---
-id: getting-started
 title: Getting started
 description: Learn the basics of Cinephage with step-by-step tutorials
 sidebar_position: 1

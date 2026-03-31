@@ -1,5 +1,4 @@
 ---
-id: quality-scoring
 title: Quality scoring
 description: How Cinephage calculates quality scores for release selection
 sidebar_position: 3

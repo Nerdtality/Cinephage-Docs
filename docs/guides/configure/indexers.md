@@ -1,5 +1,4 @@
 ---
-id: configure-indexers
 title: Configure indexers
 description: Add content sources using YAML-based indexer definitions
 sidebar_position: 2
@@ -112,7 +111,6 @@ For public torrent sites, use a YAML definition.
 4. Use this template:
 
 ```yaml
-id: 1337x
 name: 1337x
 protocol: torrent
 categories:
@@ -142,7 +140,6 @@ settings:
 For STRM file sources:
 
 ```yaml
-id: my-streaming-source
 name: My Streaming Source
 protocol: streaming
 categories:
@@ -214,7 +211,6 @@ If no results appear:
 ### Required Fields
 
 ```yaml
-id: unique-id # Unique identifier
 name: Display Name # Human-readable name
 protocol: torrent # torrent, usenet, or streaming
 categories: # Content types

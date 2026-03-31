@@ -1,5 +1,4 @@
 ---
-id: concepts
 title: Key concepts
 description: Fundamental concepts and terminology used throughout Cinephage
 sidebar_position: 2

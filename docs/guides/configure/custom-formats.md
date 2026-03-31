@@ -1,5 +1,4 @@
 ---
-id: configure-custom-formats
 title: Custom formats
 description: Create personalized scoring rules that go beyond built-in quality profiles
 sidebar_position: 7

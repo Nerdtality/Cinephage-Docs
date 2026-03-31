@@ -1,5 +1,4 @@
 ---
-id: supported-languages
 title: Supported languages
 description: Language codes and subtitle language support
 sidebar_position: 3

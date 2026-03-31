@@ -1,5 +1,4 @@
 ---
-id: backup-restore
 title: Backup and restore
 description: Protect your Cinephage data with regular backups and restore procedures
 sidebar_position: 2

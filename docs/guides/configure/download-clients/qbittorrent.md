@@ -1,5 +1,4 @@
 ---
-id: configure-qbittorrent
 title: How to configure qBittorrent
 description: Step-by-step guide to configure qBittorrent with Cinephage
 sidebar_position: 1
@@ -148,7 +147,7 @@ Click **Save** to add the download client.
 
 ## See also
 
-- [Download clients overview](./index.md) — Overview of supported clients
-- [How to configure SABnzbd](./sabnzbd.md) — Usenet client setup
-- [Troubleshooting downloads](../deploy/troubleshooting.md) — Common issues and solutions
-- [Configure indexers](./indexers.md) — Add content sources
+- [Download clients overview](/docs/guides/configure/download-clients) — Overview of supported clients
+- [How to configure SABnzbd](./sabnzbd) — Usenet client setup
+- [Troubleshooting downloads](/docs/guides/deploy/troubleshooting) — Common issues and solutions
+- [Configure indexers](/docs/guides/configure/indexers) — Add content sources

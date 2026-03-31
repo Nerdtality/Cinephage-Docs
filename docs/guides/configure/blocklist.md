@@ -1,5 +1,4 @@
 ---
-id: configure-blocklist
 title: Blocklist
 description: Manage failed and rejected releases to prevent re-downloading problematic content
 sidebar_position: 11

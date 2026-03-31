@@ -1,5 +1,4 @@
 ---
-id: explanation
 title: Explanation
 description: Understanding-oriented documentation about Cinephage architecture and concepts
 sidebar_position: 4

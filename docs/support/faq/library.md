@@ -1,5 +1,4 @@
 ---
-id: faq-library
 title: Library Management FAQ
 description: Questions about managing your media library, importing files, and organization
 sidebar_position: 4

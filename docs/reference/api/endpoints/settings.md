@@ -1,5 +1,4 @@
 ---
-id: api-settings
 title: Settings
 description: API endpoints for system settings and configuration
 sidebar_position: 5

@@ -1,5 +1,4 @@
 ---
-id: configure-captcha-solver
 title: Captcha solver
 description: Configure built-in Cloudflare challenge bypass using Camoufox
 sidebar_position: 10

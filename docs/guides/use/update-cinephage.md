@@ -1,5 +1,4 @@
 ---
-id: update-cinephage
 title: Update Cinephage
 description: Keep Cinephage up to date with the latest stable releases and fixes
 sidebar_position: 7
@@ -29,7 +28,7 @@ cp data/cinephage.db data/cinephage.db.backup-$(date +%Y%m%d)
 cp .env .env.backup
 ```
 
-See [Backup & Restore](./backup-restore.md) for detailed backup procedures.
+See [Backup & Restore](../deploy/backup-restore) for detailed backup procedures.
 
 ### 2. Check Release Notes
 
@@ -247,7 +246,7 @@ curl -s http://localhost:3000/api/system/status | jq .version
 
 ## See Also
 
-- [Backup & Restore](./backup-restore.md) - Before updating
-- [Migration Guide](./migration.md) - Version migrations
+- [Backup & Restore](../deploy/backup-restore) - Before updating
+- [Migration Guide](../deploy/migration) - Version migrations
 - [Releases](../../support/releases.md) - Release channels explained
 - [Monitor and Upgrade](./monitor-and-upgrade.md) - Quality monitoring

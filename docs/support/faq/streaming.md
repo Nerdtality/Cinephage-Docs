@@ -1,5 +1,4 @@
 ---
-id: faq-streaming
 title: Streaming & Live TV FAQ
 description: Questions about NZB streaming, IPTV, and Live TV features
 sidebar_position: 6

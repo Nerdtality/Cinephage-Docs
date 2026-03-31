@@ -1,5 +1,4 @@
 ---
-id: search-and-download
 title: Search and download
 description: Find and acquire media using Cinephage's search and download system
 sidebar_position: 1

@@ -1,5 +1,4 @@
 ---
-id: configure-delay-profiles
 title: Delay profiles
 description: Configure download delays to prefer higher quality releases over time
 sidebar_position: 7

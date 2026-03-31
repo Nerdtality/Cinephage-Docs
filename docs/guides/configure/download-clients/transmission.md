@@ -1,5 +1,4 @@
 ---
-id: configure-transmission
 title: How to configure Transmission
 description: Step-by-step guide to configure Transmission with Cinephage
 sidebar_position: 3
@@ -181,7 +180,7 @@ Ensure your download directory is accessible to Cinephage:
 
 ## See also
 
-- [Download clients overview](./index.md) — Overview of supported clients
-- [How to configure qBittorrent](./qbittorrent.md) — Alternative torrent client
-- [How to configure Deluge](./deluge.md) — Another torrent client option
-- [Troubleshooting downloads](../deploy/troubleshooting.md) — Common issues and solutions
+- [Download clients overview](/docs/guides/configure/download-clients) — Overview of supported clients
+- [How to configure qBittorrent](./qbittorrent) — Alternative torrent client
+- [How to configure Deluge](./deluge) — Another torrent client option
+- [Troubleshooting downloads](/docs/guides/deploy/troubleshooting) — Common issues and solutions

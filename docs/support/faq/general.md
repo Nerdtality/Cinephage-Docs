@@ -1,5 +1,4 @@
 ---
-id: faq-general
 title: General FAQ
 description: General questions about Cinephage, its features, and capabilities
 sidebar_position: 1

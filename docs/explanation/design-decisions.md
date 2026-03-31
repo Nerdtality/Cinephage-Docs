@@ -1,5 +1,4 @@
 ---
-id: design-decisions
 title: Design decisions
 description: Understanding the key architectural and design choices behind Cinephage
 sidebar_position: 5
@@ -162,7 +161,6 @@ Indexers (torrent sites, usenet sites) frequently:
 Cinephage uses YAML-based indexer definitions inspired by Cardigann:
 
 ```yaml
-id: example-tracker
 name: Example Tracker
 description: A private tracker
 language: en

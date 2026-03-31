@@ -1,5 +1,4 @@
 ---
-id: architecture-overview
 title: Architecture overview
 description: High-level overview of Cinephage's system architecture and components
 sidebar_position: 1

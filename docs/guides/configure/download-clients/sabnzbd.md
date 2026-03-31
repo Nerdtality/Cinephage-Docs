@@ -1,5 +1,4 @@
 ---
-id: configure-sabnzbd
 title: How to configure SABnzbd
 description: Step-by-step guide to configure SABnzbd with Cinephage
 sidebar_position: 2
@@ -140,7 +139,7 @@ To set up categories in SABnzbd:
 
 ## See also
 
-- [Download clients overview](./index.md) — Overview of supported clients
-- [How to configure qBittorrent](./qbittorrent.md) — Torrent client setup
-- [How to configure NZBGet](./nzbget.md) — Alternative usenet client
-- [Troubleshooting downloads](../deploy/troubleshooting.md) — Common issues and solutions
+- [Download clients overview](/docs/guides/configure/download-clients) — Overview of supported clients
+- [How to configure qBittorrent](./qbittorrent) — Torrent client setup
+- [How to configure NZBGet](./nzbget) — Alternative usenet client
+- [Troubleshooting downloads](/docs/guides/deploy/troubleshooting) — Common issues and solutions

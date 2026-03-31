@@ -1,5 +1,4 @@
 ---
-id: monitor-and-upgrade
 title: Monitor and upgrade
 description: Configure automatic monitoring and quality upgrades for your library
 sidebar_position: 2

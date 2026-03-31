@@ -1,5 +1,4 @@
 ---
-id: configure-live-tv
 title: Set up live TV
 description: Configure IPTV providers, manage channels, and stream live television
 sidebar_position: 5

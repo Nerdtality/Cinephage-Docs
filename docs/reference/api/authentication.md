@@ -1,5 +1,4 @@
 ---
-id: api-authentication
 title: API authentication
 description: API authentication methods, API keys, and security
 sidebar_position: 2

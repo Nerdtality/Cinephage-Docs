@@ -1,5 +1,4 @@
 ---
-id: table-reference
 title: Table reference
 description: Detailed schema for all database tables
 sidebar_position: 2

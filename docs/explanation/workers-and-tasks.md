@@ -1,5 +1,4 @@
 ---
-id: workers-and-tasks
 title: Workers and tasks
 description: Understanding Cinephage's background worker system and task processing
 sidebar_position: 4

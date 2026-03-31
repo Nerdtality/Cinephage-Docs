@@ -1,5 +1,4 @@
 ---
-id: organize-files
 title: Organize files
 description: Use custom naming patterns and folder structures to organize your media library
 sidebar_position: 5

@@ -1,5 +1,4 @@
 ---
-id: faq-index
 title: FAQ Overview
 description: Browse frequently asked questions about Cinephage by category
 sidebar_position: 0

@@ -1,5 +1,4 @@
 ---
-id: handle-failed-downloads
 title: Handle failed downloads
 description: Deal with failed downloads, use the blocklist, and retry strategies
 sidebar_position: 3

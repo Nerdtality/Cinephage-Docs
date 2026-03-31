@@ -1,5 +1,4 @@
 ---
-id: configure-subtitles
 title: Configure subtitles
 description: Set up subtitle providers, language profiles, and automatic downloads
 sidebar_position: 4

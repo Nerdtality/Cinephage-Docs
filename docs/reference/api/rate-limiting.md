@@ -1,5 +1,4 @@
 ---
-id: api-rate-limiting
 title: Rate limiting
 description: API rate limits and usage guidelines
 sidebar_position: 3

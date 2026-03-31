@@ -1,5 +1,4 @@
 ---
-id: api-search
 title: Search
 description: API endpoints for searching releases and media
 sidebar_position: 3

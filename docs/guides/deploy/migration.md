@@ -1,5 +1,4 @@
 ---
-id: migration
 title: Migration guide
 description: Upgrade from older Cinephage versions with breaking changes and volume mount updates
 sidebar_position: 4

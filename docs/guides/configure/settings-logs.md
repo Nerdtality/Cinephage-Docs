@@ -1,5 +1,4 @@
 ---
-id: settings-logs
 title: Settings - Logs
 description: Live log streaming and debugging in Cinephage
 sidebar_position: 20

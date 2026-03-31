@@ -1,5 +1,4 @@
 ---
-id: settings-system
 title: Settings - System
 description: Configure API keys and external URL for Cinephage
 sidebar_position: 21

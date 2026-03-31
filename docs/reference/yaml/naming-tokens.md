@@ -1,5 +1,4 @@
 ---
-id: yaml-naming-tokens
 title: Naming tokens
 description: Complete list of tokens for file naming patterns
 sidebar_position: 2
@@ -296,4 +295,4 @@ Characters that may need escaping in filenames:
 - [Indexer Definitions](indexer-definitions) - YAML format for defining custom indexers
 - [How to Configure Indexers](../../guides/configure/indexers) - Step-by-step guide for configuring indexers
 - [How to Organize Files](../../guides/use/organize-files) - Guide to file organization and naming patterns
-- [Configure Media Management](../../guides/configure/media-management) - Media management and naming settings
+- [Configure Library Management](../../guides/configure/library-management) - Library management and naming settings

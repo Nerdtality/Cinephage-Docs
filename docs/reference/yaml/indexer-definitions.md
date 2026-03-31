@@ -1,5 +1,4 @@
 ---
-id: yaml-indexer-definitions
 title: Indexer definitions
 description: YAML format reference for defining custom indexers in Cinephage
 sidebar_position: 1
@@ -36,7 +35,6 @@ Cinephage uses a **unified YAML-only indexer architecture**. All indexers are de
 Newznab-compatible indexers (including UNIT3D trackers) automatically discover capabilities:
 
 ```yaml
-id: my-unit3d-tracker
 name: My UNIT3D Tracker
 protocol: usenet
 categories:
@@ -58,7 +56,6 @@ This allows the indexer to:
 ### Basic Template
 
 ```yaml
-id: unique-id # Unique identifier (required)
 name: Display Name # Human-readable name (required)
 protocol: torrent # torrent, usenet, or streaming (required)
 categories: # Supported content types (required)
@@ -94,7 +91,6 @@ settings: # Protocol-specific settings
 ### Basic Torrent Definition
 
 ```yaml
-id: example-torrent
 name: Example Torrent Site
 protocol: torrent
 categories:
@@ -231,7 +227,6 @@ settings:
 ### Standard Newznab
 
 ```yaml
-id: nzbgeek
 name: NZBGeek
 protocol: usenet
 categories:
@@ -284,7 +279,6 @@ settings:
 ### Basic Streaming Definition
 
 ```yaml
-id: example-streaming
 name: Example Streaming
 protocol: streaming
 categories:
@@ -320,7 +314,6 @@ settings:
 ## Torznab Indexers (via Jackett/Prowlarr)
 
 ```yaml
-id: jackett-1337x
 name: 1337x via Jackett
 protocol: torrent
 categories:
@@ -350,7 +343,6 @@ Public tracker with simple search form and no authentication.
 ```yaml
 # Basic public torrent tracker
 # 1337x.to - Simple search with table results
-id: 1337x
 name: 1337x
 protocol: torrent
 categories:
@@ -392,7 +384,6 @@ Private tracker requiring cookie-based authentication.
 ```yaml
 # Private tracker with cookie authentication
 # Requires session cookies from browser
-id: private-tracker
 name: Private Tracker
 protocol: torrent
 categories:
@@ -436,7 +427,6 @@ Standard Newznab-compatible usenet indexer.
 ```yaml
 # Usenet indexer using Newznab API
 # NZBGeek - Newznab-compatible
-id: nzbgeek
 name: NZBGeek
 protocol: usenet
 categories:
@@ -470,7 +460,6 @@ Torrent indexer accessed through Jackett's Torznab API.
 ```yaml
 # Torznab indexer via Jackett
 # Accesses torrent sites through Jackett's API
-id: jackett-1337x
 name: 1337x via Jackett
 protocol: torrent
 categories:
@@ -499,7 +488,6 @@ Indexer with pagination support and complex selectors.
 
 ```yaml
 # Advanced tracker with pagination and complex selectors
-id: advanced-tracker
 name: Advanced Tracker
 protocol: torrent
 categories:
@@ -546,7 +534,6 @@ Indexer with custom date format parsing.
 
 ```yaml
 # Tracker with custom date parsing
-id: date-tracker
 name: Date Format Tracker
 protocol: torrent
 categories:
@@ -585,7 +572,6 @@ UNIT3D-based private tracker with full API support.
 ```yaml
 # UNIT3D private tracker with Newznab API
 # OldToons.World - Classic animation tracker
-id: oldtoons
 name: OldToons.World
 protocol: usenet
 categories:
@@ -614,7 +600,6 @@ Basic streaming service indexer.
 
 ```yaml
 # Streaming provider with API
-id: streaming-provider
 name: Streaming Provider
 protocol: streaming
 categories:
@@ -827,7 +812,6 @@ settings:
 ### Example 1: Public Torrent Tracker
 
 ```yaml
-id: 1337x
 name: 1337x
 protocol: torrent
 categories:
@@ -852,7 +836,6 @@ settings:
 ### Example 2: Private Tracker with Login
 
 ```yaml
-id: private-tracker
 name: Private Tracker
 protocol: torrent
 categories:
@@ -880,7 +863,6 @@ settings:
 ### Example 3: Usenet Indexer
 
 ```yaml
-id: nzbgeek
 name: NZBGeek
 protocol: usenet
 categories:
@@ -900,7 +882,6 @@ settings:
 ### Example 4: Streaming Provider
 
 ```yaml
-id: my-streaming
 name: My Streaming Service
 protocol: streaming
 categories:
@@ -919,7 +900,6 @@ settings:
 ### Example 5: UNIT3D Private Tracker (OldToons.World)
 
 ```yaml
-id: oldtoons
 name: OldToons.World
 protocol: usenet
 categories:

@@ -1,5 +1,4 @@
 ---
-id: configure-deluge
 title: How to configure Deluge
 description: Step-by-step guide to configure Deluge with Cinephage
 sidebar_position: 5
@@ -196,7 +195,7 @@ Ensure these directories are accessible to Cinephage.
 
 ## See also
 
-- [Download clients overview](./index.md) — Overview of supported clients
-- [How to configure qBittorrent](./qbittorrent.md) — Alternative torrent client
-- [How to configure Transmission](./transmission.md) — Another torrent client option
-- [Troubleshooting downloads](../deploy/troubleshooting.md) — Common issues and solutions
+- [Download clients overview](/docs/guides/configure/download-clients) — Overview of supported clients
+- [How to configure qBittorrent](./qbittorrent) — Alternative torrent client
+- [How to configure Transmission](./transmission) — Another torrent client option
+- [Troubleshooting downloads](/docs/guides/deploy/troubleshooting) — Common issues and solutions

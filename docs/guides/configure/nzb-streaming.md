@@ -1,5 +1,4 @@
 ---
-id: configure-nzb-streaming
 title: Configure NZB streaming
 description: Stream content directly from usenet without downloading first using NZB streaming
 sidebar_position: 6

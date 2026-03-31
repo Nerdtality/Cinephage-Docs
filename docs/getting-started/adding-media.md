@@ -1,5 +1,4 @@
 ---
-id: adding-media
 title: Adding media
 description: Learn how to add movies and TV shows to your Cinephage library
 sidebar_position: 4

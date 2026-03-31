@@ -1,5 +1,4 @@
 ---
-id: faq-downloading
 title: Downloading FAQ
 description: Questions about downloads, quality profiles, indexers, and automation
 sidebar_position: 5

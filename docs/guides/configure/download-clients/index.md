@@ -1,5 +1,4 @@
 ---
-id: download-clients
 title: Download clients
 description: Configure download clients for automated media acquisition
 sidebar_position: 1
@@ -24,9 +23,9 @@ Download clients handle the actual downloading of media files. Cinephage connect
 
 | Client | Recommended | Features |
 |--------|-------------|----------|
-| [qBittorrent](./qbittorrent.md) | Yes | Web UI, categories, stable |
-| [Transmission](./transmission.md) | | Lightweight, RPC API |
-| [Deluge](./deluge.md) | | Plugin system, thin client |
+| [qBittorrent](qbittorrent) | Yes | Web UI, categories, stable |
+| [Transmission](transmission) | | Lightweight, RPC API |
+| [Deluge](deluge) | | Plugin system, thin client |
 | rTorrent | | CLI-based, low resource |
 | aria2 | | Multi-protocol, lightweight |
 
@@ -34,8 +33,8 @@ Download clients handle the actual downloading of media files. Cinephage connect
 
 | Client | Recommended | Features |
 |--------|-------------|----------|
-| [SABnzbd](./sabnzbd.md) | Yes | Web UI, categories, scripting |
-| [NZBGet](./nzbget.md) | | Lightweight, RSS support |
+| [SABnzbd](sabnzbd) | Yes | Web UI, categories, scripting |
+| [NZBGet](nzbget) | | Lightweight, RSS support |
 | NZB-Mount | | Direct streaming via WebDAV |
 
 ## Prerequisites
@@ -100,7 +99,7 @@ Result: No path mapping needed (both see `/downloads`)
 
 Result: Map `/host/downloads` → `/downloads`
 
-For detailed path mapping instructions, see [Troubleshooting downloads](../deploy/troubleshooting.md#path-mapping-issues).
+For detailed path mapping instructions, see [Troubleshooting downloads](/docs/guides/deploy/troubleshooting#path-mapping-issues).
 
 ## Quick start
 
@@ -146,17 +145,17 @@ If you encounter issues:
 - **Downloads not importing** — Check path mappings and file permissions
 - **Authentication errors** — Verify API keys and passwords
 
-For detailed troubleshooting, see [Troubleshooting downloads](../deploy/troubleshooting.md).
+For detailed troubleshooting, see [Troubleshooting downloads](/docs/guides/deploy/troubleshooting).
 
 ## Next steps
 
 After configuring your download client:
 
-- [Configure indexers](./indexers.md) to add content sources
-- [Set up quality profiles](./quality-profiles.md) to control download quality
-- [Search and download](../use/search-and-download.md) to start acquiring content
+- [Configure indexers](/docs/guides/configure/indexers) to add content sources
+- [Set up quality profiles](/docs/guides/configure/quality-profiles) to control download quality
+- [Search and download](/docs/guides/use/search-and-download) to start acquiring content
 
 ## See also
 
-- [Environment variables](../../reference/configuration/environment-variables.md) for advanced configuration
-- [Performance tuning](../deploy/performance-tuning.md) for optimization tips
+- [Environment variables](/docs/reference/configuration/environment-variables) for advanced configuration
+- [Performance tuning](/docs/guides/deploy/performance-tuning) for optimization tips

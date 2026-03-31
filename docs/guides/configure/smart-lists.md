@@ -1,5 +1,4 @@
 ---
-id: configure-smart-lists
 title: Set up smart lists
 description: Create dynamic TMDB-powered lists that automatically discover and add content to your library
 sidebar_position: 9

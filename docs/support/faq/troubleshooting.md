@@ -1,5 +1,4 @@
 ---
-id: faq-troubleshooting
 title: Troubleshooting FAQ
 description: Solutions to common problems and issues with Cinephage
 sidebar_position: 7

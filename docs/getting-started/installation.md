@@ -1,5 +1,4 @@
 ---
-id: installation
 title: Installation
 description: Install Cinephage using Docker Compose with step-by-step instructions
 sidebar_position: 2
@@ -157,11 +156,11 @@ We have successfully:
 
 ## Next Steps
 
-Now that Cinephage is installed, we continue to the [Initial Setup](initial-setup) tutorial to configure download clients, indexers, and other essential settings.
+Now that Cinephage is installed, we continue to the [Initial Setup](/docs/getting-started/initial-setup) tutorial to configure download clients, indexers, and other essential settings.
 
 ## Troubleshooting
 
-For troubleshooting common issues, see the [Troubleshooting guide](../guides/deploy/troubleshooting).
+For troubleshooting common issues, see the [Troubleshooting guide](/docs/guides/deploy/troubleshooting).
 
 ## Updating Cinephage
 
@@ -200,10 +199,10 @@ image: ghcr.io/moldytaint/cinephage:dev
 
 ## See Also
 
-- [Initial Setup](initial-setup) — Continue with the next tutorial to configure download clients and indexers
-- [Troubleshooting guide](../guides/deploy/troubleshooting) — Solutions for common installation issues
-- [Environment Variables](../reference/environment-variables) — Complete reference for all configuration options
+- [Initial Setup](/docs/getting-started/initial-setup) — Continue with the next tutorial to configure download clients and indexers
+- [Troubleshooting guide](/docs/guides/deploy/troubleshooting) — Solutions for common installation issues
+- [Environment Variables](/docs/reference/configuration/environment-variables) — Complete reference for all configuration options
 
 ---
 
-**Next:** [Initial Setup →](initial-setup)
+**Next:** [Initial Setup →](/docs/getting-started/initial-setup)

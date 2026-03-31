@@ -1,5 +1,4 @@
 ---
-id: performance-tuning
 title: Performance tuning
 description: Optimize Cinephage for your hardware, usage patterns, and deployment scenario
 sidebar_position: 3

@@ -1,5 +1,4 @@
 ---
-id: schema-overview
 title: Database schema overview
 description: Overview of Cinephage's SQLite database structure and tables
 sidebar_position: 1

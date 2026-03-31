@@ -1,5 +1,4 @@
 ---
-id: faq
 title: Frequently Asked Questions
 description: Common questions and answers about installing, configuring, and using Cinephage
 sidebar_position: 1
@@ -50,7 +49,7 @@ Each FAQ category includes:
 
 - 💬 [Discord Community](https://discord.gg/scGCBTSWEt)
 - 🐛 [GitHub Issues](https://github.com/MoldyTaint/Cinephage/issues)
-- 📖 [Full FAQ Index](/docs/support/faq/index)
+
 - 🔧 [Troubleshooting Guide](/docs/guides/deploy/troubleshooting)
 
 ## See Also

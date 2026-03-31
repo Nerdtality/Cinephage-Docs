@@ -1,5 +1,4 @@
 ---
-id: api-endpoints
 title: API endpoints
 description: Complete reference for all Cinephage API endpoints
 sidebar_position: 1

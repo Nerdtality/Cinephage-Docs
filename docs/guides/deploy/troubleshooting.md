@@ -1,5 +1,4 @@
 ---
-id: troubleshooting
 title: Troubleshooting
 description: Solutions for common Cinephage issues and problems
 sidebar_position: 1

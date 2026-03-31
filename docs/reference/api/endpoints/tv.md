@@ -1,5 +1,4 @@
 ---
-id: api-tv
 title: TV series and episodes
 description: API endpoints for managing TV series, seasons, and episodes
 sidebar_position: 2

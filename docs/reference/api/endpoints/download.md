@@ -1,5 +1,4 @@
 ---
-id: api-download
 title: Download queue
 description: API endpoints for managing the download queue
 sidebar_position: 4

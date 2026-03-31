@@ -1,5 +1,4 @@
 ---
-id: api-movies
 title: Movies
 description: API endpoints for managing movies in the library
 sidebar_position: 1

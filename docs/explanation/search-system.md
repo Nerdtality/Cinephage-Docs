@@ -1,5 +1,4 @@
 ---
-id: search-system
 title: Search system
 description: How Cinephage's search system finds and selects media releases
 sidebar_position: 4

@@ -1,5 +1,4 @@
 ---
-id: getting-help
 title: Getting help
 description: Where to find help and support for Cinephage
 sidebar_position: 6

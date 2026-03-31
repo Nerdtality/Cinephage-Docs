@@ -1,5 +1,4 @@
 ---
-id: understanding-interface
 title: Understanding the interface
 description: Navigate the Cinephage web interface and understand its organization
 sidebar_position: 5

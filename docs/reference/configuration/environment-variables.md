@@ -1,5 +1,4 @@
 ---
-id: environment-variables
 title: Environment variables
 description: Complete reference for all Cinephage environment variables
 sidebar_position: 1
@@ -315,7 +314,7 @@ services:
 - **Optional:** 20+
 - **Total:** 27+ environment variables
 
-For troubleshooting environment variable issues, see [Troubleshooting guide](../guides/deploy/troubleshooting).
+For troubleshooting environment variable issues, see [Troubleshooting guide](../../guides/deploy/troubleshooting).
 
 ## See Also
 

@@ -1,5 +1,4 @@
 ---
-id: configure-library-management
 title: Library management
 description: Configure root folders, organize content, and manage your media library effectively
 sidebar_position: 4

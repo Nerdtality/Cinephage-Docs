@@ -1,5 +1,4 @@
 ---
-id: faq-installation
 title: Installation & Setup FAQ
 description: Common questions about installing and setting up Cinephage
 sidebar_position: 2

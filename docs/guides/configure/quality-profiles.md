@@ -1,5 +1,4 @@
 ---
-id: configure-quality-profiles
 title: Set up quality profiles
 description: Configure quality scoring, custom formats, and upgrade behavior
 sidebar_position: 3

@@ -1,5 +1,4 @@
 ---
-id: configure-media-servers
 title: Configure media servers
 description: Connect Jellyfin, Emby, or Plex for automatic library updates
 sidebar_position: 11

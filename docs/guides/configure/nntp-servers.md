@@ -1,5 +1,4 @@
 ---
-id: configure-nntp-servers
 title: Configure NNTP servers
 description: Set up Usenet NNTP servers for streaming and article checking
 sidebar_position: 12

@@ -1,5 +1,4 @@
 ---
-id: settings-explained
 title: Settings explained
 sidebar_position: 2
 description: Comprehensive reference for all Cinephage settings configured through the web interface

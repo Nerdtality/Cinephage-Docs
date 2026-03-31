@@ -1,5 +1,4 @@
 ---
-id: faq-configuration
 title: Configuration FAQ
 description: Configuration questions about environment variables, authentication, and settings
 sidebar_position: 3
