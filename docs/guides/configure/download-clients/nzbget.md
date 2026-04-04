@@ -60,6 +60,7 @@ If you need to set or change credentials:
 | **Username** | Control username | `nzbget` or your configured username |
 | **Password** | Control password | your password |
 | **Use SSL** | Enable for HTTPS | Unchecked (unless configured) |
+| **URL Base** | For reverse proxy setups | `/nzbget` (optional) |
 
 **Host configuration guide:**
 
@@ -75,6 +76,21 @@ If you need to set or change credentials:
 | **Category** | Organizes downloads | `movies` or `tv` |
 
 Categories in NZBGet help separate downloads by type and can trigger different post-processing.
+
+### URL Base (Reverse Proxy Support)
+
+If NZBGet is behind a reverse proxy with a base path:
+
+1. Configure NZBGet to use URL base (e.g., `/nzbget`)
+2. In Cinephage, enter the same URL base
+3. API calls will use `/nzbget/jsonrpc` instead of `/jsonrpc`
+
+**Example Configuration:**
+
+| Setting | Value |
+|---------|-------|
+| NZBGet URL | `https://example.com/nzbget` |
+| Cinephage URL Base | `/nzbget` |
 
 ## Step 4: Test and save
 

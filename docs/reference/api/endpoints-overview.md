@@ -434,6 +434,9 @@ For comprehensive documentation of specific endpoint categories:
 | Search | [Search](endpoints/search) — Release search and grabbing |
 | Downloads | [Download](endpoints/download) — Queue management |
 | Settings | [Settings](endpoints/settings) — System configuration |
+| Libraries | [Libraries](endpoints/libraries) — Custom library management |
+| Tasks | [Tasks](endpoints/tasks) — Scheduled monitoring tasks |
+| Captcha Solver | [Captcha Solver](endpoints/captcha-solver) — Cloudflare bypass |
 
 ## See Also
 

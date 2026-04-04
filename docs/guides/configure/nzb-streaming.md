@@ -463,6 +463,65 @@ Stream extraction URLs are cached to avoid re-processing:
 - Reduced usenet connections
 - Lower provider bandwidth usage
 
+## SABnzbd Mount Mode
+
+Cinephage supports **SABnzbd Mount Mode** - a WebDAV-based approach for streaming NZB content with STRM/Symlink import support.
+
+### How SABnzbd Mount Mode Works
+
+```
+Cinephage → SABnzbd WebDAV → NZB Streaming → STRM File Generation → Media Server
+```
+
+**Key Features:**
+- WebDAV-mounted NZB streaming
+- On-the-fly STRM file generation for media servers
+- Direct streaming from SABnzbd's working directory
+- Supports Jellyfin, Emby, Plex import
+
+### Configuring SABnzbd Mount Mode
+
+**Step 1: Enable WebDAV in SABnzbd**
+
+1. Open SABnzbd **Config** > **General**
+2. Enable **Enable Web Interface** if not already enabled
+3. Note the WebDAV port (default: 8080 + 1 = 8081)
+
+**Step 2: Configure SABnzbd in Cinephage**
+
+1. Go to **Settings > Integrations > Download Clients**
+2. Select **SABnzbd** as the client type
+3. Enable **Mount Mode** option
+
+| Setting | Description | Example |
+|---------|-------------|---------|
+| **WebDAV Port** | SABnzbd WebDAV port | `8081` |
+| **Mount Path** | Path to SABnzbd watched folder | `/downloads/nzb` |
+| **STRM Template** | Template for STRM file generation | Default Cinephage template |
+
+**Step 3: Set Up Import Path**
+
+1. Configure SABnzbd to watch the mount path
+2. NZBs in this folder trigger STRM generation
+3. STRM files point to streaming URLs
+
+### Using SABnzbd Mount Mode
+
+**Workflow:**
+
+1. Add NZB to SABnzbd (via Cinephage or directly)
+2. SABnzbd processes the NZB
+3. Cinephage detects processed files
+4. STRM files are generated automatically
+5. Media servers import via STRM links
+6. Playback streams directly from SABnzbd
+
+**Benefits:**
+- No intermediate file storage
+- Works with media servers that support STRM
+- Lower disk usage than traditional downloading
+- Instant availability after processing
+
 ## Troubleshooting
 
 ### Stream Won't Start

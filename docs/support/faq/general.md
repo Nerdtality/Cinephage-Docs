@@ -19,7 +19,7 @@ Cinephage provides comprehensive media management capabilities:
 - **Movies** — Library management, monitoring, quality profiles, automatic downloads
 - **TV Shows** — Episode tracking, season packs, automatic episode searches
 - **Indexer Management** — YAML-based indexer definitions, built-in and custom support
-- **Subtitles** — 14+ subtitle providers with automatic syncing
+- **Subtitles** — 11 subtitle providers with automatic syncing
 - **Requests & Discovery** — Browse trending content, manage watchlists
 - **Live TV & Streaming** — IPTV support via Stalker, XStream, M3U playlists
 

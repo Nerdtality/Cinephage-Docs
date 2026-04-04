@@ -22,7 +22,11 @@ Add content sources (indexers) so Cinephage can search for and find media releas
 
 ## Understanding Indexers
 
-Cinephage uses a YAML-based indexer system. All indexer configurations are loaded from YAML files, providing flexibility and making it easy to add custom indexers.
+Cinephage uses a **YAML-only** indexer architecture. All indexer configurations are defined in YAML files, providing flexibility and making it easy to add custom indexers. Native TypeScript indexer implementations have been replaced by this unified YAML-based system.
+
+### Dynamic Capability Discovery
+
+When adding a Newznab or Torznab indexer, Cinephage automatically fetches the indexer's capabilities at `/api?t=caps` to determine supported search parameters. This ensures proper query construction and filtering.
 
 ### Supported Protocols
 

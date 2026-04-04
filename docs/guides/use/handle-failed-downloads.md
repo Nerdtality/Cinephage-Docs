@@ -332,6 +332,100 @@ Only clear blocklist if you understand why items were blocked. Clearing may resu
 -  Releases that might work later (torrents gaining seeds)
 -  Single failures that might be one-off
 
+## Bulk Operations
+
+### Bulk Clear Failed Downloads
+
+Clear multiple failed items from the queue at once:
+
+**Step 1: Access Bulk Clear**
+
+1. Go to **Activity > Queue**
+2. Click **Filter** and select **Failed**
+3. Select multiple items using checkboxes
+4. Click **Clear Failed** button
+
+**Step 2: Confirm Bulk Clear**
+
+A confirmation modal appears:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Clear Failed Downloads                                        │
+├─────────────────────────────────────────────────────────────┤
+│ You are about to remove 15 failed items:                    │
+│                                                              │
+│  - The Matrix (1999) - Missing articles                     │
+│  - Inception (2010) - Download incomplete                    │
+│  - Avatar (2009) - Disk full                                │
+│                                                              │
+│ These items will be removed from the queue.                   │
+│ (Blocked status depends on your settings)                     │
+│                                                              │
+│ [ ] Also add to blocklist                                    │
+│                                                              │
+│                    [Cancel]  [Clear 15 Items]                │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Step 3: Choose Blocklist Option**
+
+| Option | Behavior |
+|--------|----------|
+| **Unchecked** | Items removed from queue only, can be re-searched |
+| **Checked** | Items removed AND added to blocklist to prevent re-download |
+
+**Step 4: Complete**
+
+Click **Clear 15 Items** to confirm.
+
+:::warning Blocklist Warning
+If you check "Also add to blocklist," these releases will be skipped in future searches. Only enable this for releases that genuinely won't work.
+:::
+
+### Bulk Clear from Activity
+
+You can also access bulk clear from **Activity > History**:
+
+1. Filter to show failed items only
+2. Click **Select All** or pick specific items
+3. Click **Clear Selected**
+4. Confirm the bulk operation
+
+### API Endpoint for Bulk Clear
+
+Use the queue API to programmatically clear failed downloads:
+
+```bash
+# Clear all failed items
+curl -X POST \
+  -H "x-api-key: cinephage_your_key_here" \
+  http://localhost:3000/api/queue/clear-failed
+
+# Response
+{
+  "success": true,
+  "clearedCount": 15,
+  "blocklistAdded": 0
+}
+```
+
+### Queue Cleanup API
+
+The queue cleanup endpoint removes old completed items:
+
+```bash
+# Cleanup queue (removes old completed items)
+curl -X POST \
+  -H "x-api-key: cinephage_your_key_here" \
+  http://localhost:3000/api/queue/cleanup
+```
+
+This is useful for:
+- Removing old completed downloads from history
+- Keeping the queue manageable
+- Automating maintenance via cron
+
 ## Advanced Failure Management
 
 ### Failed Download Handling Settings

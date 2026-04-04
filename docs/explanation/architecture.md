@@ -157,7 +157,7 @@ Cinephage integrates with numerous external services:
 
 **Subtitles:**
 
-- 14 subtitle providers
+- 11 subtitle providers
 - OpenSubtitles, Addic7ed, SubDL, etc.
 
 **Media Servers:**

@@ -58,8 +58,26 @@ This guide shows you how to configure SABnzbd as your download client in Cinepha
 | Field | Description | Example |
 |-------|-------------|---------|
 | **Category** | Organizes downloads | `movies` or `tv` |
+| **URL Base** | Base path for reverse proxy | `/sabnzbd` |
 
 Categories in SABnzbd help separate downloads by type and can trigger different post-processing scripts.
+
+### URL Base (Reverse Proxy Support)
+
+If SABnzbd is behind a reverse proxy with a base path:
+
+1. Configure SABnzbd to use URL base (e.g., `/sabnzbd`)
+2. In Cinephage, enter the same URL base
+3. API calls will use `/sabnzbd/api` instead of `/api`
+
+**Example Configuration:**
+
+| Setting | Value |
+|---------|-------|
+| SABnzbd URL | `https://example.com/sabnzbd` |
+| Cinephage URL Base | `/sabnzbd` |
+
+This allows both services to coexist on the same domain with different base paths.
 
 ## Step 3: Test and save
 

@@ -8,7 +8,7 @@ keywords: [subtitles, languages, providers, sync, configuration]
 
 # Configure subtitles
 
-This guide walks you through configuring Cinephage's subtitle management system with 14 supported providers and automatic downloading.
+This guide walks you through configuring Cinephage's subtitle management system with 11 supported providers and automatic downloading.
 
 ## Goal
 
@@ -24,7 +24,7 @@ Enable automatic subtitle downloads for your media library in multiple languages
 
 Cinephage provides comprehensive subtitle support:
 
-- **12 subtitle providers** - Multiple sources for best coverage
+- **11 subtitle providers** - Multiple sources for best coverage
 - **Language profiles** - Multi-language preferences with embedded subtitle support
 - **Auto-download** - Automatic search on import
 - **Monitoring tasks** - Automatic searches for missing subtitles and upgrades
@@ -47,6 +47,12 @@ Cinephage provides comprehensive subtitle support:
 | LegendasDivx      | Free         | Free Account  | Portuguese-focused          |
 | BetaSeries        | Free         | API Key       | French TV series            |
 | Assrt             | Free         | API Key       | Chinese, Asian languages    |
+
+:::note Removed Providers
+The following providers have been removed due to service unavailability:
+- **Podnapisi** — Server no longer responding
+- **Subscene** — Blocked by CloudFlare protection
+:::
 
 ## Part 1: Enable Subtitle Providers
 
@@ -550,6 +556,43 @@ Cinephage scores subtitle matches to select the best option:
 - Verify file permissions
 - Ensure subtitle is in same folder as media
 - Check file encoding (UTF-8 recommended)
+
+### Subtitle Path Issues (TV Shows)
+
+**Problem:** TV episode subtitles not being found or associated correctly
+
+**Cause:** Subtitle paths may have been stored incorrectly due to path resolution issues during import.
+
+**Solution:** Use the TV Subtitle Path Fix script:
+
+```bash
+# Navigate to Cinephage directory
+cd /path/to/cinephage
+
+# Dry run (preview what would be fixed)
+DRY_RUN=true node scripts/fix-tv-subtitle-paths.js
+
+# Actually fix the paths
+node scripts/fix-tv-subtitle-paths.js
+
+# For Docker
+docker exec cinephage node scripts/fix-tv-subtitle-paths.js
+```
+
+**What the script does:**
+1. Scans all TV episode subtitles in the database
+2. Compares stored paths against correct paths based on episode file locations
+3. Moves misplaced subtitle files to their correct locations
+4. Updates database paths accordingly
+
+**Environment variables:**
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `DRY_RUN` | `true` | Preview changes without making them |
+| `CINEPHAGE_DB_PATH` | auto | Path to SQLite database |
+| `DATA_DIR` | auto | Alternative database location |
+| `MISSING_SAMPLE_LIMIT` | `5` | Number of missing file samples to log |
 
 ## Best Practices
 

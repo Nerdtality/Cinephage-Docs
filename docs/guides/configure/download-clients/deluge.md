@@ -86,6 +86,7 @@ You should see the Deluge Web UI login page. Enter the password you configured.
 | **Port** | Web UI port | `8112` |
 | **Password** | Web UI password | your password |
 | **Use SSL** | Enable for HTTPS | Unchecked (unless configured) |
+| **URL Base** | For reverse proxy setups | `/deluge` (optional) |
 
 **Note:** Deluge Web UI typically uses password-only authentication (no username).
 

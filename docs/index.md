@@ -28,7 +28,7 @@ Cinephage brings together comprehensive media management functionality:
 | Movies           | Built-in library with TMDB integration         |
 | TV Series        | Episode tracking and monitoring                |
 | Indexers         | YAML-based indexer definitions                 |
-| Subtitles        | 14 subtitle providers with auto-sync           |
+| Subtitles        | 11 subtitle providers with auto-sync           |
 | Content Discovery| Smart lists and TMDB discovery                 |
 | Cloudflare Bypass| Built-in Camoufox solver                       |
 
@@ -50,7 +50,7 @@ Cinephage brings together comprehensive media management functionality:
 
 ### Subtitle Management
 
-- **14 subtitle providers** - OpenSubtitles, Addic7ed, SubDL, and more
+- **11 subtitle providers** - OpenSubtitles, Addic7ed, SubDL, and more
 - **Language profiles** - Multi-language preferences with upgrade support
 - **Auto-sync** - Built-in synchronization using the alass algorithm
 - **Score-based selection** - Match by hash, filename, and metadata
