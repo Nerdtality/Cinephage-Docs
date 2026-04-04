@@ -639,7 +639,7 @@ Configure usenet provider connections for NZB streaming.
 - [Blocklist Management](../../guides/configure/blocklist) - Managing blocked releases and indexers
 
 ### Media and Integration Guides
-- [Library Management](../../guides/configure/library-management) - Root folders, naming, and organization
+- [Root Folders](../../guides/configure/root-folders) - Root folders, naming, and organization
 - [Media Servers](../../guides/configure/media-servers) - Jellyfin, Emby, and Plex integration
 - [Live TV Setup](../../guides/configure/live-tv) - IPTV provider configuration
 - [Subtitles Configuration](../../guides/configure/subtitles) - Automatic subtitle downloads

@@ -361,6 +361,6 @@ curl -X POST \
 
 ## See Also
 
-- [Captcha Solver Configuration](../../guides/configure/captcha-solver) — UI-based configuration guide
-- [Indexers](../../guides/configure/indexers) — Indexers that may require captcha solving
-- [Troubleshooting](../../guides/deploy/troubleshooting) — Captcha solver issues
+- [Captcha Solver Configuration](../../../guides/configure/captcha-solver) — UI-based configuration guide
+- [Indexers](../../../guides/configure/indexers) — Indexers that may require captcha solving
+- [Troubleshooting](../../../guides/deploy/troubleshooting) — Captcha solver issues

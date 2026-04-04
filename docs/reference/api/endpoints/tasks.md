@@ -458,6 +458,6 @@ curl -H "x-api-key: cinephage_your_key_here" \
 
 ## See Also
 
-- [Monitoring](../guides/configure/settings-system) — Task configuration in settings
-- [Search and Download](../guides/use/search-and-download) — Manual search operations
-- [Subtitles](../guides/configure/subtitles) — Subtitle task configuration
+- [Monitoring](../../../guides/configure/settings-system) — Task configuration in settings
+- [Search and Download](../../../guides/use/search-and-download) — Manual search operations
+- [Subtitles](../../../guides/configure/subtitles) — Subtitle task configuration
