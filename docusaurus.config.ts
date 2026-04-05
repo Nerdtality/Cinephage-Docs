@@ -65,6 +65,12 @@ const config: Config = {
 					position: 'left',
 					label: 'Documentation'
 				},
+				{
+					type: 'html',
+					position: 'left',
+					value:
+						'<a href="/deploy" class="navbar__link">Deploy <span class="badge badge--secondary">Beta</span></a>'
+				},
 			{
 				type: 'dropdown',
 				label: 'Source Code',

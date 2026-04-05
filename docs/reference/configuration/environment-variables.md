@@ -10,6 +10,8 @@ keywords: [environment variables, configuration, docker, settings]
 
 This reference documents all environment variables available for configuring Cinephage.
 
+For the authoritative template (including newer or optional keys), see the upstream [`.env.example` on the `dev` branch](https://github.com/MoldyTaint/Cinephage/blob/dev/.env.example).
+
 ## Required Variables
 
 These variables must be set for Cinephage to function correctly:

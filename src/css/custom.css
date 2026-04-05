@@ -42,3 +42,31 @@
 .hero__subtitle {
 	opacity: 0.9;
 }
+
+/* Deploy nav link + Beta badge */
+.navbar__link .badge {
+	margin-left: 0.35rem;
+	vertical-align: middle;
+	font-size: 0.7rem;
+}
+
+/*
+ * HTML navbar items (Deploy) render <a class="navbar__link"> inside .menu__list-item on mobile.
+ * Default doc links use .menu__link with Infima padding; without this, Deploy sits flush left.
+ */
+.navbar-sidebar .menu__list-item > a.navbar__link {
+	align-items: center;
+	border-radius: 0.25rem;
+	color: var(--ifm-menu-color);
+	display: flex;
+	flex: 1;
+	line-height: 1.25;
+	padding: var(--ifm-menu-link-padding-vertical) var(--ifm-menu-link-padding-horizontal);
+	transition: background var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+.navbar-sidebar .menu__list-item > a.navbar__link:hover {
+	background: var(--ifm-menu-color-background-hover);
+	color: var(--ifm-menu-color);
+	text-decoration: none;
+}
