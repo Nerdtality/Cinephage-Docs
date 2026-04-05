@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+.docusaurus/
+
+# Environment
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# AI tools — no issue with these being used, we just don't want their
+# config and cache files littering the repo
+.opencode/
+.claude/
+.cursor/
+.aider*
+.codeium/
+.continue/
+.copilot/
+.github/copilot/
+.windsurf/
+.bolt/
+.v0/
+CLAUDE.md
+.cursorrules
+.cursorignore
+
+# Runtime / misc
+*.pid
+*.seed
+*.tsbuildinfo
+.cache/

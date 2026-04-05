@@ -1,0 +1,72 @@
+/**
+ * Cinephage documentation theme.
+ * Uses Infima CSS framework (bundled with Docusaurus).
+ */
+
+:root {
+	--ifm-color-primary: #6366f1;
+	--ifm-color-primary-dark: #4f46e5;
+	--ifm-color-primary-darker: #4338ca;
+	--ifm-color-primary-darkest: #3730a3;
+	--ifm-color-primary-light: #818cf8;
+	--ifm-color-primary-lighter: #a5b4fc;
+	--ifm-color-primary-lightest: #c7d2fe;
+	--ifm-code-font-size: 95%;
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+	--ifm-color-primary: #818cf8;
+	--ifm-color-primary-dark: #6366f1;
+	--ifm-color-primary-darker: #4f46e5;
+	--ifm-color-primary-darkest: #4338ca;
+	--ifm-color-primary-light: #a5b4fc;
+	--ifm-color-primary-lighter: #c7d2fe;
+	--ifm-color-primary-lightest: #e0e7ff;
+	--ifm-background-color: #0f1117;
+	--ifm-background-surface-color: #1a1b26;
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Hero section */
+.hero--primary {
+	--ifm-hero-background-color: var(--ifm-color-primary-darkest);
+	--ifm-hero-text-color: #fff;
+}
+
+[data-theme='dark'] .hero--primary {
+	--ifm-hero-background-color: #1a1b26;
+	background: linear-gradient(135deg, #1a1b26 0%, #2d1b69 100%);
+}
+
+.hero__subtitle {
+	opacity: 0.9;
+}
+
+/* Deploy nav link + Beta badge */
+.navbar__link .badge {
+	margin-left: 0.35rem;
+	vertical-align: middle;
+	font-size: 0.7rem;
+}
+
+/*
+ * HTML navbar items (Deploy) render <a class="navbar__link"> inside .menu__list-item on mobile.
+ * Default doc links use .menu__link with Infima padding; without this, Deploy sits flush left.
+ */
+.navbar-sidebar .menu__list-item > a.navbar__link {
+	align-items: center;
+	border-radius: 0.25rem;
+	color: var(--ifm-menu-color);
+	display: flex;
+	flex: 1;
+	line-height: 1.25;
+	padding: var(--ifm-menu-link-padding-vertical) var(--ifm-menu-link-padding-horizontal);
+	transition: background var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+.navbar-sidebar .menu__list-item > a.navbar__link:hover {
+	background: var(--ifm-menu-color-background-hover);
+	color: var(--ifm-menu-color);
+	text-decoration: none;
+}

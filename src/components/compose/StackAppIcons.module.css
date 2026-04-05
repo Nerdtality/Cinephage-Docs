@@ -1,0 +1,48 @@
+.iconWell {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 32px;
+	height: 32px;
+	padding: 2px;
+	border-radius: 8px;
+	background: linear-gradient(
+		145deg,
+		color-mix(in srgb, var(--ifm-color-emphasis-100) 85%, transparent),
+		color-mix(in srgb, var(--ifm-color-emphasis-200) 70%, transparent)
+	);
+	box-shadow:
+		0 1px 0 color-mix(in srgb, var(--ifm-font-color-base) 8%, transparent),
+		inset 0 1px 0 color-mix(in srgb, var(--ifm-background-color) 40%, transparent);
+	border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-300) 65%, transparent);
+}
+
+.icon {
+	display: block;
+	flex-shrink: 0;
+	width: 28px;
+	height: 28px;
+	object-fit: contain;
+	filter: drop-shadow(0 1px 1px color-mix(in srgb, var(--ifm-font-color-base) 12%, transparent));
+}
+
+.fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background: linear-gradient(
+		145deg,
+		var(--ifm-color-emphasis-200),
+		color-mix(in srgb, var(--ifm-color-emphasis-300) 80%, var(--ifm-color-emphasis-200))
+	);
+	color: var(--ifm-color-emphasis-900);
+	font-size: 0.85rem;
+	font-weight: 700;
+	flex-shrink: 0;
+	border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-400) 35%, transparent);
+	box-shadow: inset 0 1px 0 color-mix(in srgb, var(--ifm-background-color) 35%, transparent);
+}

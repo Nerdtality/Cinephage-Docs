@@ -1,0 +1,414 @@
+---
+title: Docker Installation
+description: Install Cinephage using Docker Compose with step-by-step instructions
+sidebar_label: Docker
+sidebar_position: 1
+tags: [installation, docker, tutorial]
+keywords: [docker, docker compose, installation, setup, container]
+---
+
+# Docker Installation
+
+This guide covers installing Cinephage using Docker Compose. Docker provides a simple, consistent deployment method that works on any platform.
+
+:::tip Prefer Bare Metal?
+If you want maximum performance or prefer not to use containers, see the [Bare Metal Installation](./bare-metal) guide instead.
+:::
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- **Docker** version 20.10 or later installed
+- **Docker Compose** version 2.0 or later installed
+- A [TMDB API key](https://www.themoviedb.org/settings/api) (free registration required)
+- A server or computer with at least 2GB RAM
+
+### Check Docker Installation
+
+```bash
+docker --version
+docker compose version
+```
+
+If these commands fail, install Docker first:
+- [Ubuntu/Debian](https://docs.docker.com/engine/install/ubuntu/)
+- [CentOS/RHEL](https://docs.docker.com/engine/install/centos/)
+- [macOS](https://docs.docker.com/desktop/install/mac-install/)
+- [Windows](https://docs.docker.com/desktop/install/windows-install/)
+
+## Quick Start
+
+If you are familiar with Docker, here is the minimal configuration to get started:
+
+```yaml title="docker-compose.yaml"
+services:
+  cinephage:
+    image: ghcr.io/moldytaint/cinephage:latest
+    container_name: cinephage
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - ORIGIN=http://localhost:3000
+      - BETTER_AUTH_URL=http://localhost:3000
+      - BETTER_AUTH_SECRET=CHANGE_ME
+    volumes:
+      - ./config:/config
+      - /path/to/media:/media
+      - /path/to/downloads:/downloads
+```
+
+Replace `CHANGE_ME` with a secure secret:
+
+```bash
+openssl rand -base64 32
+```
+
+Then run:
+
+```bash
+docker compose up -d
+```
+
+For detailed explanations of each option, continue reading below.
+
+## Step-by-Step Installation
+
+### Step 1: Create Project Directory
+
+Create a directory for Cinephage and navigate into it:
+
+```bash
+mkdir cinephage
+cd cinephage
+```
+
+This directory will store your configuration and Docker files.
+
+### Step 2: Create docker-compose.yaml
+
+Create a file named `docker-compose.yaml` with the following content:
+
+```yaml title="docker-compose.yaml"
+services:
+  cinephage:
+    image: ghcr.io/moldytaint/cinephage:latest
+    container_name: cinephage
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - '3000:3000'
+    env_file: .env
+    volumes:
+      - ./config:/config
+      - /mnt/media:/media
+      - /mnt/downloads:/downloads
+```
+
+#### Configuration Explained
+
+| Option | Value | Description |
+|--------|-------|-------------|
+| `image` | `ghcr.io/moldytaint/cinephage:latest` | Docker image to use. Use `latest` for stable releases or `dev` for bleeding edge. |
+| `container_name` | `cinephage` | Name of the container for easier management |
+| `restart` | `unless-stopped` | Automatically restart unless manually stopped |
+| `ports` | `3000:3000` | Map host port 3000 to container port 3000 |
+| `env_file` | `.env` | Load environment variables from .env file (recommended) |
+| `volumes` | Various | Mount host directories into the container |
+
+#### Volume Mounts
+
+Update the volume paths to match your system:
+
+| Container Path | Host Path | Purpose |
+|----------------|-----------|---------|
+| `/config` | `./config` | Database, cache, and settings (relative to compose file) |
+| `/media` | `/mnt/media` | Your existing media library |
+| `/downloads` | `/mnt/downloads` | Where download clients save files |
+
+**Common path examples:**
+
+- **Linux server**: `/mnt/media`, `/mnt/downloads`, `/opt/cinephage/config`
+- **Synology NAS**: `/volume1/media`, `/volume1/downloads`
+- **Unraid**: `/mnt/user/media`, `/mnt/user/downloads`
+- **macOS**: `/Users/yourname/media`, `/Users/yourname/downloads`
+
+:::warning Important
+Do not mount `/app` - this contains the application code and should not be modified.
+:::
+
+### Step 3: Create .env File
+
+Create a file named `.env` in the same directory:
+
+```bash title=".env"
+# =============================================================================
+# REQUIRED SETTINGS
+# =============================================================================
+
+# Server Configuration
+HOST=0.0.0.0
+PORT=3000
+
+# ORIGIN - The URL you will use to access Cinephage
+# Examples:
+#   - Local: http://localhost:3000
+#   - Local network: http://192.168.1.100:3000
+#   - With reverse proxy: https://cinephage.yourdomain.com
+ORIGIN=http://localhost:3000
+
+# BETTER_AUTH_URL - Usually same as ORIGIN
+BETTER_AUTH_URL=http://localhost:3000
+
+# BETTER_AUTH_SECRET - Generate with: openssl rand -base64 32
+# Keep this secret! Changing it invalidates all sessions.
+BETTER_AUTH_SECRET=your-generated-secret-here
+
+# =============================================================================
+# SYSTEM SETTINGS
+# =============================================================================
+
+# User/Group IDs for file permissions
+# Find yours with: id -u (user) and id -g (group)
+PUID=1000
+PGID=1000
+
+# Timezone for logs and scheduled tasks
+# See: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+TZ=UTC
+
+# =============================================================================
+# OPTIONAL SETTINGS
+# =============================================================================
+
+# Log level: debug, info (default), warn, error
+LOG_LEVEL=info
+
+# Additional trusted origins (comma-separated)
+# Use if accessing via multiple URLs
+# BETTER_AUTH_TRUSTED_ORIGINS=http://cinephage.local,http://192.168.1.100:3000
+
+# Public URL for generated links (if different from ORIGIN)
+# PUBLIC_BASE_URL=https://cinephage.yourdomain.com
+```
+
+#### Required Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `ORIGIN` | Yes | URL where you access Cinephage |
+| `BETTER_AUTH_URL` | Yes | Authentication URL (usually same as ORIGIN) |
+| `BETTER_AUTH_SECRET` | Yes | Secret key for session encryption |
+| `PUID` | No* | User ID for file permissions (default: 1000) |
+| `PGID` | No* | Group ID for file permissions (default: 1000) |
+| `TZ` | No | Timezone (default: UTC) |
+
+*While not strictly required, PUID/PGID should match your host user to avoid permission issues.
+
+#### Generate BETTER_AUTH_SECRET
+
+Run one of these commands on your host:
+
+```bash
+# Using openssl
+openssl rand -base64 32
+
+# Using Node.js
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+```
+
+Copy the output and paste it as the `BETTER_AUTH_SECRET` value.
+
+:::warning Keep This Secret Safe
+- Store it like a password
+- Back it up with your configuration
+- Changing it will invalidate all user sessions and API keys
+:::
+
+### Step 4: Start Cinephage
+
+Launch the container:
+
+```bash
+docker compose up -d
+```
+
+This will:
+1. Download the Cinephage image (if not present)
+2. Create the container
+3. Start the application in the background
+
+:::info First Startup Note
+On first startup, Cinephage will download the Camoufox browser (~80MB) for Captcha Solver functionality. This is a one-time download stored in your `/config` volume.
+:::
+
+### Step 5: Verify Installation
+
+Check that the container is running:
+
+```bash
+docker compose ps
+```
+
+View the logs:
+
+```bash
+docker compose logs -f
+```
+
+You should see output like:
+
+```
+cinephage  | Starting Cinephage...
+cinephage  | Listening on 0.0.0.0:3000
+cinephage  | Ready! Access the web interface at http://localhost:3000
+```
+
+Press `Ctrl+C` to exit the log view (the container continues running).
+
+### Step 6: Access Cinephage
+
+Open your web browser and navigate to your configured ORIGIN:
+
+- If using `http://localhost:3000`: Open [http://localhost:3000](http://localhost:3000)
+- If using an IP address: Replace `localhost` with your server IP
+
+You should see the Cinephage setup wizard. Follow the on-screen instructions to:
+
+1. Create an admin account
+2. Enter your TMDB API key
+3. Configure root folders
+
+## Post-Installation
+
+### Updating Cinephage
+
+To update to the latest version:
+
+```bash
+cd cinephage
+docker compose pull
+docker compose up -d
+```
+
+### Viewing Logs
+
+```bash
+# Follow logs in real-time
+docker compose logs -f
+
+# View last 100 lines
+docker compose logs --tail=100
+
+# View logs since last start
+docker compose logs --since=5m
+```
+
+### Common Docker Commands
+
+```bash
+# Stop Cinephage
+docker compose down
+
+# Stop and remove volumes (WARNING: deletes data!)
+docker compose down -v
+
+# Restart Cinephage
+docker compose restart
+
+# Check container status
+docker compose ps
+
+# Execute commands inside container
+docker compose exec cinephage sh
+
+# Backup config directory
+cp -r config config-backup-$(date +%Y%m%d)
+```
+
+### Docker Image Tags
+
+| Tag | Description | Use Case |
+|-----|-------------|----------|
+| `latest` | Current stable release | **Recommended for most users** |
+| `dev` | Latest development build | Testing new features |
+| `v1.2.3` | Specific version | Pin to a specific release |
+
+To use a different tag, modify your `docker-compose.yaml`:
+
+```yaml
+image: ghcr.io/moldytaint/cinephage:dev
+```
+
+## Troubleshooting
+
+### Permission Denied Errors
+
+If you see permission errors accessing media files:
+
+1. Check your PUID/PGID match your host user:
+   ```bash
+   id -u  # Get UID
+   id -g  # Get GID
+   ```
+
+2. Update `.env` with correct values and restart:
+   ```bash
+   docker compose restart
+   ```
+
+3. Fix ownership of existing files:
+   ```bash
+   sudo chown -R $(id -u):$(id -g) config/
+   ```
+
+### Port Already in Use
+
+If port 3000 is already in use, change the port mapping:
+
+```yaml
+ports:
+  - '3001:3000'  # Use host port 3001 instead
+```
+
+Update your `.env`:
+
+```bash
+PORT=3000  # Keep container port as 3000
+ORIGIN=http://localhost:3001  # Update access URL
+```
+
+### Cannot Access Web Interface
+
+1. Check firewall rules:
+   ```bash
+   sudo ufw status
+   sudo ufw allow 3000/tcp
+   ```
+
+2. Verify ORIGIN is set correctly (must match your access URL)
+
+3. Check container logs for errors:
+   ```bash
+   docker compose logs -f
+   ```
+
+For more troubleshooting help, see the [Troubleshooting Guide](/docs/guides/deploy/troubleshooting).
+
+## Next Steps
+
+- [Initial Setup](/docs/getting-started/initial-setup) - Configure download clients, indexers, and quality profiles
+- [Environment Variables Reference](/docs/reference/configuration/environment-variables) - Complete list of configuration options
+- [Backup and Restore](/docs/guides/deploy/backup-restore) - Protect your data
+
+## See Also
+
+- [Bare Metal Installation](./bare-metal) - Alternative installation method
+- [Installation FAQ](/docs/support/faq/installation) - Common questions
+- [Docker Documentation](https://docs.docker.com/) - Official Docker guides
