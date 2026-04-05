@@ -142,9 +142,19 @@ const config: Config = {
 			copyright: `Copyright \u00A9 ${new Date().getFullYear()} Cinephage. Licensed under GPL-3.0. Built with Docusaurus.`
 		},
 		prism: {
+			/* High-contrast light; vivid dark (YAML / Docker / shell read clearly) */
 			theme: prismThemes.github,
 			darkTheme: prismThemes.dracula,
-			additionalLanguages: ['bash', 'docker', 'json', 'yaml', 'toml', 'nginx']
+			additionalLanguages: [
+				'bash',
+				'docker',
+				'json',
+				'yaml',
+				'toml',
+				'nginx',
+				'properties',
+				'ini'
+			]
 		}
 	} satisfies Preset.ThemeConfig
 };

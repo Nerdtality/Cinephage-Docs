@@ -16,6 +16,7 @@ import {
 	type TorrentChoice
 } from '@site/src/components/compose/types';
 import { generateBetterAuthSecret, generateGspGtnApiKey } from '@site/src/utils/secrets';
+import { getBrowserTimeZone } from '@site/src/utils/timezones';
 import { IntroSplash, dismissIntro } from '@site/src/components/docker-configurator/IntroSplash';
 import { phaseTransition } from '@site/src/components/docker-configurator/ChoiceCards';
 import { WizardProgress } from '@site/src/components/docker-configurator/WizardProgress';
@@ -70,6 +71,13 @@ export default function DeployPage(): ReactNode {
 	useEffect(() => {
 		if (typeof sessionStorage === 'undefined') return;
 		if (sessionStorage.getItem(INTRO_KEY) !== '1') setIntroOpen(true);
+	}, []);
+
+	useLayoutEffect(() => {
+		setS((prev) => {
+			if (prev.tz.trim()) return prev;
+			return { ...prev, tz: getBrowserTimeZone() };
+		});
 	}, []);
 
 	useLayoutEffect(() => {
@@ -163,11 +171,11 @@ export default function DeployPage(): ReactNode {
 				:	null}
 			</AnimatePresence>
 			<div className={clsx('container margin-top--none margin-bottom--lg', styles.configuratorPage)}>
-				<div className={clsx('alert alert--warning margin-bottom--md', styles.deployBetaAlert)} role="status">
-					<strong>Deploy is in beta.</strong> Generated compose and <code>.env</code> are a starting point. Review
-					and adapt them for your host before relying on them in production.
-				</div>
 				<div className={styles.configuratorMain}>
+					<div className={clsx('alert alert--warning margin-bottom--md', styles.deployBetaAlert)} role="status">
+						<strong>Deploy is in beta.</strong> Generated compose and <code>.env</code> are a starting point.
+						Review and adapt them for your host before relying on them in production.
+					</div>
 					{!lastStep && (
 						<div className={styles.wizardCard}>
 							<AnimatePresence mode="wait" initial={false} custom={navDirection}>

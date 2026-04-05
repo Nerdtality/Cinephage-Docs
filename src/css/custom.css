@@ -70,3 +70,75 @@
 	color: var(--ifm-menu-color);
 	text-decoration: none;
 }
+
+/*
+ * Prism: push token types apart (vsLight / oceanicNext + docs code fences).
+ * Uses !important so these win over inline theme styles on .token spans.
+ */
+.theme-code-block .token.keyword,
+.theme-code-block .token.tag,
+.theme-code-block .token.important {
+	font-weight: 600;
+}
+
+:root .theme-code-block .token.comment {
+	color: #64748b !important;
+	font-style: italic;
+}
+
+:root .theme-code-block .token.string,
+:root .theme-code-block .token.char,
+:root .theme-code-block .token.attr-value,
+:root .theme-code-block .token.template-string {
+	color: #0f766e !important;
+}
+
+:root .theme-code-block .token.property,
+:root .theme-code-block .token.key,
+:root .theme-code-block .token.attr-name {
+	color: #6d28d9 !important;
+}
+
+:root .theme-code-block .token.number,
+:root .theme-code-block .token.boolean {
+	color: #b45309 !important;
+}
+
+:root .theme-code-block .token.function,
+:root .theme-code-block .token.function-variable {
+	color: #0369a1 !important;
+}
+
+[data-theme='dark'] .theme-code-block .token.comment {
+	color: #8b9cbe !important;
+	font-style: italic;
+}
+
+[data-theme='dark'] .theme-code-block .token.string,
+[data-theme='dark'] .theme-code-block .token.char,
+[data-theme='dark'] .theme-code-block .token.attr-value,
+[data-theme='dark'] .theme-code-block .token.template-string {
+	color: #99e9c4 !important;
+}
+
+[data-theme='dark'] .theme-code-block .token.property,
+[data-theme='dark'] .theme-code-block .token.key,
+[data-theme='dark'] .theme-code-block .token.attr-name,
+[data-theme='dark'] .theme-code-block .token.atrule {
+	color: #7cc4fa !important;
+}
+
+[data-theme='dark'] .theme-code-block .token.number,
+[data-theme='dark'] .theme-code-block .token.boolean {
+	color: #ffadcc !important;
+}
+
+[data-theme='dark'] .theme-code-block .token.function,
+[data-theme='dark'] .theme-code-block .token.function-variable {
+	color: #d4b3ff !important;
+}
+
+[data-theme='dark'] .theme-code-block .token.operator,
+[data-theme='dark'] .theme-code-block .token.punctuation {
+	color: #b8c5d9 !important;
+}

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 import {
 	filterTimeZones,
@@ -17,6 +17,7 @@ export function TimezoneField(props: {
 	const zones = useMemo(() => listIanaTimeZones(), []);
 	const [open, setOpen] = useState(false);
 	const [q, setQ] = useState('');
+	const [browserTz, setBrowserTz] = useState<string | null>(null);
 	const comboRef = useRef<HTMLDivElement>(null);
 	const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,6 +36,10 @@ export function TimezoneField(props: {
 		},
 		[props.onChange]
 	);
+
+	useLayoutEffect(() => {
+		setBrowserTz(getBrowserTimeZone());
+	}, []);
 
 	useEffect(() => {
 		if (!open) return;
@@ -58,7 +63,8 @@ export function TimezoneField(props: {
 		};
 	}, [open]);
 
-	const display = props.value.trim() ? props.value : 'Select a timezone…';
+	const showFromBrowser =
+		Boolean(props.value.trim()) && browserTz !== null && props.value === browserTz;
 
 	return (
 		<div className={styles.fieldRow}>
@@ -77,7 +83,16 @@ export function TimezoneField(props: {
 						aria-labelledby={`${props.id}-label`}
 						onClick={() => setOpen((v) => !v)}
 					>
-						<span className={styles.tzComboValue}>{display}</span>
+						<span className={styles.tzComboValue}>
+							{props.value.trim() ?
+								<>
+									<span className={styles.tzComboIana}>{props.value}</span>
+									{showFromBrowser ?
+										<span className={styles.tzComboFromBrowser}> (from browser)</span>
+									:	null}
+								</>
+							:	<span className={styles.tzComboPlaceholder}>Select a timezone…</span>}
+						</span>
 						<span className={styles.tzComboChevron} aria-hidden>
 							▼
 						</span>

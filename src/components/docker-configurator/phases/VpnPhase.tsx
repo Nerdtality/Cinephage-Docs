@@ -177,10 +177,10 @@ export function VpnPhase(props: {
 
 					{showGspChoice && (
 						<div className={styles.gspOptionalBlock}>
-							<h3 className={styles.subsectionHeading}>qBittorrent port sync (GSP)</h3>
+							<h3 className={styles.subsectionHeading}>Use GSP for automatic port forwarding?</h3>
 							<p className={styles.fieldHint}>
 								The <strong>GSP</strong> LinuxServer mod keeps qBittorrent’s listening port aligned with Gluetun’s
-								forwarded port. <strong>Recommended</strong> unless you prefer to set the port manually.
+								forwarded port.
 							</p>
 							<ChoiceGrid>
 								<StaggerChoice index={0} reduceMotion={props.reduceMotion}>
@@ -188,9 +188,9 @@ export function VpnPhase(props: {
 										reduceMotion={props.reduceMotion}
 										selected={props.s.useGspPortSync}
 										onClick={() => props.setField('useGspPortSync', true)}
-										title="Use GSP (recommended)"
-										description="Automatic port forwarding between Gluetun and qBittorrent"
-										iconLabel="GSP"
+										title="Yes"
+										description="Enable GSP so the forwarded port syncs automatically"
+										iconLabel="Y"
 									/>
 								</StaggerChoice>
 								<StaggerChoice index={1} reduceMotion={props.reduceMotion}>
@@ -198,9 +198,9 @@ export function VpnPhase(props: {
 										reduceMotion={props.reduceMotion}
 										selected={!props.s.useGspPortSync}
 										onClick={() => props.setField('useGspPortSync', false)}
-										title="Skip"
+										title="No"
 										description="I’ll manage the listening port myself"
-										iconLabel="Off"
+										iconLabel="N"
 									/>
 								</StaggerChoice>
 							</ChoiceGrid>

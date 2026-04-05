@@ -24,6 +24,11 @@
 }
 
 .deployBetaAlert {
+	/* Same column width as .configuratorMain / .wizardCard (handles alert as sibling or child of main). */
+	box-sizing: border-box;
+	width: 100%;
+	max-width: min(56rem, 100%);
+	margin-inline: auto;
 	font-size: 0.9rem;
 	line-height: 1.45;
 }
@@ -90,6 +95,7 @@
 .field input[type='password'],
 .field input[type='number'],
 .field select {
+	box-sizing: border-box;
 	width: 100%;
 	max-width: 100%;
 	padding: 0.45rem 0.6rem;
@@ -97,6 +103,9 @@
 	border: 1px solid var(--ifm-color-emphasis-300);
 	background: var(--ifm-background-color);
 	color: var(--ifm-font-color-base);
+	font: inherit;
+	line-height: 1.35;
+	min-height: 2.5rem;
 	transition:
 		border-color 0.18s ease,
 		box-shadow 0.18s ease;
@@ -176,6 +185,7 @@
 .fieldRow input[type='number'],
 .fieldRow input[type='search'],
 .fieldRow select {
+	box-sizing: border-box;
 	width: 100%;
 	max-width: 100%;
 	padding: 0.45rem 0.6rem;
@@ -183,6 +193,9 @@
 	border: 1px solid var(--ifm-color-emphasis-300);
 	background: var(--ifm-background-color);
 	color: var(--ifm-font-color-base);
+	font: inherit;
+	line-height: 1.35;
+	min-height: 2.5rem;
 	transition:
 		border-color 0.18s ease,
 		box-shadow 0.18s ease;
@@ -232,47 +245,14 @@
 	padding: 0;
 }
 
-.outputHeader {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0.75rem;
-	margin-bottom: 0.75rem;
-}
-
-.copyBtn {
-	flex-shrink: 0;
-}
-
-.downloadRow {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.5rem;
-	align-items: center;
-	margin-bottom: 1rem;
-}
-
 .validationError {
 	font-size: 0.85rem;
 	color: var(--ifm-color-danger);
 	margin: 0.35rem 0 0;
 }
 
-.disclaimer {
-	margin-top: 2rem;
-	font-size: 0.85rem;
-	color: var(--ifm-color-emphasis-600);
-	max-width: 48rem;
-}
-
-.subBlock {
-	margin-top: 1.25rem;
-}
-
-.subBlock h3 {
-	font-size: 1rem;
-	margin-bottom: 0.5rem;
+.reviewSection .panel + .panel {
+	margin-top: 1rem;
 }
 
 .stepper {
@@ -334,6 +314,7 @@
 }
 
 .choiceStaggerItem {
+	display: flex;
 	min-width: 0;
 }
 
@@ -384,13 +365,17 @@
 }
 
 .choiceCard {
+	-webkit-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-template-rows: auto auto;
 	align-items: start;
 	column-gap: 0.75rem;
 	row-gap: 0.35rem;
-	text-align: left;
+	width: 100%;
+	margin: 0;
 	padding: 0.95rem 0.9rem;
 	border-radius: 10px;
 	border: 2px solid color-mix(in srgb, var(--ifm-color-emphasis-300) 90%, transparent);
@@ -400,6 +385,8 @@
 		var(--ifm-background-color) 100%
 	);
 	color: var(--ifm-font-color-base);
+	font: inherit;
+	text-align: left;
 	cursor: pointer;
 	transition:
 		border-color 0.2s ease,
@@ -496,6 +483,34 @@
 	width: 100%;
 }
 
+.reviewSection .navRow {
+	flex-wrap: wrap;
+}
+
+.reviewSection .navRow > .button {
+	flex-shrink: 0;
+}
+
+/* Review: filenames are implied by "Download all"; hide CodeBlock copy + word-wrap */
+.reviewSection :global(.theme-code-block) :global(.buttonGroup) {
+	display: none !important;
+}
+
+.reviewCodeBlock :global(.theme-code-block) {
+	margin-bottom: 0;
+}
+
+.reviewDownloadHint {
+	margin: 0.35rem 0 1rem;
+	font-size: 0.85rem;
+	line-height: 1.45;
+	color: var(--ifm-color-emphasis-700);
+}
+
+.reviewDownloadHint code {
+	font-size: 0.88em;
+}
+
 /* Wizard linear progress */
 .wizardProgressWrap {
 	width: 100%;
@@ -572,7 +587,7 @@
 	}
 }
 
-/* Intro splash */
+/* Intro splash — real transparency + blur (opaque mixes read as a solid sheet, especially in dark). */
 .introOverlay {
 	position: fixed;
 	inset: 0;
@@ -581,8 +596,15 @@
 	align-items: center;
 	justify-content: center;
 	padding: 1.5rem;
-	background: color-mix(in srgb, var(--ifm-background-color) 78%, #0a0a12 22%);
-	backdrop-filter: blur(8px);
+	background: color-mix(in srgb, var(--ifm-background-color) 44%, transparent);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+/* Dark page bg is already near-black; a weaker tint + same blur matches light-mode “frosted” feel. */
+:global(html[data-theme='dark']) .introOverlay {
+	/* Lower tint than light: dark --ifm-background-color is already heavy; more transparent = visible blur. */
+	background: color-mix(in srgb, var(--ifm-background-color) 16%, transparent);
 }
 
 .introCard {
@@ -614,6 +636,7 @@
 .introTitle {
 	margin: 0 0 0.65rem;
 	font-size: 1.35rem;
+	text-transform: none;
 }
 
 .introTitleRow {
@@ -626,6 +649,7 @@
 
 .introTitleText {
 	line-height: 1.25;
+	text-transform: none;
 }
 
 .introTagline {
@@ -657,15 +681,21 @@
 }
 
 .schemeBtn {
+	-webkit-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
 	flex: 1;
 	min-width: 6rem;
+	margin: 0;
 	padding: 0.55rem 1rem;
 	border-radius: var(--ifm-global-radius);
 	border: 2px solid var(--ifm-color-emphasis-300);
 	background: var(--ifm-background-color);
 	color: var(--ifm-font-color-base);
+	font: inherit;
 	font-weight: 600;
 	font-size: 0.9rem;
+	line-height: 1.35;
 	cursor: pointer;
 	transition:
 		border-color 0.18s ease,
@@ -695,18 +725,20 @@
 }
 
 .tzComboTrigger {
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.5rem;
 	width: 100%;
-	text-align: left;
-	padding: 0.45rem 0.65rem;
+	min-height: 2.5rem;
+	padding: 0.45rem 0.6rem;
 	border-radius: var(--ifm-global-radius);
 	border: 1px solid var(--ifm-color-emphasis-300);
 	background: var(--ifm-background-color);
 	color: var(--ifm-font-color-base);
 	font: inherit;
+	line-height: 1.35;
 	cursor: pointer;
 	transition:
 		border-color 0.18s ease,
@@ -724,14 +756,37 @@
 }
 
 .tzComboValue {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.2rem 0.35rem;
 	flex: 1;
 	min-width: 0;
-	font-family: var(--ifm-font-family-monospace);
-	font-size: 0.8rem;
 	line-height: 1.35;
+}
+
+.tzComboIana {
+	font-family: var(--ifm-font-family-monospace);
+	font-size: inherit;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	min-width: 0;
+	flex: 1 1 auto;
+}
+
+.tzComboFromBrowser {
+	font-family: var(--ifm-font-family-base);
+	font-size: 0.72rem;
+	font-weight: 500;
+	color: var(--ifm-color-emphasis-600);
+	flex-shrink: 0;
+}
+
+.tzComboPlaceholder {
+	font-family: inherit;
+	font-size: inherit;
+	color: var(--ifm-color-emphasis-600);
 }
 
 .tzComboChevron {
@@ -845,7 +900,8 @@
 	.stepperDot,
 	.field input,
 	.field select,
-	.schemeBtn {
+	.schemeBtn,
+	.tzComboTrigger {
 		transition: none;
 	}
 }

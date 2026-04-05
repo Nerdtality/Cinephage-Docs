@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { AppIconSlug } from '@site/src/components/compose/StackAppIcons';
 import type { HostOs } from '@site/src/components/compose/types';
 import {
 	ChoiceCard,
@@ -7,11 +8,41 @@ import {
 } from '@site/src/components/docker-configurator/ChoiceCards';
 import styles from '@site/src/components/docker-configurator/docker-configurator.module.css';
 
-const OS_OPTIONS: { id: HostOs; title: string; description: string; iconLabel: string }[] = [
-	{ id: 'windows', title: 'Windows', description: 'Path hints use drive letters.', iconLabel: 'Win' },
-	{ id: 'mac', title: 'macOS', description: 'Typical home-folder style paths.', iconLabel: 'Mac' },
-	{ id: 'linux', title: 'Linux', description: 'Common POSIX paths.', iconLabel: 'Linux' },
-	{ id: 'nas', title: 'NAS / appliance', description: 'Synology-style volume paths.', iconLabel: 'NAS' }
+const OS_OPTIONS: {
+	id: HostOs;
+	title: string;
+	description: string;
+	iconSlug: AppIconSlug;
+	iconLabel: string;
+}[] = [
+	{
+		id: 'windows',
+		title: 'Windows',
+		description: 'Path hints use drive letters.',
+		iconSlug: 'windows',
+		iconLabel: 'Win'
+	},
+	{
+		id: 'mac',
+		title: 'macOS',
+		description: 'Typical home-folder style paths.',
+		iconSlug: 'apple',
+		iconLabel: 'Mac'
+	},
+	{
+		id: 'linux',
+		title: 'Linux',
+		description: 'Common POSIX paths.',
+		iconSlug: 'linux',
+		iconLabel: 'Linux'
+	},
+	{
+		id: 'nas',
+		title: 'NAS / appliance',
+		description: 'Synology-style volume paths.',
+		iconSlug: 'synology',
+		iconLabel: 'NAS'
+	}
 ];
 
 export function WelcomePhase(props: {
@@ -36,6 +67,7 @@ export function WelcomePhase(props: {
 							onClick={() => props.setHostOs(c.id)}
 							title={c.title}
 							description={c.description}
+							iconSlug={c.iconSlug}
 							iconLabel={c.iconLabel}
 						/>
 					</StaggerChoice>

@@ -46,20 +46,16 @@ export function IntroSplash(props: { onClose: () => void }): ReactNode {
 				<img className={styles.introLogo} src={logoUrl} alt="" width={88} height={88} />
 				<h2 id="intro-splash-title" className={styles.introTitle}>
 					<span className={styles.introTitleRow}>
-						<span className={styles.introTitleText}>Cinephage deploy</span>
+						<span className={styles.introTitleText}>Cinephage Deploy</span>
 						<span className="badge badge--secondary">Beta</span>
 					</span>
 				</h2>
 				<p className={styles.introTagline}>
-					A guided few steps to a docker-compose you can copy. No Docker expertise required. You can skip this
-					anytime.
+					A guided few steps to a docker-compose you can copy. No Docker expertise required.
 				</p>
 				<div className={styles.introActions}>
 					<button type="button" className="button button--primary button--lg" onClick={close}>
 						Get started
-					</button>
-					<button type="button" className="button button--secondary" onClick={close}>
-						Skip
 					</button>
 				</div>
 			</motion.div>

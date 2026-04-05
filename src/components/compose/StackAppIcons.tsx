@@ -3,7 +3,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import styles from './StackAppIcons.module.css';
 
-/** Keys match choice cards; values are filenames in selfhst/icons `svg/` (see https://selfh.st/icons/). */
+/** Keys match choice cards; values are filenames in selfhst/icons `svg/` (see https://selfh.st/icons/). Includes host OS slugs for the welcome step. */
 export type AppIconSlug =
 	| 'jellyfin'
 	| 'plex'
@@ -23,7 +23,12 @@ export type AppIconSlug =
 	| 'bittorrent'
 	| 'nzbdav'
 	| 'altmount'
-	| 'customvpn';
+	| 'customvpn'
+	/** Host OS choice cards (selfh.st icons) */
+	| 'windows'
+	| 'apple'
+	| 'linux'
+	| 'synology';
 
 const SELFH_ICON_BASE = 'https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/';
 
@@ -51,7 +56,11 @@ const SELFH_ICON_FILE: Record<AppIconSlug, string> = {
 	/** Mount / sync style */
 	altmount: 'rclone.svg',
 	/** Custom OpenVPN / WireGuard in Gluetun */
-	customvpn: 'openvpn.svg'
+	customvpn: 'openvpn.svg',
+	windows: 'microsoft-windows.svg',
+	apple: 'apple.svg',
+	linux: 'linux.svg',
+	synology: 'synology.svg'
 };
 
 export function AppIcon(props: { slug?: AppIconSlug; label: string; className?: string }): ReactNode {

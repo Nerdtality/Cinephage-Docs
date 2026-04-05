@@ -1,11 +1,7 @@
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
-import clsx from 'clsx';
 import type { GeneratedStackOutput } from '@site/src/components/compose/types';
 import styles from '@site/src/components/docker-configurator/docker-configurator.module.css';
-
-const COPY_FEEDBACK_MS = 1500;
 
 function triggerDownload(filename: string, content: string, mime: string): void {
 	const blob = new Blob([content], { type: mime });
@@ -49,32 +45,6 @@ export function ReviewPhase(props: {
 	onBack: () => void;
 	footerProgress?: ReactNode;
 }): ReactNode {
-	const [copiedId, setCopiedId] = useState<string | null>(null);
-	const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-	const copyBlock = useCallback(async (id: string, text: string) => {
-		try {
-			await navigator.clipboard.writeText(text);
-		} catch {
-			/* ignore */
-		}
-		if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-		setCopiedId(id);
-		copyTimerRef.current = setTimeout(() => {
-			setCopiedId(null);
-			copyTimerRef.current = null;
-		}, COPY_FEEDBACK_MS);
-	}, []);
-
-	useEffect(
-		() => () => {
-			if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-		},
-		[]
-	);
-
-	const copyLabel = (id: string) => (copiedId === id ? 'Copied' : 'Copy');
-
 	const onDownloadAll = () => {
 		void downloadGeneratedFiles(props.out);
 	};
@@ -86,16 +56,13 @@ export function ReviewPhase(props: {
 					Back
 				</button>
 				{props.footerProgress}
-			</div>
-
-			<div className={styles.downloadRow}>
-				<button type="button" className="button button--primary button--sm" onClick={onDownloadAll}>
+				<button type="button" className="button button--primary" onClick={onDownloadAll}>
 					Download all files
 				</button>
-				<span className={styles.fieldHint} style={{ margin: 0 }}>
-					Saves compose, proxy snippets, and .env (your browser may ask to allow multiple downloads).
-				</span>
 			</div>
+			<p className={styles.reviewDownloadHint}>
+				Saves compose, proxy snippets, and <code>.env</code> (your browser may ask to allow multiple downloads).
+			</p>
 
 			{props.out.warnings.length > 0 && (
 				<div className={styles.warnings}>
@@ -109,88 +76,40 @@ export function ReviewPhase(props: {
 			)}
 
 			<div className={styles.panel}>
-				<div className={styles.outputHeader}>
-					<h2 style={{ margin: 0 }}>.env</h2>
-					<button
-						type="button"
-						className={clsx('button button--secondary button--sm', styles.copyBtn)}
-						onClick={() => copyBlock('env', props.out.dotEnv)}
-					>
-						{copyLabel('env')}
-					</button>
-				</div>
-				<CodeBlock language="bash">{props.out.dotEnv}</CodeBlock>
+				<section className={styles.reviewCodeBlock} aria-label="Generated .env file">
+					<CodeBlock language="properties">{props.out.dotEnv}</CodeBlock>
+				</section>
 			</div>
 
-			<div className={clsx(styles.panel, styles.subBlock)}>
-				<div className={styles.outputHeader}>
-					<h2 style={{ margin: 0 }}>docker-compose.yml</h2>
-					<button
-						type="button"
-						className={clsx('button button--secondary button--sm', styles.copyBtn)}
-						onClick={() => copyBlock('compose', props.out.composeYaml)}
-					>
-						{copyLabel('compose')}
-					</button>
-				</div>
-				<CodeBlock language="yaml">{props.out.composeYaml}</CodeBlock>
+			<div className={styles.panel}>
+				<section className={styles.reviewCodeBlock} aria-label="Generated docker-compose.yml">
+					<CodeBlock language="yaml">{props.out.composeYaml}</CodeBlock>
+				</section>
 			</div>
 
 			{props.out.caddyfile && (
-				<div className={clsx(styles.panel, styles.subBlock)}>
-					<div className={styles.outputHeader}>
-						<h3>Caddyfile</h3>
-						<button
-							type="button"
-							className={clsx('button button--secondary button--sm', styles.copyBtn)}
-							onClick={() => copyBlock('caddy', props.out.caddyfile!)}
-						>
-							{copyLabel('caddy')}
-						</button>
-					</div>
-					<CodeBlock language="bash">{props.out.caddyfile}</CodeBlock>
+				<div className={styles.panel}>
+					<section className={styles.reviewCodeBlock} aria-label="Generated Caddyfile">
+						<CodeBlock language="nginx">{props.out.caddyfile}</CodeBlock>
+					</section>
 				</div>
 			)}
 
 			{props.out.nginxConf && (
-				<div className={clsx(styles.panel, styles.subBlock)}>
-					<div className={styles.outputHeader}>
-						<h3>nginx/default.conf</h3>
-						<button
-							type="button"
-							className={clsx('button button--secondary button--sm', styles.copyBtn)}
-							onClick={() => copyBlock('nginx', props.out.nginxConf!)}
-						>
-							{copyLabel('nginx')}
-						</button>
-					</div>
-					<CodeBlock language="nginx">{props.out.nginxConf}</CodeBlock>
+				<div className={styles.panel}>
+					<section className={styles.reviewCodeBlock} aria-label="Generated nginx configuration">
+						<CodeBlock language="nginx">{props.out.nginxConf}</CodeBlock>
+					</section>
 				</div>
 			)}
 
 			{props.out.traefikDynamicYaml && (
-				<div className={clsx(styles.panel, styles.subBlock)}>
-					<div className={styles.outputHeader}>
-						<h3>traefik/dynamic.yml</h3>
-						<button
-							type="button"
-							className={clsx('button button--secondary button--sm', styles.copyBtn)}
-							onClick={() => copyBlock('traefik', props.out.traefikDynamicYaml!)}
-						>
-							{copyLabel('traefik')}
-						</button>
-					</div>
-					<CodeBlock language="yaml">{props.out.traefikDynamicYaml}</CodeBlock>
+				<div className={styles.panel}>
+					<section className={styles.reviewCodeBlock} aria-label="Generated Traefik dynamic configuration">
+						<CodeBlock language="yaml">{props.out.traefikDynamicYaml}</CodeBlock>
+					</section>
 				</div>
 			)}
-
-			<p className={styles.disclaimer}>
-				Homelab example only. For Gluetun, see{' '}
-				<a href="https://github.com/qmcgaw/gluetun-wiki" target="_blank" rel="noreferrer noopener">
-					gluetun-wiki
-				</a>
-				. Altmount may need extra capabilities per upstream docs.
-			</p>
 		</div>
 	);
 }
